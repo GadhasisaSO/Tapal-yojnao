@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ગઢસીસા સબ પોસ્ટ ઓફિસ (370445) — યોજનાઓ અને સુવિધાઓ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --paper-2:#FBEAEA;
+    --postal-red:#C8102E;
+    --postal-red-dark:#8E0E1E;
+    --navy:#8E0E1E;
+    --mustard:#FFFFFF;
+    --ink:#2A1414;
+    --line:#EBC3C3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Noto Sans Gujarati', sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Noto Serif Gujarati', serif;
+    color:var(--navy);
+    margin:0;
+  }
+  .mono{ font-family:'Courier Prime', monospace; letter-spacing:.03em; }
+
+  a{ color:inherit; }
+
+  /* subtle paper texture */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.02) 0, transparent 60%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.02) 0, transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* ============ HEADER / MASTHEAD ============ */
+  header.masthead{
+    background:var(--navy);
+    color:#FFFFFF;
+    border-bottom:6px double var(--mustard);
+  }
+  .masthead-inner{
+    max-width:1100px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    flex-wrap:wrap;
+  }
+  .masthead-title{
+    display:flex; align-items:center; gap:12px;
+  }
+  .masthead-title .glyph{
+    width:40px;height:40px;border-radius:50%;
+    border:2px solid var(--mustard);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Noto Serif Gujarati',serif; font-weight:800; color:var(--mustard);
+    flex:none;
+  }
+  .masthead-title span.name{ font-weight:600; font-size:1.05rem; letter-spacing:.03em;}
+  .masthead-inner nav{ font-size:.92rem; opacity:.9; display:flex; gap:18px; flex-wrap:wrap;}
+  .masthead-inner nav a{ text-decoration:none; border-bottom:1px dashed transparent;}
+  .masthead-inner nav a:hover{ border-bottom-color:var(--mustard); }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    max-width:1100px; margin:0 auto; padding:64px 24px 56px;
+    display:grid; grid-template-columns: 1.3fr 0.9fr; gap:40px; align-items:center;
+  }
+  .hero-eyebrow{
+    font-family:'Courier Prime',monospace; text-transform:uppercase; letter-spacing:.18em;
+    font-size:.72rem; color:var(--postal-red-dark); border:1px solid var(--postal-red-dark);
+    display:inline-block; padding:4px 10px; border-radius:2px; margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2rem, 4vw, 3rem);
+    line-height:1.25;
+    font-weight:800;
+  }
+  .hero h1 em{ font-style:normal; color:var(--postal-red); }
+  .hero p.sub{
+    max-width:46ch; margin-top:18px; font-size:1.05rem; color:#5a3535;
+  }
+  .hero-ctas{ margin-top:28px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:12px 22px; border-radius:3px; font-weight:600;
+    text-decoration:none; font-size:.95rem; border:2px solid transparent; transition:transform .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn.primary{ background:var(--postal-red); color:#FFFFFF; border-color:var(--postal-red);}
+  .btn.ghost{ background:transparent; color:var(--navy); border-color:var(--navy);}
+
+  /* Postmark seal - signature element */
+  .postmark{
+    width:220px; height:220px; margin:0 auto; position:relative;
+    justify-self:center;
+  }
+  .postmark svg{ width:100%; height:100%; }
+  .postmark-ring{ fill:none; stroke:var(--postal-red); }
+  .postmark text{ fill:var(--postal-red); font-family:'Noto Serif Gujarati',serif; }
+  .postmark .wave{ stroke:var(--postal-red); fill:none; }
+
+  /* ============ SECTION WRAPS ============ */
+  section{ max-width:1100px; margin:0 auto; padding:36px 24px; position:relative; z-index:1;}
+  .section-head{ margin-bottom:28px; display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;}
+  .section-head .tag{
+    font-family:'Courier Prime',monospace; color:var(--postal-red-dark); font-size:.78rem;
+    border:1px dashed var(--postal-red-dark); padding:3px 9px; border-radius:2px;
+  }
+  .section-head h2{ font-size:clamp(1.4rem,2.6vw,1.9rem); font-weight:700;}
+  .section-note{ color:#5a3a3a; font-size:.95rem; max-width:70ch; margin-top:6px;}
+  hr.perf{
+    border:none; height:1px; margin:8px 0 34px;
+    background-image: linear-gradient(to right, var(--line) 60%, transparent 0%);
+    background-position: bottom; background-size: 10px 1px; background-repeat: repeat-x;
+  }
+
+  /* ============ STAMP CARDS ============ */
+  .stamp-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:22px;
+  }
+  .stamp{
+    background:#FFF8F8;
+    padding:20px 18px 18px;
+    position:relative;
+    border-radius:2px;
+    box-shadow:0 2px 0 rgba(0,0,0,.04);
+    /* perforated stamp edge */
+    -webkit-mask-image:
+      radial-gradient(circle 6px at 0 0, transparent 6px, black 6.5px),
+      radial-gradient(circle 6px at 100% 0, transparent 6px, black 6.5px),
+      radial-gradient(circle 6px at 0 100%, transparent 6px, black 6.5px),
+      radial-gradient(circle 6px at 100% 100%, transparent 6px, black 6.5px);
+    outline:2px solid rgba(200,16,46,0.18);
+    outline-offset:-10px;
+  }
+  .stamp .rate{
+    font-family:'Courier Prime',monospace; font-weight:700; color:var(--postal-red);
+    font-size:1.5rem; display:block; margin-top:6px;
+  }
+  .stamp .rate small{ font-size:.6em; font-weight:400; color:var(--ink); }
+  .stamp h3{ font-size:1.05rem; font-weight:600; color:var(--navy); min-height:2.6em;}
+  .stamp p{ font-size:.9rem; color:#5a3a3a; margin:10px 0 0;}
+  .stamp .meta{
+    margin-top:12px; padding-top:10px; border-top:1px dashed var(--line);
+    font-size:.8rem; color:#7A4646; display:flex; flex-direction:column; gap:3px;
+  }
+
+  /* ============ FACILITY LIST ROWS (non-financial services) ============ */
+  .facility-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:18px;
+  }
+  .facility{
+    background:rgba(255,255,255,.35);
+    border:1px solid var(--line);
+    border-left:4px solid var(--navy);
+    padding:16px 18px; border-radius:2px;
+  }
+  .facility h3{ font-size:1rem; font-weight:600; margin-bottom:6px;}
+  .facility p{ font-size:.88rem; color:#5a3a3a; margin:0;}
+
+  /* ============ RATE TABLE STRIP ============ */
+  .rate-strip{
+    display:flex; gap:0; flex-wrap:wrap; border:1px solid var(--line); border-radius:2px; overflow:hidden;
+    background:#FFF8F8;
+  }
+  .rate-strip .cell{
+    flex:1 1 150px; padding:16px; text-align:center; border-right:1px dashed var(--line);
+  }
+  .rate-strip .cell:last-child{ border-right:none; }
+  .rate-strip .cell .num{ font-family:'Courier Prime',monospace; font-weight:700; color:var(--postal-red); font-size:1.3rem; display:block;}
+  .rate-strip .cell .lbl{ font-size:.78rem; color:#5a3a3a; margin-top:4px; display:block;}
+
+  /* ============ CALCULATOR ============ */
+  .calc-box{
+    background:#FFF8F8; border:1px solid var(--line); border-radius:3px;
+    padding:26px; display:grid; grid-template-columns:1.1fr 1fr; gap:30px;
+  }
+  .calc-box .field{ margin-bottom:16px; }
+  .calc-box label{ display:block; font-size:.85rem; color:var(--navy); font-weight:600; margin-bottom:6px;}
+  .calc-box select, .calc-box input[type=number]{
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:3px;
+    background:#fff; font-family:'Noto Sans Gujarati',sans-serif; font-size:.95rem; color:var(--ink);
+  }
+  .calc-box select:focus, .calc-box input:focus{ outline:2px solid var(--postal-red); }
+  .calc-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .calc-hint{ font-size:.78rem; color:#7A4646; margin-top:4px;}
+  .calc-result{
+    background:var(--navy); color:#FFF5F5; border-radius:3px; padding:20px 22px;
+    display:flex; flex-direction:column; gap:12px; justify-content:center;
+  }
+  .calc-result .row{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px dashed rgba(255,255,255,.3); padding-bottom:10px;}
+  .calc-result .row:last-child{ border-bottom:none; padding-bottom:0;}
+  .calc-result .row .k{ font-size:.85rem; color:#F6D3D3;}
+  .calc-result .row .v{ font-family:'Courier Prime',monospace; font-weight:700; font-size:1.15rem; color:#FFFFFF;}
+  .calc-result .row.big .v{ font-size:1.5rem; color:#fff; }
+  .calc-note{ font-size:.76rem; color:#7A4646; margin-top:14px; }
+  .freq-table{ width:100%; border-collapse:collapse; margin-top:8px; font-size:.9rem;}
+  .freq-table th, .freq-table td{ padding:9px 10px; text-align:right; border-bottom:1px solid var(--line);}
+  .freq-table th:first-child, .freq-table td:first-child{ text-align:right; }
+  .freq-table th{ color:var(--navy); font-family:'Noto Serif Gujarati',serif; font-weight:600; background:rgba(200,16,46,.06); }
+  .freq-table td.amt{ font-family:'Courier Prime',monospace; font-weight:700; color:var(--postal-red); }
+  @media (max-width:760px){ .calc-box{ grid-template-columns:1fr; } .calc-row{ grid-template-columns:1fr;} }
+
+  /* ============ CALLOUT ============ */
+  .callout{
+    background:var(--navy); color:#FFF5F5; border-radius:2px; padding:30px 26px;
+    display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .callout h3{ color:#FFF5F5; font-size:1.25rem; font-weight:700;}
+  .callout p{ margin:6px 0 0; color:#F6D3D3; font-size:.92rem;}
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:var(--postal-red-dark); color:#FFF5F5; margin-top:40px;
+  }
+  .footer-inner{ max-width:1100px; margin:0 auto; padding:34px 24px; font-size:.85rem;}
+  .footer-inner a{ color:#FFFFFF; text-decoration:underline; }
+  .disclaimer{
+    max-width:1100px; margin:0 auto; padding:0 24px 30px; font-size:.78rem; color:#7A4646;
+  }
+
+  @media (max-width:760px){
+    .hero{ grid-template-columns:1fr; text-align:center; padding-top:44px;}
+    .hero-ctas{ justify-content:center; }
+    .postmark{ order:-1; width:170px; height:170px;}
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .stamp{ transition:transform .18s ease, box-shadow .18s ease; }
+    .stamp:hover{ transform:translateY(-4px); box-shadow:0 10px 18px rgba(0,0,0,.08); }
+  }
+  a:focus-visible, button:focus-visible{ outline:3px solid var(--postal-red-dark); outline-offset:2px; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-title">
+      <div class="glyph">ડા</div>
+      <span class="name">ગઢસીસા સબ પોસ્ટ ઓફિસ · પિનકોડ 370445</span>
+    </div>
+    <nav>
+      <a href="#office">અમારી ઓફિસ</a>
+      <a href="#bachat">બચત યોજનાઓ</a>
+      <a href="#calculator">વ્યાજ કેલ્ક્યુલેટર</a>
+      <a href="#vima">વીમા યોજનાઓ</a>
+      <a href="#vima-calculator">પ્રીમિયમ કેલ્ક્યુલેટર</a>
+      <a href="#tapal">ટપાલ સેવાઓ</a>
+      <a href="#digital">ડિજિટલ સેવાઓ</a>
+      <a href="#anya">અન્ય સુવિધાઓ</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div>
+    <span class="hero-eyebrow">ગઢસીસા સબ પોસ્ટ ઓફિસ · તા. માંડવી, જિ. કચ્છ</span>
+    <h1>ગઢસીસા ગામ અને આસપાસના વિસ્તાર માટે<br><em>સલામત બચત, વીમો અને ટપાલ સેવાઓ</em></h1>
+    <p class="sub">પોસ્ટ ઓફિસ એટલે માત્ર ટપાલ નહીં — ભારત સરકારની બાંહેધરીવાળી બચત યોજનાઓ, વીમા યોજનાઓ, બેંકિંગ અને ડિજિટલ સેવાઓનું આપણું પોતાનું, વિશ્વસનીય કેન્દ્ર. ગઢસીસા સબ પોસ્ટ ઓફિસ (પિનકોડ 370445) પર આ તમામ સેવાઓ ઉપલબ્ધ છે — નીચે દરેક યોજના વિશે ટૂંકી, સાચી માહિતી આપવામાં આવી છે.</p>
+    <div class="hero-ctas">
+      <a class="btn primary" href="#office">પોસ્ટ ઓફિસની વિગતો જુઓ</a>
+      <a class="btn ghost" href="https://www.indiapost.gov.in/banking-services/savings" target="_blank" rel="noopener">સત્તાવાર વેબસાઇટ</a>
+    </div>
+  </div>
+
+  <div class="postmark" aria-hidden="true">
+    <svg viewBox="0 0 220 220">
+      <defs>
+        <path id="circlePath" d="M 110,110 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" />
+      </defs>
+      <circle class="postmark-ring" cx="110" cy="110" r="95" stroke-width="2"/>
+      <circle class="postmark-ring" cx="110" cy="110" r="88" stroke-width="1.2"/>
+      <text font-size="14" font-weight="700" letter-spacing="1.5">
+        <textPath href="#circlePath" startOffset="2%">ગઢસીસા સબ પોસ્ટ ઓફિસ ★ GADHASISA S.O ★</textPath>
+      </text>
+      <text x="110" y="102" text-anchor="middle" font-size="17" font-weight="700">370445</text>
+      <text x="110" y="127" text-anchor="middle" font-size="11" font-family="'Noto Sans Gujarati', sans-serif" font-weight="600">તા. માંડવી, જિ. કચ્છ</text>
+      <path class="wave" d="M 45 145 q 8 -10 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0" stroke-width="2"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ============ OFFICE INFO ============ -->
+<section id="office">
+  <div class="section-head">
+    <span class="tag">અમારી ઓફિસ</span>
+    <h2>ગઢસીસા સબ પોસ્ટ ઓફિસ — વિગતો</h2>
+  </div>
+  <hr class="perf">
+  <div class="rate-strip" style="margin-bottom:22px;">
+    <div class="cell"><span class="num" style="font-size:1.05rem;">370445</span><span class="lbl">પિનકોડ</span></div>
+    <div class="cell"><span class="num" style="font-size:1.05rem;">સબ ઓફિસ</span><span class="lbl">ઓફિસનો પ્રકાર</span></div>
+    <div class="cell"><span class="num" style="font-size:1.05rem;">માંડવી</span><span class="lbl">તાલુકો</span></div>
+    <div class="cell"><span class="num" style="font-size:1.05rem;">કચ્છ</span><span class="lbl">જિલ્લો</span></div>
+    <div class="cell"><span class="num" style="font-size:1.05rem;">ભુજ H.O</span><span class="lbl">વડું પોસ્ટ ઓફિસ</span></div>
+  </div>
+
+  <div class="facility-grid">
+    <div class="facility">
+      <h3>સરનામું</h3>
+      <p>પોસ્ટ માસ્તર, ગઢસીસા સબ પોસ્ટ ઓફિસ, વથાણ ચોક, ગઢસીસા, તાલુકો માંડવી, જિલ્લો કચ્છ, ગુજરાત — 370445</p>
+    </div>
+    <div class="facility">
+      <h3>પોસ્ટલ વિભાગ</h3>
+      <p>ડિવિઝન: કચ્છ (Kutch) · રિજિયન: રાજકોટ · સર્કલ: ગુજરાત</p>
+    </div>
+    <div class="facility">
+      <h3>કામકાજના કલાકો</h3>
+      <p>ટપાલ/બેંકિંગ કામકાજ: 07:30 થી 13:30<br>પૂછપરછ અને ટપાલ ટિકિટ વેચાણ: 07:30 થી 15:30</p>
+    </div>
+    <div class="facility">
+      <h3>સંપર્ક</h3>
+      <p>મોબાઈલ: <a href="tel:+919429006720">94290 06720</a><br>ઈમેલ: <a href="mailto:gadhasisaso@indiapost.gov.in">gadhasisaso@indiapost.gov.in</a></p>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;">
+    <a class="btn primary" href="https://www.google.com/maps/search/Vathan+Chowk+Gadhasisa+Post+Office+370445" target="_blank" rel="noopener">નકશા પર જુઓ</a>
+  </div>
+</section>
+
+<!-- ============ SAVING SCHEMES ============ -->
+<section id="bachat">
+  <div class="section-head">
+    <span class="tag">બેંકિંગ સેવા</span>
+    <h2>નાની બચત યોજનાઓ (Small Savings Schemes)</h2>
+  </div>
+  <p class="section-note">દરેક યોજના ભારત સરકાર દ્વારા બાંહેધરીકૃત છે અને દેશની કોઈપણ પોસ્ટ ઓફિસમાં ઉપલબ્ધ છે. નીચે દર્શાવેલ વ્યાજ દર જુલાઈ–સપ્ટેમ્બર 2026 ત્રિમાસિક ગાળા માટેના છે અને દર ત્રિમાસિકે નાણા મંત્રાલય દ્વારા સુધારવામાં આવે છે, તેથી રોકાણ પહેલાં નજીકની પોસ્ટ ઓફિસ અથવા indiapost.gov.in પર વર્તમાન દર ચકાસી લેવો.</p>
+  <hr class="perf">
+
+  <div class="stamp-grid">
+
+    <div class="stamp">
+      <h3>પોસ્ટ ઓફિસ બચત ખાતું</h3>
+      <span class="rate">4.0% <small>વાર્ષિક</small></span>
+      <p>સામાન્ય બચત ખાતું, ચેક બુક અને ATM સુવિધા સાથે. ઓછામાં ઓછા ₹500થી ખાતું ખોલી શકાય.</p>
+      <div class="meta"><span>પાત્રતા: કોઈપણ વ્યક્તિ</span><span>સંયુક્ત ખાતું શક્ય</span></div>
+    </div>
+
+    <div class="stamp">
+      <h3>રિકરિંગ ડિપોઝિટ (5 વર્ષ RD)</h3>
+      <span class="rate">6.7% <small>વાર્ષિક</small></span>
+      <p>દર મહિને નિશ્ચિત રકમ જમા કરી 5 વર્ષે સારું વળતર મેળવવાની યોજના, નાના રોકાણકારો માટે આદર્શ.</p>
+      <div class="meta"><span>લઘુત્તમ: ₹100/માસ</span><span>મુદત: 5 વર્ષ</span></div>
+    </div>
+
+    <div class="stamp">
+      <h3>ટાઈમ ડિપોઝિટ (TD / FD)</h3>
+      <span class="rate">6.9% – 7.5% <small>મુદત મુજબ</small></span>
+      <p>1, 2, 3 અને 5 વર્ષની મુદતના વિકલ્પો. 5 વર્ષની ડિપોઝિટ પર આવકવેરા કલમ 80C હેઠળ કરરાહત મળે છે.</p>
+      <div class="meta"><span>1 વર્ષ: 6.9% · 2 વર્ષ: 7.0%</span><span>3 વર્ષ: 7.1% · 5 વર્ષ: 7.5%</span></div>
+    </div>
+
+    <div class="stamp">
+      <h3>માસિક આવક યોજના (MIS)</h3>
+      <span class="rate">7.4% <small>વાર્ષિક</small></span>
+      <p>એકસામટી રકમ જમા કરાવી દર મહિને નિશ્ચિત વ્યાજની આવક મેળવવાની યોજના — નિવૃત્ત વ્યક્તિઓમાં લોકપ્રિય.</p>
+      <div class="meta"><span>મુદત: 5 વર્ષ</span><span>એકલ: ₹9 લાખ સુધી, સંયુક્ત: ₹15 લાખ સુધી</span></div>
+    </div>
+
+    <div class="stamp">
+      <h3>વરિષ્ઠ નાગરિક બચત યોજના (SCSS)</h3>
+      <span class="rate">8.2% <small>વાર્ષિક</small></span>
+      <p>60 વર્ષ કે તેથી વધુ ઉંમરના નાગરિકો માટે સૌથી વધુ વ્યાજ દર ધરાવતી સલામત યોજના, ત્રિમાસિક વ્યાજ ચુકવણી સાથે.</p>
+      <div class="meta"><span>પાત્રતા: 60+ વર્ષ</span><span>મુદત: 5 વર્ષ (લંબાવી શકાય)</span></div>
+    </div>
+
+    <div class="stamp">
+      <h3>જાહેર ભવિષ્ય નિધિ (PPF)</h3>
+      <span class="rate">7.1% <small>વાર્ષિક</small></span>
+      <p>લાંબા ગાળાનું રોકાણ, કરમુક્ત વ્યાજ અને કલમ 80C હેઠળ કરરાહત. નિવૃત્તિ આયોજન માટે શ્રેષ્ઠ વિકલ્પ.</p>
+      <div class="meta"><span>મુદત: 15 વર્ષ</span><span>વાર્ષિક: ₹500 થી ₹1.5 લાખ</span></div>
+    </div>
+
+    <div class="stamp">
+      <h3>રાષ્ટ્રીય બચત પ્રમાણપત્ર (NSC)</h3>
+      <span class="rate">7.7% <small>વાર્ષિક</small></span>
+      <p>5 વર્ષની મુદતનું પ્રમાણપત્ર, વ્યાજ વાર્ષિક ચક્રવૃદ્ધિ થાય છે અને કલમ 80C હેઠળ કરરાહત મળે છે.</p>
+      <div class="meta"><span>લઘુત્તમ: ₹1,000</span><span>મહત્તમ મર્યાદા: નથી</span></div>
+    </div>
+
+    <div class="stamp">
+      <h3>કિસાન વિકાસ પત્ર (KVP)</h3>
+      <span class="rate">7.5% <small>115 મહિનામાં બમણું</small></span>
+      <p>રોકાણની રકમ નિશ્ચિત સમયગાળામાં બમણી થાય તેવી સરળ અને લોકપ્રિય પ્રમાણપત્ર યોજના.</p>
+      <div class="meta"><span>લઘુત્તમ: ₹1,000</span><span>મહત્તમ મર્યાદા: નથી</span></div>
+    </div>
+
+    <div class="stamp">
+      <h3>સુકન્યા સમૃદ્ધિ યોજના (SSY)</h3>
+      <span class="rate">8.2% <small>વાર્ષિક</small></span>
+      <p>10 વર્ષથી નાની દીકરીના નામે ખાતું ખોલી તેના ભણતર અને લગ્ન માટે બચત કરવાની સરકારી યોજના.</p>
+      <div class="meta"><span>વાર્ષિક: ₹250 થી ₹1.5 લાખ</span><span>પરિપક્વતા: ખાતું ખોલ્યાના 21 વર્ષે</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SAVINGS INTEREST CALCULATOR ============ -->
+<section id="calculator">
+  <div class="section-head">
+    <span class="tag">કેલ્ક્યુલેટર</span>
+    <h2>વ્યાજ ગણતરી કરો</h2>
+  </div>
+  <p class="section-note">યોજના પસંદ કરો, રકમ અને મુદત નાખો — અંદાજિત વ્યાજ અને પરિપક્વતા રકમ તરત જ જુઓ. આ માત્ર અંદાજ છે; ચોક્કસ ગણતરી માટે પોસ્ટ ઓફિસનો સંપર્ક કરો.</p>
+  <hr class="perf">
+
+  <div class="calc-box">
+    <div>
+      <div class="field">
+        <label for="schemeSelect">યોજના પસંદ કરો</label>
+        <select id="schemeSelect" onchange="onSchemeChange()">
+          <option value="SB">પોસ્ટ ઓફિસ બચત ખાતું (4.0%)</option>
+          <option value="RD">રિકરિંગ ડિપોઝિટ (6.7%)</option>
+          <option value="TD1">ટાઈમ ડિપોઝિટ – 1 વર્ષ (6.9%)</option>
+          <option value="TD2">ટાઈમ ડિપોઝિટ – 2 વર્ષ (7.0%)</option>
+          <option value="TD3">ટાઈમ ડિપોઝિટ – 3 વર્ષ (7.1%)</option>
+          <option value="TD5">ટાઈમ ડિપોઝિટ – 5 વર્ષ (7.5%)</option>
+          <option value="MIS">માસિક આવક યોજના – MIS (7.4%)</option>
+          <option value="SCSS">વરિષ્ઠ નાગરિક બચત યોજના – SCSS (8.2%)</option>
+          <option value="PPF">જાહેર ભવિષ્ય નિધિ – PPF (7.1%)</option>
+          <option value="NSC">રાષ્ટ્રીય બચત પ્રમાણપત્ર – NSC (7.7%)</option>
+          <option value="KVP">કિસાન વિકાસ પત્ર – KVP (7.5%)</option>
+          <option value="SSY">સુકન્યા સમૃદ્ધિ યોજના – SSY (8.2%)</option>
+        </select>
+      </div>
+
+      <div class="calc-row">
+        <div class="field">
+          <label id="amountLabel" for="amount">રકમ (₹)</label>
+          <input type="number" id="amount" value="100000" min="0" oninput="calculate()">
+        </div>
+        <div class="field">
+          <label id="tenureLabel" for="tenure">મુદત (વર્ષ)</label>
+          <input type="number" id="tenure" value="5" min="1" oninput="calculate()">
+        </div>
+      </div>
+      <p class="calc-hint" id="schemeHint">પોસ્ટ ઓફિસ બચત ખાતામાં કોઈપણ સમયે રકમ જમા/ઉપાડ કરી શકાય છે. વ્યાજ વાર્ષિક ધોરણે ગણેલ છે.</p>
+    </div>
+
+    <div class="calc-result">
+      <div class="row"><span class="k">કુલ જમા રકમ</span><span class="v" id="rInvested">₹0</span></div>
+      <div class="row"><span class="k">અંદાજિત વ્યાજ</span><span class="v" id="rInterest">₹0</span></div>
+      <div class="row big"><span class="k">પરિપક્વતા રકમ</span><span class="v" id="rMaturity">₹0</span></div>
+      <div class="calc-note">દર્શાવેલ વ્યાજ દર જુલાઈ–સપ્ટેમ્બર 2026ના ત્રિમાસિક ગાળા મુજબ છે અને દર ત્રિમાસિકે બદલાઈ શકે છે. ગણતરી સામાન્ય સૂત્ર પર આધારિત અંદાજ છે, વાસ્તવિક રકમ પોસ્ટ ઓફિસના નિયમો મુજબ થોડી અલગ હોઈ શકે.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSURANCE ============ -->
+<section id="vima">
+  <div class="section-head">
+    <span class="tag">વીમા સેવા</span>
+    <h2>વીમા યોજનાઓ</h2>
+  </div>
+  <p class="section-note">પોસ્ટ ઓફિસ જીવન વીમા ઉપરાંત સરકારની સામાજિક સુરક્ષા યોજનાઓ પણ પોસ્ટ ઓફિસ મારફતે મેળવી શકાય છે.</p>
+  <hr class="perf">
+  <div class="facility-grid">
+    <div class="facility">
+      <h3>પોસ્ટલ લાઈફ ઈન્સ્યોરન્સ (PLI)</h3>
+      <p>સરકારી અને અર્ધ-સરકારી કર્મચારીઓ માટે જીવન વીમા યોજના, ઓછા પ્રીમિયમે ઊંચું બોનસ.</p>
+    </div>
+    <div class="facility">
+      <h3>ગ્રામીણ ડાક જીવન વીમા (RPLI)</h3>
+      <p>ગ્રામીણ વિસ્તારના નાગરિકો માટે ખાસ બનાવેલ સસ્તી જીવન વીમા યોજના.</p>
+    </div>
+    <div class="facility">
+      <h3>પ્રધાનમંત્રી સુરક્ષા વીમા યોજના (PMSBY)</h3>
+      <p>નજીવા વાર્ષિક પ્રીમિયમે અકસ્માત વીમા કવચ આપતી યોજના.</p>
+    </div>
+    <div class="facility">
+      <h3>પ્રધાનમંત્રી જીવન જ્યોતિ વીમા યોજના (PMJJBY)</h3>
+      <p>ઓછા પ્રીમિયમે જીવન વીમા કવચ પૂરું પાડતી સામાજિક સુરક્ષા યોજના.</p>
+    </div>
+    <div class="facility">
+      <h3>અટલ પેન્શન યોજના (APY)</h3>
+      <p>અસંગઠિત ક્ષેત્રના કામદારો માટે નિવૃત્તિ પછી નિશ્ચિત માસિક પેન્શનની ખાતરી આપતી યોજના.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSURANCE PREMIUM CALCULATOR ============ -->
+<section id="vima-calculator">
+  <div class="section-head">
+    <span class="tag">કેલ્ક્યુલેટર</span>
+    <h2>વીમા હપ્તા કેલ્ક્યુલેટર (માસિક · છ-માસિક · વાર્ષિક)</h2>
+  </div>
+  <p class="section-note">PLI/RPLI નું ચોક્કસ પ્રીમિયમ ઉંમર, પ્લાન અને મુદત પ્રમાણે અલગ-અલગ હોય છે અને તે ફક્ત સત્તાવાર <a href="https://pli.indiapost.gov.in" target="_blank" rel="noopener">pli.indiapost.gov.in</a> કેલ્ક્યુલેટર પર જ ચોકસાઈથી મળે. જો તમને તમારું <strong>વાર્ષિક પ્રીમિયમ</strong> ખબર હોય (એજન્ટ/પોર્ટલ પરથી), તો નીચે નાખો — તે માસિક, છ-માસિક અને વાર્ષિક હપ્તામાં કેવી રીતે વહેંચાય તે જુઓ.</p>
+  <hr class="perf">
+
+  <div class="calc-box">
+    <div>
+      <div class="field">
+        <label for="annualPremium">વાર્ષિક પ્રીમિયમ (₹)</label>
+        <input type="number" id="annualPremium" value="12000" min="0" oninput="calcPremium()">
+      </div>
+      <div class="field">
+        <label for="sumAssured">વીમા રકમ / Sum Assured (₹) <span style="font-weight:400;">(ઐચ્છિક)</span></label>
+        <input type="number" id="sumAssured" value="500000" min="0" oninput="calcPremium()">
+        <p class="calc-hint">માસિક હપ્તા પર દર ₹20,000 વીમા રકમે અંદાજે ₹1/માસનું રિબેટ લાગુ પડે છે (સામાન્ય PLI નિયમ મુજબ).</p>
+      </div>
+    </div>
+
+    <div>
+      <table class="freq-table">
+        <thead>
+          <tr><th>ચુકવણી પદ્ધતિ</th><th>હપ્તાની સંખ્યા/વર્ષ</th><th>પ્રતિ હપ્તો</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>માસિક</td><td>12</td><td class="amt" id="pMonthly">₹0</td></tr>
+          <tr><td>છ-માસિક</td><td>2</td><td class="amt" id="pHalfYearly">₹0</td></tr>
+          <tr><td>વાર્ષિક (એડવાન્સ)</td><td>1</td><td class="amt" id="pYearly">₹0</td></tr>
+        </tbody>
+      </table>
+      <div class="calc-note">વાર્ષિક એડવાન્સ ચુકવણી પર સામાન્ય રીતે અંદાજે 2% જેટલું રિબેટ મળે છે. વાસ્તવિક રિબેટ/લોડિંગ પ્લાન અને પોસ્ટ ઓફિસના વર્તમાન નિયમો પર આધારિત છે — સચોટ આંકડા માટે pli.indiapost.gov.in અથવા નજીકની પોસ્ટ ઓફિસનો સંપર્ક કરો.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAIL SERVICES ============ -->
+<section id="tapal">
+  <div class="section-head">
+    <span class="tag">ટપાલ સેવા</span>
+    <h2>ટપાલ અને પાર્સલ સેવાઓ</h2>
+  </div>
+  <hr class="perf">
+  <div class="facility-grid">
+    <div class="facility">
+      <h3>સ્પીડ પોસ્ટ</h3>
+      <p>ઝડપી અને ટ્રેક કરી શકાય તેવી ટપાલ સેવા, દેશભરમાં અને આંતરરાષ્ટ્રીય સ્તરે ઉપલબ્ધ.</p>
+    </div>
+    <div class="facility">
+      <h3>રજિસ્ટર્ડ પોસ્ટ</h3>
+      <p>મહત્વના દસ્તાવેજો સુરક્ષિત રીતે મોકલવા માટેની પ્રમાણભૂત સેવા, ડિલિવરીની પહોંચ સાથે.</p>
+    </div>
+    <div class="facility">
+      <h3>મની ઓર્ડર / e-મની ઓર્ડર</h3>
+      <p>દેશના કોઈપણ ખૂણે ઝડપથી અને સુરક્ષિત રીતે નાણાં મોકલવાની સેવા.</p>
+    </div>
+    <div class="facility">
+      <h3>પાર્સલ અને બિઝનેસ પોસ્ટ</h3>
+      <p>વ્યાપારી ઉપયોગ માટે બલ્ક મેઈલ, લોજિસ્ટિક્સ પોસ્ટ અને ઈ-કોમર્સ પાર્સલ સેવા.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIGITAL / BANKING ============ -->
+<section id="digital">
+  <div class="section-head">
+    <span class="tag">ડિજિટલ સેવા</span>
+    <h2>ડિજિટલ અને બેંકિંગ સેવાઓ</h2>
+  </div>
+  <hr class="perf">
+  <div class="facility-grid">
+    <div class="facility">
+      <h3>ઈન્ડિયા પોસ્ટ પેમેન્ટ્સ બેંક (IPPB)</h3>
+      <p>ઘરબેઠાં બેંકિંગ, આધાર-આધારિત ચુકવણી (AEPS), DBT અને મોબાઈલ બેંકિંગ સુવિધા.</p>
+    </div>
+    <div class="facility">
+      <h3>નેટ બેંકિંગ</h3>
+      <p>પોસ્ટ ઓફિસ બચત ખાતાનું ઓનલાઈન સંચાલન, બેલેન્સ ચકાસણી અને ટ્રાન્સફર સુવિધા.</p>
+    </div>
+    <div class="facility">
+      <h3>Dak Sewa મોબાઈલ એપ</h3>
+      <p>ટપાલ ટ્રેકિંગ, નજીકની પોસ્ટ ઓફિસ શોધ અને સેવાઓની માહિતી માટે સત્તાવાર મોબાઈલ એપ.</p>
+    </div>
+    <div class="facility">
+      <h3>ડોરસ્ટેપ બેંકિંગ સેવા</h3>
+      <p>વરિષ્ઠ નાગરિકો અને દિવ્યાંગજનો માટે ઘરે બેઠાં રોકડ જમા/ઉપાડની સુવિધા.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OTHER FACILITIES ============ -->
+<section id="anya">
+  <div class="section-head">
+    <span class="tag">અન્ય સેવા</span>
+    <h2>અન્ય સુવિધાઓ</h2>
+  </div>
+  <hr class="perf">
+  <div class="facility-grid">
+    <div class="facility">
+      <h3>આધાર નોંધણી/અપડેશન</h3>
+      <p>પસંદગીની પોસ્ટ ઓફિસોમાં આધાર કાર્ડ નોંધણી અને વિગતો સુધારવાની સુવિધા.</p>
+    </div>
+    <div class="facility">
+      <h3>પોસ્ટ ઓફિસ પાસપોર્ટ સેવા કેન્દ્ર (POPSK)</h3>
+      <p>વિદેશ મંત્રાલય સાથે મળીને પાસપોર્ટ અરજી અને સંબંધિત સેવાઓ.</p>
+    </div>
+    <div class="facility">
+      <h3>ફિલાટેલી (ટપાલ ટિકિટ સંગ્રહ)</h3>
+      <p>વિશેષ ટપાલ ટિકિટો, પ્રથમ દિવસ કવર અને સંગ્રાહકો માટેની સામગ્રી.</p>
+    </div>
+    <div class="facility">
+      <h3>વરિષ્ઠ નાગરિક કલ્યાણ ભંડોળ</h3>
+      <p>વરિષ્ઠ નાગરિકોના યોગદાનથી ચાલતું કલ્યાણકારી ભંડોળ, PPF/SCSS ખાતાધારકો માટે.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="callout">
+    <div>
+      <h3>ગઢસીસા સબ પોસ્ટ ઓફિસની મુલાકાત લો</h3>
+      <p>યોજનાની પસંદગી, ફોર્મ અને વર્તમાન વ્યાજ દર માટે ગઢસીસા સબ પોસ્ટ ઓફિસ (પિનકોડ 370445) ના કાઉન્ટર પર રૂબરૂ સંપર્ક કરો અથવા સત્તાવાર વેબસાઈટ પર ચકાસો.</p>
+    </div>
+    <a class="btn primary" href="https://www.indiapost.gov.in/" target="_blank" rel="noopener">indiapost.gov.in ખોલો</a>
+  </div>
+</section>
+
+<div class="disclaimer">
+  નોંધ: આ પાનું જાગૃતિ અને સામાન્ય માહિતી માટે તૈયાર કરવામાં આવ્યું છે. વ્યાજ દર, નિયમો અને પાત્રતા સમય-સમય પર બદલાઈ શકે છે. રોકાણ કે અરજી કરતાં પહેલાં નજીકની પોસ્ટ ઓફિસ અથવા <a href="https://www.indiapost.gov.in" target="_blank" rel="noopener">www.indiapost.gov.in</a> પર સત્તાવાર અને વર્તમાન વિગતો ચકાસી લેવી. વ્યાજ દર જુલાઈ–સપ્ટેમ્બર 2026ના ત્રિમાસિક ગાળા મુજબ દર્શાવેલ છે.
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <strong>ગઢસીસા સબ પોસ્ટ ઓફિસ</strong> · વથાણ ચોક, ગઢસીસા, પિનકોડ 370445 · તાલુકો માંડવી, જિલ્લો કચ્છ, ગુજરાત<br>
+    મોબાઈલ: <a href="tel:+919429006720">94290 06720</a> · ઈમેલ: <a href="mailto:gadhasisaso@indiapost.gov.in">gadhasisaso@indiapost.gov.in</a><br>
+    ટપાલ વિભાગ, સંચાર મંત્રાલય, ભારત સરકાર · વડું પોસ્ટ ઓફિસ: ભુજ H.O · ડિવિઝન: કચ્છ, રિજિયન: રાજકોટ, સર્કલ: ગુજરાત<br>
+    સત્તાવાર વેબસાઈટ: <a href="https://www.indiapost.gov.in" target="_blank" rel="noopener">www.indiapost.gov.in</a>
+  </div>
+</footer>
+
+<script>
+  // ---- Rates & scheme meta (Jul–Sep 2026 quarter) ----
+  const SCHEMES = {
+    SB:  { rate:4.0,  label:"પોસ્ટ ઓફિસ બચત ખાતું", amountLabel:"જમા રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:1, tenureFixed:false,
+           hint:"કોઈપણ સમયે જમા/ઉપાડ શક્ય. વ્યાજ સાદા ધોરણે, વાર્ષિક ગણેલ છે." },
+    RD:  { rate:6.7,  label:"રિકરિંગ ડિપોઝિટ", amountLabel:"માસિક જમા રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:5, tenureFixed:true, fixedVal:5,
+           hint:"5 વર્ષની નિશ્ચિત મુદત. દર મહિને આ રકમ જમા કરવાની રહેશે (ત્રિમાસિક ચક્રવૃદ્ધિ)." },
+    TD1: { rate:6.9,  label:"ટાઈમ ડિપોઝિટ 1 વર્ષ", amountLabel:"એકસામટી રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:1, tenureFixed:true, fixedVal:1,
+           hint:"1 વર્ષની નિશ્ચિત મુદત, ત્રિમાસિક ચક્રવૃદ્ધિ વ્યાજ." },
+    TD2: { rate:7.0,  label:"ટાઈમ ડિપોઝિટ 2 વર્ષ", amountLabel:"એકસામટી રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:2, tenureFixed:true, fixedVal:2,
+           hint:"2 વર્ષની નિશ્ચિત મુદત, ત્રિમાસિક ચક્રવૃદ્ધિ વ્યાજ." },
+    TD3: { rate:7.1,  label:"ટાઈમ ડિપોઝિટ 3 વર્ષ", amountLabel:"એકસામટી રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:3, tenureFixed:true, fixedVal:3,
+           hint:"3 વર્ષની નિશ્ચિત મુદત, ત્રિમાસિક ચક્રવૃદ્ધિ વ્યાજ." },
+    TD5: { rate:7.5,  label:"ટાઈમ ડિપોઝિટ 5 વર્ષ", amountLabel:"એકસામટી રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:5, tenureFixed:true, fixedVal:5,
+           hint:"5 વર્ષની નિશ્ચિત મુદત. કલમ 80C હેઠળ કરરાહત મળે છે." },
+    MIS: { rate:7.4,  label:"માસિક આવક યોજના", amountLabel:"એકસામટી રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:5, tenureFixed:true, fixedVal:5,
+           hint:"5 વર્ષની મુદત. વ્યાજ દર મહિને ખાતામાં જમા થાય છે (પરિપક્વતાએ ઉમેરાતું નથી)." },
+    SCSS:{ rate:8.2,  label:"વરિષ્ઠ નાગરિક બચત યોજના", amountLabel:"એકસામટી રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:5, tenureFixed:true, fixedVal:5,
+           hint:"5 વર્ષની મુદત (લંબાવી શકાય). વ્યાજ દર ત્રિમાસિકે ખાતામાં જમા થાય છે." },
+    PPF: { rate:7.1,  label:"જાહેર ભવિષ્ય નિધિ", amountLabel:"વાર્ષિક જમા રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:15, tenureFixed:true, fixedVal:15,
+           hint:"15 વર્ષની મુદત. દર વર્ષે આ રકમ જમા કરવાની ધારણા સાથે વાર્ષિક ચક્રવૃદ્ધિ ગણેલ છે." },
+    NSC: { rate:7.7,  label:"રાષ્ટ્રીય બચત પ્રમાણપત્ર", amountLabel:"એકસામટી રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:5, tenureFixed:true, fixedVal:5,
+           hint:"5 વર્ષની નિશ્ચિત મુદત, વાર્ષિક ચક્રવૃદ્ધિ વ્યાજ (પરિપક્વતાએ એકસાથે મળે છે)." },
+    KVP: { rate:7.5,  label:"કિસાન વિકાસ પત્ર", amountLabel:"એકસામટી રકમ (₹)", tenureLabel:"મુદત (વર્ષ, આશરે 9.6)", defTenure:9.6, tenureFixed:true, fixedVal:9.6,
+           hint:"રકમ 115 મહિનામાં (≈9 વર્ષ 7 મહિના) બમણી થાય છે." },
+    SSY: { rate:8.2,  label:"સુકન્યા સમૃદ્ધિ યોજના", amountLabel:"વાર્ષિક જમા રકમ (₹)", tenureLabel:"જમા કરવાના વર્ષ (મહત્તમ 15)", defTenure:15, tenureFixed:false,
+           hint:"ખાતું 21 વર્ષે પરિપક્વ થાય છે; જમા સામાન્ય રીતે પ્રથમ 15 વર્ષ સુધી કરવાની હોય છે, ત્યારબાદ ફક્ત વ્યાજ ઉમેરાય છે." }
+  };
+
+  function fmt(n){
+    if(!isFinite(n)) return "₹0";
+    return "₹" + Math.round(n).toLocaleString('en-IN');
+  }
+
+  function onSchemeChange(){
+    const key = document.getElementById('schemeSelect').value;
+    const s = SCHEMES[key];
+    document.getElementById('amountLabel').textContent = s.amountLabel;
+    document.getElementById('tenureLabel').textContent = s.tenureLabel;
+    const tenureInput = document.getElementById('tenure');
+    if(s.tenureFixed){
+      tenureInput.value = s.fixedVal;
+      tenureInput.disabled = true;
+    } else {
+      tenureInput.disabled = false;
+      tenureInput.value = s.defTenure;
+    }
+    document.getElementById('schemeHint').textContent = s.hint;
+    calculate();
+  }
+
+  function calculate(){
+    const key = document.getElementById('schemeSelect').value;
+    const s = SCHEMES[key];
+    const amount = parseFloat(document.getElementById('amount').value) || 0;
+    const years = parseFloat(document.getElementById('tenure').value) || s.defTenure;
+    const r = s.rate;
+    let invested = 0, maturity = 0, interest = 0;
+
+    if(key === 'SB'){
+      invested = amount;
+      interest = amount * (r/100) * years;
+      maturity = invested + interest;
+    }
+    else if(key === 'RD'){
+      const months = Math.round(years*12);
+      const i = r/400; // quarterly rate
+      const n = months/3; // number of quarters
+      maturity = amount * ( (Math.pow(1+i, n) - 1) / (1 - Math.pow(1+i, -1/3)) );
+      invested = amount * months;
+      interest = maturity - invested;
+    }
+    else if(key.startsWith('TD')){
+      invested = amount;
+      maturity = amount * Math.pow(1 + r/400, 4*years);
+      interest = maturity - invested;
+    }
+    else if(key === 'MIS'){
+      invested = amount;
+      const monthlyPayout = amount * (r/100) / 12;
+      interest = monthlyPayout * years * 12;
+      maturity = invested; // principal returned; interest paid out monthly, not compounded
+    }
+    else if(key === 'SCSS'){
+      invested = amount;
+      const quarterlyPayout = amount * (r/100) / 4;
+      interest = quarterlyPayout * years * 4;
+      maturity = invested;
+    }
+    else if(key === 'PPF' || key === 'SSY'){
+      let balance = 0;
+      const depYears = key === 'SSY' ? Math.min(years, 15) : years;
+      const totalYears = key === 'SSY' ? 21 : years;
+      for(let yr=1; yr<=totalYears; yr++){
+        if(yr <= depYears) balance += amount;
+        balance += balance * (r/100);
+      }
+      maturity = balance;
+      invested = amount * depYears;
+      interest = maturity - invested;
+    }
+    else if(key === 'NSC'){
+      invested = amount;
+      maturity = amount * Math.pow(1 + r/100, 5);
+      interest = maturity - invested;
+    }
+    else if(key === 'KVP'){
+      invested = amount;
+      const months = 115;
+      maturity = amount * Math.pow(2, (years*12)/months);
+      interest = maturity - invested;
+    }
+
+    document.getElementById('rInvested').textContent = fmt(invested);
+    document.getElementById('rInterest').textContent = fmt(interest);
+    document.getElementById('rMaturity').textContent = fmt(maturity + (key==='MIS'||key==='SCSS' ? 0 : 0));
+    // for MIS/SCSS show total (principal + payouts received) as "maturity" for clarity
+    if(key === 'MIS' || key === 'SCSS'){
+      document.getElementById('rMaturity').textContent = fmt(invested + interest);
+    }
+  }
+
+  function calcPremium(){
+    const annual = parseFloat(document.getElementById('annualPremium').value) || 0;
+    const sa = parseFloat(document.getElementById('sumAssured').value) || 0;
+    const monthlyRebate = (sa/20000) * 1; // ₹1 per ₹20,000 SA per month (approx PLI rule)
+    const monthly = Math.max((annual/12) - monthlyRebate, 0);
+    const halfYearly = annual/2;
+    const yearly = annual * 0.98; // approx 2% advance rebate
+
+    document.getElementById('pMonthly').textContent = fmt(monthly);
+    document.getElementById('pHalfYearly').textContent = fmt(halfYearly);
+    document.getElementById('pYearly').textContent = fmt(yearly);
+  }
+
+  // init
+  onSchemeChange();
+  calcPremium();
+</script>
+</body>
+</html>
