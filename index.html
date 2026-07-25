@@ -21,7 +21,24 @@
     --mustard:#FFFFFF;
     --ink:#2A1414;
     --line:#EBC3C3;
+    /* category accent colors for a more colorful, sectioned look */
+    --blue:#1565C0;
+    --blue-bg:#EAF1FB;
+    --green:#1B7A3D;
+    --green-bg:#EAF6EE;
+    --orange:#D9700B;
+    --orange-bg:#FDF1E3;
+    --purple:#6A3FA0;
+    --purple-bg:#F2ECFA;
+    --teal:#00838F;
+    --teal-bg:#E3F4F5;
   }
+  .cat-savings{ --accent:var(--blue); --accent-bg:var(--blue-bg); }
+  .cat-insurance{ --accent:var(--green); --accent-bg:var(--green-bg); }
+  .cat-mail{ --accent:var(--orange); --accent-bg:var(--orange-bg); }
+  .cat-digital{ --accent:var(--purple); --accent-bg:var(--purple-bg); }
+  .cat-other{ --accent:var(--teal); --accent-bg:var(--teal-bg); }
+  .cat-office{ --accent:var(--postal-red-dark); --accent-bg:var(--paper-2); }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
@@ -51,6 +68,15 @@
     z-index:0;
   }
 
+  /* ============ GOV STRIP ============ */
+  .gov-strip{
+    background:#4A0A12; color:#F6D3D3; text-align:center;
+    font-size:.72rem; letter-spacing:.06em; padding:5px 10px;
+    font-family:'Noto Sans Gujarati',sans-serif;
+  }
+  .gov-strip .tricolor{ display:inline-flex; gap:2px; margin:0 8px; vertical-align:middle; }
+  .gov-strip .tricolor span{ width:10px; height:10px; display:inline-block; border-radius:50%; }
+
   /* ============ HEADER / MASTHEAD ============ */
   header.masthead{
     background:var(--navy);
@@ -66,18 +92,28 @@
     display:flex; align-items:center; gap:12px;
   }
   .masthead-title .glyph{
-    width:40px;height:40px;border-radius:50%;
+    width:48px;height:48px;border-radius:50%;
     border:2px solid var(--mustard);
     display:flex;align-items:center;justify-content:center;
-    font-family:'Noto Serif Gujarati',serif; font-weight:800; color:var(--mustard);
-    flex:none;
+    flex:none; background:rgba(255,255,255,.06);
   }
+  .masthead-title .glyph svg{ width:28px; height:28px; }
+  .masthead-title .name-block{ display:flex; flex-direction:column; line-height:1.3; }
   .masthead-title span.name{ font-weight:600; font-size:1.05rem; letter-spacing:.03em;}
+  .masthead-title span.dept{ font-size:.7rem; color:#F6D3D3; letter-spacing:.04em; }
   .masthead-inner nav{ font-size:.92rem; opacity:.9; display:flex; gap:18px; flex-wrap:wrap;}
   .masthead-inner nav a{ text-decoration:none; border-bottom:1px dashed transparent;}
   .masthead-inner nav a:hover{ border-bottom-color:var(--mustard); }
 
   /* ============ HERO ============ */
+  .hero-band{
+    background:
+      radial-gradient(circle at 8% 15%, rgba(21,101,192,.10) 0, transparent 40%),
+      radial-gradient(circle at 92% 20%, rgba(27,122,61,.10) 0, transparent 42%),
+      radial-gradient(circle at 85% 90%, rgba(217,112,11,.09) 0, transparent 40%),
+      radial-gradient(circle at 10% 90%, rgba(106,63,160,.08) 0, transparent 40%),
+      linear-gradient(180deg, #FFF9F5 0%, #FFFFFF 70%);
+  }
   .hero{
     position:relative;
     max-width:1100px; margin:0 auto; padding:64px 24px 56px;
@@ -120,8 +156,9 @@
   section{ max-width:1100px; margin:0 auto; padding:36px 24px; position:relative; z-index:1;}
   .section-head{ margin-bottom:28px; display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;}
   .section-head .tag{
-    font-family:'Courier Prime',monospace; color:var(--postal-red-dark); font-size:.78rem;
-    border:1px dashed var(--postal-red-dark); padding:3px 9px; border-radius:2px;
+    font-family:'Courier Prime',monospace; color:var(--accent, var(--postal-red-dark)); font-size:.78rem;
+    border:1px dashed var(--accent, var(--postal-red-dark)); padding:3px 9px; border-radius:2px;
+    background:var(--accent-bg, transparent);
   }
   .section-head h2{ font-size:clamp(1.4rem,2.6vw,1.9rem); font-weight:700;}
   .section-note{ color:#5a3a3a; font-size:.95rem; max-width:70ch; margin-top:6px;}
@@ -149,9 +186,10 @@
       radial-gradient(circle 6px at 100% 100%, transparent 6px, black 6.5px);
     outline:2px solid rgba(200,16,46,0.18);
     outline-offset:-10px;
+    border-top:4px solid var(--accent, var(--postal-red));
   }
   .stamp .rate{
-    font-family:'Courier Prime',monospace; font-weight:700; color:var(--postal-red);
+    font-family:'Courier Prime',monospace; font-weight:700; color:var(--accent, var(--postal-red));
     font-size:1.5rem; display:block; margin-top:6px;
   }
   .stamp .rate small{ font-size:.6em; font-weight:400; color:var(--ink); }
@@ -167,9 +205,9 @@
     display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:18px;
   }
   .facility{
-    background:rgba(255,255,255,.35);
+    background:var(--accent-bg, rgba(255,255,255,.35));
     border:1px solid var(--line);
-    border-left:4px solid var(--navy);
+    border-left:4px solid var(--accent, var(--navy));
     padding:16px 18px; border-radius:2px;
   }
   .facility h3{ font-size:1rem; font-weight:600; margin-bottom:6px;}
@@ -184,7 +222,7 @@
     flex:1 1 150px; padding:16px; text-align:center; border-right:1px dashed var(--line);
   }
   .rate-strip .cell:last-child{ border-right:none; }
-  .rate-strip .cell .num{ font-family:'Courier Prime',monospace; font-weight:700; color:var(--postal-red); font-size:1.3rem; display:block;}
+  .rate-strip .cell .num{ font-family:'Courier Prime',monospace; font-weight:700; color:var(--accent, var(--postal-red)); font-size:1.3rem; display:block;}
   .rate-strip .cell .lbl{ font-size:.78rem; color:#5a3a3a; margin-top:4px; display:block;}
 
   /* ============ CALCULATOR ============ */
@@ -202,7 +240,7 @@
   .calc-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
   .calc-hint{ font-size:.78rem; color:#7A4646; margin-top:4px;}
   .calc-result{
-    background:var(--navy); color:#FFF5F5; border-radius:3px; padding:20px 22px;
+    background:var(--accent, var(--navy)); color:#FFF5F5; border-radius:3px; padding:20px 22px;
     display:flex; flex-direction:column; gap:12px; justify-content:center;
   }
   .calc-result .row{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px dashed rgba(255,255,255,.3); padding-bottom:10px;}
@@ -214,8 +252,20 @@
   .freq-table{ width:100%; border-collapse:collapse; margin-top:8px; font-size:.9rem;}
   .freq-table th, .freq-table td{ padding:9px 10px; text-align:right; border-bottom:1px solid var(--line);}
   .freq-table th:first-child, .freq-table td:first-child{ text-align:right; }
-  .freq-table th{ color:var(--navy); font-family:'Noto Serif Gujarati',serif; font-weight:600; background:rgba(200,16,46,.06); }
-  .freq-table td.amt{ font-family:'Courier Prime',monospace; font-weight:700; color:var(--postal-red); }
+  .freq-table th{ color:var(--accent, var(--navy)); font-family:'Noto Serif Gujarati',serif; font-weight:600; background:var(--accent-bg, rgba(200,16,46,.06)); }
+  .freq-table td.amt{ font-family:'Courier Prime',monospace; font-weight:700; color:var(--accent, var(--postal-red)); }
+
+  /* ============ DOCUMENT CHECKLIST ============ */
+  .doc-box{
+    background:var(--accent-bg, #FFF8F8); border:1px solid var(--line); border-radius:3px;
+    padding:22px 24px; margin-top:24px;
+  }
+  .doc-box h3{ font-size:1.05rem; font-weight:700; color:var(--accent, var(--navy)); margin-bottom:12px; }
+  .doc-list{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:8px 20px; }
+  .doc-list li{ font-size:.9rem; display:flex; gap:8px; align-items:flex-start; }
+  .doc-list li::before{ content:"✔"; color:var(--accent, var(--postal-red)); font-weight:700; flex:none; }
+  .doc-note{ font-size:.78rem; color:#7A4646; margin-top:14px; }
+  @media (max-width:600px){ .doc-list{ grid-template-columns:1fr; } }
   @media (max-width:760px){ .calc-box{ grid-template-columns:1fr; } .calc-row{ grid-template-columns:1fr;} }
 
   /* ============ CALLOUT ============ */
@@ -251,11 +301,23 @@
 </head>
 <body>
 
+<div class="gov-strip">ભારત સરકાર · Government of India
+  <span class="tricolor"><span style="background:#FF9933;"></span><span style="background:#FFFFFF;"></span><span style="background:#138808;"></span></span>
+  સંચાર મંત્રાલય · ટપાલ વિભાગ (Department of Posts)
+</div>
 <header class="masthead">
   <div class="masthead-inner">
     <div class="masthead-title">
-      <div class="glyph">ડા</div>
-      <span class="name">ગઢસીસા સબ પોસ્ટ ઓફિસ · પિનકોડ 370445</span>
+      <div class="glyph" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none">
+          <path d="M6 14C6 11.79 7.79 10 10 10H38C40.21 10 42 11.79 42 14V32C42 34.21 40.21 36 38 36H10C7.79 36 6 34.21 6 32V14Z" stroke="#FFFFFF" stroke-width="2.4" fill="none"/>
+          <path d="M6 14L24 27L42 14" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="name-block">
+        <span class="dept">भारतीय डाक विभाग · India Post</span>
+        <span class="name">ગઢસીસા સબ પોસ્ટ ઓફિસ · પિનકોડ 370445</span>
+      </div>
     </div>
     <nav>
       <a href="#office">અમારી ઓફિસ</a>
@@ -270,6 +332,7 @@
   </div>
 </header>
 
+<div class="hero-band">
 <div class="hero">
   <div>
     <span class="hero-eyebrow">ગઢસીસા સબ પોસ્ટ ઓફિસ · તા. માંડવી, જિ. કચ્છ</span>
@@ -298,12 +361,13 @@
     </svg>
   </div>
 </div>
+</div>
 
 <!-- ============ OFFICE INFO ============ -->
-<section id="office">
+<section id="office" class="cat-office">
   <div class="section-head">
     <span class="tag">અમારી ઓફિસ</span>
-    <h2>ગઢસીસા સબ પોસ્ટ ઓફિસ — વિગતો</h2>
+    <h2>🏤 ગઢસીસા સબ પોસ્ટ ઓફિસ — વિગતો</h2>
   </div>
   <hr class="perf">
   <div class="rate-strip" style="margin-bottom:22px;">
@@ -339,10 +403,10 @@
 </section>
 
 <!-- ============ SAVING SCHEMES ============ -->
-<section id="bachat">
+<section id="bachat" class="cat-savings">
   <div class="section-head">
     <span class="tag">બેંકિંગ સેવા</span>
-    <h2>નાની બચત યોજનાઓ (Small Savings Schemes)</h2>
+    <h2>💰 નાની બચત યોજનાઓ (Small Savings Schemes)</h2>
   </div>
   <p class="section-note">દરેક યોજના ભારત સરકાર દ્વારા બાંહેધરીકૃત છે અને દેશની કોઈપણ પોસ્ટ ઓફિસમાં ઉપલબ્ધ છે. નીચે દર્શાવેલ વ્યાજ દર જુલાઈ–સપ્ટેમ્બર 2026 ત્રિમાસિક ગાળા માટેના છે અને દર ત્રિમાસિકે નાણા મંત્રાલય દ્વારા સુધારવામાં આવે છે, તેથી રોકાણ પહેલાં નજીકની પોસ્ટ ઓફિસ અથવા indiapost.gov.in પર વર્તમાન દર ચકાસી લેવો.</p>
   <hr class="perf">
@@ -413,13 +477,28 @@
     </div>
 
   </div>
+
+  <div class="doc-box">
+    <h3>📋 ખાતું ખોલાવવા માટે જરૂરી દસ્તાવેજો</h3>
+    <ul class="doc-list">
+      <li>પૂર્ણ ભરેલું એકાઉન્ટ ઓપનિંગ ફોર્મ</li>
+      <li>આધાર કાર્ડ (ફરજિયાત KYC)</li>
+      <li>પાન કાર્ડ (અથવા ફોર્મ 60, જો પાન ના હોય)</li>
+      <li>સરનામાનો પુરાવો (જો આધારમાં સરનામું અલગ હોય)</li>
+      <li>પાસપોર્ટ સાઈઝ ફોટોગ્રાફ (2)</li>
+      <li>નોમિની (વારસદાર) ની વિગતો</li>
+      <li>પ્રથમ જમા રકમ (યોજના મુજબ લઘુત્તમ રકમ)</li>
+      <li>સગીર (18 વર્ષથી નાના) માટે: વાલીનું ID + સગીરની ઉંમરનો પુરાવો</li>
+    </ul>
+    <div class="doc-note">નોંધ: ₹50,000 કે તેથી વધુની જમા રકમ માટે પાન કાર્ડ ફરજિયાત છે, અને ₹10 લાખ કે તેથી વધુ માટે આવકનો પુરાવો (બેંક સ્ટેટમેન્ટ/ITR) જરૂરી બની શકે છે. ચોક્કસ યાદી માટે ગઢસીસા સબ પોસ્ટ ઓફિસનો સંપર્ક કરો.</div>
+  </div>
 </section>
 
 <!-- ============ SAVINGS INTEREST CALCULATOR ============ -->
-<section id="calculator">
+<section id="calculator" class="cat-savings">
   <div class="section-head">
     <span class="tag">કેલ્ક્યુલેટર</span>
-    <h2>વ્યાજ ગણતરી કરો</h2>
+    <h2>🧮 વ્યાજ ગણતરી કરો</h2>
   </div>
   <p class="section-note">યોજના પસંદ કરો, રકમ અને મુદત નાખો — અંદાજિત વ્યાજ અને પરિપક્વતા રકમ તરત જ જુઓ. આ માત્ર અંદાજ છે; ચોક્કસ ગણતરી માટે પોસ્ટ ઓફિસનો સંપર્ક કરો.</p>
   <hr class="perf">
@@ -460,6 +539,7 @@
     <div class="calc-result">
       <div class="row"><span class="k">કુલ જમા રકમ</span><span class="v" id="rInvested">₹0</span></div>
       <div class="row"><span class="k">અંદાજિત વ્યાજ</span><span class="v" id="rInterest">₹0</span></div>
+      <div class="row" id="rPeriodRow" style="display:none;"><span class="k" id="rPeriodLabel">-</span><span class="v" id="rPeriod">₹0</span></div>
       <div class="row big"><span class="k">પરિપક્વતા રકમ</span><span class="v" id="rMaturity">₹0</span></div>
       <div class="calc-note">દર્શાવેલ વ્યાજ દર જુલાઈ–સપ્ટેમ્બર 2026ના ત્રિમાસિક ગાળા મુજબ છે અને દર ત્રિમાસિકે બદલાઈ શકે છે. ગણતરી સામાન્ય સૂત્ર પર આધારિત અંદાજ છે, વાસ્તવિક રકમ પોસ્ટ ઓફિસના નિયમો મુજબ થોડી અલગ હોઈ શકે.</div>
     </div>
@@ -467,22 +547,85 @@
 </section>
 
 <!-- ============ INSURANCE ============ -->
-<section id="vima">
+<section id="vima" class="cat-insurance">
   <div class="section-head">
     <span class="tag">વીમા સેવા</span>
-    <h2>વીમા યોજનાઓ</h2>
+    <h2>🛡️ વીમા યોજનાઓ</h2>
   </div>
-  <p class="section-note">પોસ્ટ ઓફિસ જીવન વીમા ઉપરાંત સરકારની સામાજિક સુરક્ષા યોજનાઓ પણ પોસ્ટ ઓફિસ મારફતે મેળવી શકાય છે.</p>
+  <p class="section-note">પોસ્ટ ઓફિસ બે પ્રકારની જીવન વીમા યોજનાઓ આપે છે — <strong>PLI</strong> (સરકારી/અર્ધ-સરકારી કર્મચારીઓ માટે) અને <strong>RPLI</strong> (ગ્રામ્ય વિસ્તારના તમામ નાગરિકો માટે) — ઉપરાંત કેન્દ્ર સરકારની સામાજિક સુરક્ષા યોજનાઓ પણ અહીં મળે છે.</p>
   <hr class="perf">
+
+  <h3 style="font-size:1.05rem; color:var(--accent); margin-bottom:14px;">પોસ્ટલ લાઈફ ઈન્સ્યોરન્સ — PLI (સરકારી/અર્ધ-સરકારી કર્મચારીઓ)</h3>
+  <div class="stamp-grid" style="margin-bottom:34px;">
+    <div class="stamp">
+      <h3>સુરક્ષા — Whole Life Assurance</h3>
+      <p>આજીવન વીમા કવચ, નિધન પર નોમિનીને સંપૂર્ણ રકમ + બોનસ. લાંબા ગાળાના રક્ષણ માટે શ્રેષ્ઠ.</p>
+      <div class="meta"><span>પ્રિમિયમ ચૂકવણી: 55/58/60 વર્ષ સુધી</span></div>
+    </div>
+    <div class="stamp">
+      <h3>સંતોષ — Endowment Assurance</h3>
+      <p>નિશ્ચિત ઉંમરે (35 થી 60 વર્ષ) પરિપક્વતા પર રકમ + બોનસ મળે. બચત અને વીમો બંને.</p>
+      <div class="meta"><span>પરિપક્વતા વય: તમે પસંદ કરો</span></div>
+    </div>
+    <div class="stamp">
+      <h3>સુવિધા — Convertible Whole Life</h3>
+      <p>શરૂઆતમાં whole life, પછી Endowment યોજનામાં પરિવર્તિત કરી શકાય તેવી લવચીક યોજના.</p>
+      <div class="meta"><span>રૂપાંતર: 5 વર્ષ પછી શક્ય</span></div>
+    </div>
+    <div class="stamp">
+      <h3>સુમંગલ — Money-Back Plan</h3>
+      <p>પોલિસી ગાળા દરમિયાન નિયમિત અંતરે આંશિક ચુકવણી, બાકીની રકમ પરિપક્વતાએ.</p>
+      <div class="meta"><span>મુદત: 15 અથવા 20 વર્ષ</span></div>
+    </div>
+    <div class="stamp">
+      <h3>યુગલ સુરક્ષા — Joint Life</h3>
+      <p>પતિ-પત્ની બંનેને એક જ પોલિસી હેઠળ કવર કરતી સંયુક્ત જીવન વીમા યોજના.</p>
+      <div class="meta"><span>પાત્રતા: પરિણીત યુગલ</span></div>
+    </div>
+    <div class="stamp">
+      <h3>બાલ જીવન વીમા — Children's Policy</h3>
+      <p>PLI ધારક માતા-પિતાના બાળક માટે, વાલીના નિધન પર પ્રીમિયમ માફ પણ પોલિસી ચાલુ રહે.</p>
+      <div class="meta"><span>બાળકની ઉંમર: 5 થી 20 વર્ષ</span></div>
+    </div>
+  </div>
+
+  <h3 style="font-size:1.05rem; color:var(--accent); margin-bottom:14px;">ગ્રામીણ ડાક જીવન વીમા — RPLI (ગ્રામ્ય વિસ્તારના તમામ નાગરિકો)</h3>
+  <div class="stamp-grid">
+    <div class="stamp">
+      <h3>ગ્રામ સુરક્ષા — Whole Life Assurance</h3>
+      <p>ગ્રામ્ય વિસ્તાર માટે ઓછા પ્રીમિયમે આજીવન વીમા કવચ.</p>
+      <div class="meta"><span>PLI ના Suraksha જેવી જ, ગ્રામ્ય માટે</span></div>
+    </div>
+    <div class="stamp">
+      <h3>ગ્રામ સંતોષ — Endowment Assurance</h3>
+      <p>નિશ્ચિત મુદતે પરિપક્વતા રકમ + બોનસ, ગ્રામ્ય નાગરિકો માટે સસ્તું પ્રીમિયમ.</p>
+      <div class="meta"><span>પરિપક્વતા વય: તમે પસંદ કરો</span></div>
+    </div>
+    <div class="stamp">
+      <h3>ગ્રામ સુવિધા — Convertible Whole Life</h3>
+      <p>Whole life થી Endowment માં પરિવર્તિત કરી શકાય તેવી ગ્રામ્ય યોજના.</p>
+      <div class="meta"><span>રૂપાંતર: 5 વર્ષ પછી શક્ય</span></div>
+    </div>
+    <div class="stamp">
+      <h3>ગ્રામ સુમંગલ — Money-Back Plan</h3>
+      <p>નિયમિત અંતરે આંશિક ચુકવણી સાથેની ગ્રામ્ય મની-બેક યોજના.</p>
+      <div class="meta"><span>મુદત: 15 અથવા 20 વર્ષ</span></div>
+    </div>
+    <div class="stamp">
+      <h3>ગ્રામ પ્રિયા</h3>
+      <p>ટૂંકી મુદતની (10/15 વર્ષ) Endowment યોજના, તબીબી તપાસ વગર સરળતાથી મળે.</p>
+      <div class="meta"><span>મુદત: 10 અથવા 15 વર્ષ</span></div>
+    </div>
+    <div class="stamp">
+      <h3>ગ્રામ બાલ જીવન વીમા</h3>
+      <p>ગ્રામ્ય RPLI ધારકના બાળક માટેની બાળ વીમા યોજના.</p>
+      <div class="meta"><span>બાળકની ઉંમર: 5 થી 20 વર્ષ</span></div>
+    </div>
+  </div>
+
+  <hr class="perf" style="margin-top:34px;">
+  <h3 style="font-size:1.05rem; color:var(--accent); margin-bottom:14px;">કેન્દ્ર સરકારની સામાજિક સુરક્ષા યોજનાઓ</h3>
   <div class="facility-grid">
-    <div class="facility">
-      <h3>પોસ્ટલ લાઈફ ઈન્સ્યોરન્સ (PLI)</h3>
-      <p>સરકારી અને અર્ધ-સરકારી કર્મચારીઓ માટે જીવન વીમા યોજના, ઓછા પ્રીમિયમે ઊંચું બોનસ.</p>
-    </div>
-    <div class="facility">
-      <h3>ગ્રામીણ ડાક જીવન વીમા (RPLI)</h3>
-      <p>ગ્રામીણ વિસ્તારના નાગરિકો માટે ખાસ બનાવેલ સસ્તી જીવન વીમા યોજના.</p>
-    </div>
     <div class="facility">
       <h3>પ્રધાનમંત્રી સુરક્ષા વીમા યોજના (PMSBY)</h3>
       <p>નજીવા વાર્ષિક પ્રીમિયમે અકસ્માત વીમા કવચ આપતી યોજના.</p>
@@ -496,28 +639,63 @@
       <p>અસંગઠિત ક્ષેત્રના કામદારો માટે નિવૃત્તિ પછી નિશ્ચિત માસિક પેન્શનની ખાતરી આપતી યોજના.</p>
     </div>
   </div>
+
+  <div class="doc-box">
+    <h3>📋 PLI / RPLI પોલિસી લેવા માટે જરૂરી દસ્તાવેજો</h3>
+    <ul class="doc-list">
+      <li>પૂર્ણ ભરેલું પ્રપોઝલ ફોર્મ</li>
+      <li>ઉંમરનો પુરાવો (જન્મ પ્રમાણપત્ર/શાળા છોડ્યાનું પ્રમાણપત્ર/આધાર/પાન/પાસપોર્ટ)</li>
+      <li>ઓળખનો પુરાવો (આધાર/મતદાર ID/પાન/પાસપોર્ટ)</li>
+      <li>સરનામાનો પુરાવો</li>
+      <li>પાસપોર્ટ સાઈઝ ફોટોગ્રાફ (2-3)</li>
+      <li>નોમિની (વારસદાર) ની વિગતો</li>
+      <li>PLI માટે: નોકરીદાતાનું સર્વિસ સર્ટિફિકેટ (સરકારી/અર્ધ-સરકારી કર્મચારી હોવાનો પુરાવો)</li>
+      <li>તબીબી તપાસનો રિપોર્ટ (ચોક્કસ ઉંમર/વીમા રકમથી વધુ હોય ત્યારે જરૂરી)</li>
+    </ul>
+    <div class="doc-note">નોંધ: PLI ફક્ત સરકારી/અર્ધ-સરકારી કર્મચારીઓ માટે છે (એટલે એમાં એમ્પ્લોયર સર્ટિફિકેટ જરૂરી), જ્યારે RPLI ગ્રામ્ય વિસ્તારના તમામ નાગરિકો માટે ખુલ્લી છે. તબીબી તપાસ સામાન્ય રીતે અમુક ઉંમર/વીમા રકમથી ઓછી હોય તો જરૂરી નથી હોતી, પણ ચોક્કસ નિયમો બદલાતા રહે છે — ગઢસીસા સબ પોસ્ટ ઓફિસનો સંપર્ક કરી ખાતરી કરો.</div>
+  </div>
 </section>
 
 <!-- ============ INSURANCE PREMIUM CALCULATOR ============ -->
-<section id="vima-calculator">
+<section id="vima-calculator" class="cat-insurance">
   <div class="section-head">
     <span class="tag">કેલ્ક્યુલેટર</span>
-    <h2>વીમા હપ્તા કેલ્ક્યુલેટર (માસિક · છ-માસિક · વાર્ષિક)</h2>
+    <h2>🧮 વીમા પ્રીમિયમ કેલ્ક્યુલેટર</h2>
   </div>
-  <p class="section-note">PLI/RPLI નું ચોક્કસ પ્રીમિયમ ઉંમર, પ્લાન અને મુદત પ્રમાણે અલગ-અલગ હોય છે અને તે ફક્ત સત્તાવાર <a href="https://pli.indiapost.gov.in" target="_blank" rel="noopener">pli.indiapost.gov.in</a> કેલ્ક્યુલેટર પર જ ચોકસાઈથી મળે. જો તમને તમારું <strong>વાર્ષિક પ્રીમિયમ</strong> ખબર હોય (એજન્ટ/પોર્ટલ પરથી), તો નીચે નાખો — તે માસિક, છ-માસિક અને વાર્ષિક હપ્તામાં કેવી રીતે વહેંચાય તે જુઓ.</p>
+  <p class="section-note">PLI અથવા RPLI પસંદ કરો, પછી ચોક્કસ યોજના પસંદ કરો — તમારી ઉંમર અને વીમા રકમ મુજબ <strong>અંદાજિત</strong> વાર્ષિક પ્રીમિયમ અને તેના માસિક/છ-માસિક/વાર્ષિક હપ્તા જુઓ.</p>
+  <div style="background:#FFF3CD; border:1px solid #E8C468; border-radius:3px; padding:10px 14px; font-size:.82rem; color:#5a4a20; margin:10px 0 18px;">
+    ⚠️ <strong>અગત્યની નોંધ:</strong> આ ગણતરી ફક્ત સામાન્ય અંદાજ માટે છે, સત્તાવાર actuarial ટેબલ પર આધારિત નથી. ચોક્કસ પ્રીમિયમ ઉંમર-આધારિત સત્તાવાર કોષ્ટક મુજબ થોડું અલગ હોઈ શકે. ચોક્કસ આંકડા માટે <a href="https://pli.indiapost.gov.in" target="_blank" rel="noopener">pli.indiapost.gov.in</a> ના સત્તાવાર કેલ્ક્યુલેટર પર જાવ અથવા ગઢસીસા સબ પોસ્ટ ઓફિસનો સંપર્ક કરો.
+  </div>
   <hr class="perf">
 
   <div class="calc-box">
     <div>
       <div class="field">
-        <label for="annualPremium">વાર્ષિક પ્રીમિયમ (₹)</label>
-        <input type="number" id="annualPremium" value="12000" min="0" oninput="calcPremium()">
+        <label>યોજનાનો પ્રકાર</label>
+        <select id="insType" onchange="onInsTypeChange()">
+          <option value="PLI">PLI (સરકારી/અર્ધ-સરકારી કર્મચારીઓ)</option>
+          <option value="RPLI">RPLI (ગ્રામ્ય વિસ્તારના નાગરિકો)</option>
+        </select>
       </div>
       <div class="field">
-        <label for="sumAssured">વીમા રકમ / Sum Assured (₹) <span style="font-weight:400;">(ઐચ્છિક)</span></label>
-        <input type="number" id="sumAssured" value="500000" min="0" oninput="calcPremium()">
-        <p class="calc-hint">માસિક હપ્તા પર દર ₹20,000 વીમા રકમે અંદાજે ₹1/માસનું રિબેટ લાગુ પડે છે (સામાન્ય PLI નિયમ મુજબ).</p>
+        <label>ચોક્કસ યોજના પસંદ કરો</label>
+        <select id="insPlan" onchange="onInsPlanChange()"></select>
       </div>
+      <div class="calc-row">
+        <div class="field">
+          <label id="ageLabel" for="insAge">ઉંમર (વર્ષ)</label>
+          <input type="number" id="insAge" value="30" min="5" max="60" oninput="calcInsurance()">
+        </div>
+        <div class="field">
+          <label for="insSA">વીમા રકમ / Sum Assured (₹)</label>
+          <input type="number" id="insSA" value="500000" min="10000" step="10000" oninput="calcInsurance()">
+        </div>
+      </div>
+      <div class="field" id="termFieldWrap" style="display:none;">
+        <label id="termLabel">મુદત</label>
+        <select id="insTerm" onchange="calcInsurance()"></select>
+      </div>
+      <p class="calc-hint" id="insHint"></p>
     </div>
 
     <div>
@@ -526,21 +704,21 @@
           <tr><th>ચુકવણી પદ્ધતિ</th><th>હપ્તાની સંખ્યા/વર્ષ</th><th>પ્રતિ હપ્તો</th></tr>
         </thead>
         <tbody>
-          <tr><td>માસિક</td><td>12</td><td class="amt" id="pMonthly">₹0</td></tr>
-          <tr><td>છ-માસિક</td><td>2</td><td class="amt" id="pHalfYearly">₹0</td></tr>
-          <tr><td>વાર્ષિક (એડવાન્સ)</td><td>1</td><td class="amt" id="pYearly">₹0</td></tr>
+          <tr><td>માસિક</td><td>12</td><td class="amt" id="iMonthly">₹0</td></tr>
+          <tr><td>છ-માસિક</td><td>2</td><td class="amt" id="iHalfYearly">₹0</td></tr>
+          <tr><td>વાર્ષિક</td><td>1</td><td class="amt" id="iYearly">₹0</td></tr>
         </tbody>
       </table>
-      <div class="calc-note">વાર્ષિક એડવાન્સ ચુકવણી પર સામાન્ય રીતે અંદાજે 2% જેટલું રિબેટ મળે છે. વાસ્તવિક રિબેટ/લોડિંગ પ્લાન અને પોસ્ટ ઓફિસના વર્તમાન નિયમો પર આધારિત છે — સચોટ આંકડા માટે pli.indiapost.gov.in અથવા નજીકની પોસ્ટ ઓફિસનો સંપર્ક કરો.</div>
+      <div class="calc-note">અંદાજિત વાર્ષિક પ્રીમિયમ: <strong id="iAnnual" style="color:var(--accent);">₹0</strong> (દર ₹1,000 વીમા રકમે ≈ <span id="iRate">₹0</span>/વર્ષ)</div>
     </div>
   </div>
 </section>
 
 <!-- ============ MAIL SERVICES ============ -->
-<section id="tapal">
+<section id="tapal" class="cat-mail">
   <div class="section-head">
     <span class="tag">ટપાલ સેવા</span>
-    <h2>ટપાલ અને પાર્સલ સેવાઓ</h2>
+    <h2>📮 ટપાલ અને પાર્સલ સેવાઓ</h2>
   </div>
   <hr class="perf">
   <div class="facility-grid">
@@ -564,10 +742,10 @@
 </section>
 
 <!-- ============ DIGITAL / BANKING ============ -->
-<section id="digital">
+<section id="digital" class="cat-digital">
   <div class="section-head">
     <span class="tag">ડિજિટલ સેવા</span>
-    <h2>ડિજિટલ અને બેંકિંગ સેવાઓ</h2>
+    <h2>💻 ડિજિટલ અને બેંકિંગ સેવાઓ</h2>
   </div>
   <hr class="perf">
   <div class="facility-grid">
@@ -591,10 +769,10 @@
 </section>
 
 <!-- ============ OTHER FACILITIES ============ -->
-<section id="anya">
+<section id="anya" class="cat-other">
   <div class="section-head">
     <span class="tag">અન્ય સેવા</span>
-    <h2>અન્ય સુવિધાઓ</h2>
+    <h2>✨ અન્ય સુવિધાઓ</h2>
   </div>
   <hr class="perf">
   <div class="facility-grid">
@@ -698,6 +876,7 @@
     const years = parseFloat(document.getElementById('tenure').value) || s.defTenure;
     const r = s.rate;
     let invested = 0, maturity = 0, interest = 0;
+    let periodLabel = null, periodValue = 0;
 
     if(key === 'SB'){
       invested = amount;
@@ -716,18 +895,24 @@
       invested = amount;
       maturity = amount * Math.pow(1 + r/400, 4*years);
       interest = maturity - invested;
+      periodLabel = "સરેરાશ વાર્ષિક વ્યાજ";
+      periodValue = interest / years;
     }
     else if(key === 'MIS'){
       invested = amount;
       const monthlyPayout = amount * (r/100) / 12;
       interest = monthlyPayout * years * 12;
       maturity = invested; // principal returned; interest paid out monthly, not compounded
+      periodLabel = "માસિક વ્યાજ ચુકવણી";
+      periodValue = monthlyPayout;
     }
     else if(key === 'SCSS'){
       invested = amount;
       const quarterlyPayout = amount * (r/100) / 4;
       interest = quarterlyPayout * years * 4;
       maturity = invested;
+      periodLabel = "ત્રિમાસિક (3 મહિને) વ્યાજ ચુકવણી";
+      periodValue = quarterlyPayout;
     }
     else if(key === 'PPF' || key === 'SSY'){
       let balance = 0;
@@ -760,26 +945,147 @@
     if(key === 'MIS' || key === 'SCSS'){
       document.getElementById('rMaturity').textContent = fmt(invested + interest);
     }
+
+    const periodRow = document.getElementById('rPeriodRow');
+    if(periodLabel){
+      document.getElementById('rPeriodLabel').textContent = periodLabel;
+      document.getElementById('rPeriod').textContent = fmt(periodValue);
+      periodRow.style.display = 'flex';
+    } else {
+      periodRow.style.display = 'none';
+    }
   }
 
-  function calcPremium(){
-    const annual = parseFloat(document.getElementById('annualPremium').value) || 0;
-    const sa = parseFloat(document.getElementById('sumAssured').value) || 0;
-    const monthlyRebate = (sa/20000) * 1; // ₹1 per ₹20,000 SA per month (approx PLI rule)
-    const monthly = Math.max((annual/12) - monthlyRebate, 0);
-    const halfYearly = annual/2;
-    const yearly = annual * 0.98; // approx 2% advance rebate
+  // ==================================================================
+  // INSURANCE PREMIUM CALCULATOR (PLI / RPLI) — illustrative estimate
+  // ==================================================================
+  // termMode: 'wholelife' (age-based rate, no term input)
+  //           'maturityAge' (endowment-style — user picks maturity age, term = maturityAge - age)
+  //           'fixedTerm' (money-back / short plans — user picks term directly)
+  const INS_PLANS = {
+    PLI: {
+      suraksha:   { label:"સુરક્ષા (Whole Life Assurance)", termMode:"wholelife", minAge:19, maxAge:55, minSA:20000, maxSA:5000000,
+                    hint:"આજીવન કવચ. પ્રીમિયમ પસંદ કરેલ ઉંમર (55/58/60) સુધી ભરવાનું રહે છે." },
+      santosh:    { label:"સંતોષ (Endowment Assurance)", termMode:"maturityAge", maturityAges:[35,40,45,50,55,58,60], minAge:19, maxAge:55, minSA:20000, maxSA:5000000,
+                    hint:"પરિપક્વતા વય પસંદ કરો — તે મુજબ મુદત ગણાશે." },
+      suvidha:    { label:"સુવિધા (Convertible Whole Life)", termMode:"wholelife", minAge:19, maxAge:50, minSA:20000, maxSA:5000000,
+                    hint:"શરૂઆતમાં whole life દરે, 5 વર્ષ પછી Endowment માં રૂપાંતરિત કરી શકાય." },
+      sumangal:   { label:"સુમંગલ (Money-Back Plan)", termMode:"fixedTerm", termOptions:[15,20], minAge:19, maxAge:40, minSA:20000, maxSA:5000000,
+                    hint:"નિયમિત અંતરે આંશિક ચુકવણી મળે છે, એટલે પ્રીમિયમ થોડું વધારે હોય છે." },
+      yugal:      { label:"યુગલ સુરક્ષા (Joint Life)", termMode:"maturityAge", maturityAges:[35,40,45,50,55,58,60], minAge:21, maxAge:50, minSA:20000, maxSA:2500000,
+                    hint:"તમારી ઉંમર નાખો (જીવનસાથીની ઉંમર પણ સરખી ધારેલ છે)." },
+      baljeevan:  { label:"બાલ જીવન વીમા (Children's Policy)", termMode:"maturityAge", maturityAges:[21], minAge:5, maxAge:20, minSA:10000, maxSA:300000,
+                    hint:"બાળકની ઉંમર નાખો (5–20 વર્ષ). પોલિસી 21 વર્ષે પરિપક્વ થાય છે." }
+    },
+    RPLI: {
+      gram_suraksha: { label:"ગ્રામ સુરક્ષા (Whole Life)", termMode:"wholelife", minAge:19, maxAge:45, minSA:10000, maxSA:1000000,
+                       hint:"ગ્રામ્ય વિસ્તાર માટે આજીવન કવચ, ઓછું પ્રીમિયમ." },
+      gram_santosh:  { label:"ગ્રામ સંતોષ (Endowment)", termMode:"maturityAge", maturityAges:[35,40,45,50,55,58,60], minAge:19, maxAge:40, minSA:10000, maxSA:1000000,
+                       hint:"પરિપક્વતા વય પસંદ કરો." },
+      gram_suvidha:  { label:"ગ્રામ સુવિધા (Convertible Whole Life)", termMode:"wholelife", minAge:19, maxAge:45, minSA:10000, maxSA:1000000,
+                       hint:"શરૂઆતમાં whole life દરે, પછી રૂપાંતરિત કરી શકાય." },
+      gram_sumangal: { label:"ગ્રામ સુમંગલ (Money-Back)", termMode:"fixedTerm", termOptions:[15,20], minAge:19, maxAge:40, minSA:10000, maxSA:1000000,
+                       hint:"નિયમિત અંતરે આંશિક ચુકવણી, પ્રીમિયમ થોડું વધારે." },
+      gram_priya:    { label:"ગ્રામ પ્રિયા (ટૂંકી મુદત)", termMode:"fixedTerm", termOptions:[10,15], minAge:19, maxAge:45, minSA:10000, maxSA:1000000,
+                       hint:"ટૂંકી મુદત, તબીબી તપાસ વગર સરળતાથી મળે." },
+      gram_baljeevan:{ label:"ગ્રામ બાલ જીવન વીમા", termMode:"maturityAge", maturityAges:[21], minAge:5, maxAge:20, minSA:10000, maxSA:100000,
+                       hint:"બાળકની ઉંમર નાખો (5–20 વર્ષ)." }
+    }
+  };
 
-    document.getElementById('pMonthly').textContent = fmt(monthly);
-    document.getElementById('pHalfYearly').textContent = fmt(halfYearly);
-    document.getElementById('pYearly').textContent = fmt(yearly);
+  function onInsTypeChange(){
+    const type = document.getElementById('insType').value;
+    const planSel = document.getElementById('insPlan');
+    planSel.innerHTML = "";
+    Object.keys(INS_PLANS[type]).forEach(key=>{
+      const opt = document.createElement('option');
+      opt.value = key;
+      opt.textContent = INS_PLANS[type][key].label;
+      planSel.appendChild(opt);
+    });
+    onInsPlanChange();
+  }
+
+  function onInsPlanChange(){
+    const type = document.getElementById('insType').value;
+    const planKey = document.getElementById('insPlan').value;
+    const plan = INS_PLANS[type][planKey];
+    if(!plan) return;
+
+    const ageInput = document.getElementById('insAge');
+    ageInput.min = plan.minAge; ageInput.max = plan.maxAge;
+    if(ageInput.value < plan.minAge || ageInput.value > plan.maxAge) ageInput.value = plan.minAge;
+    document.getElementById('ageLabel').textContent = (plan.minAge <= 20 && plan.maxAge <= 20) ? "બાળકની ઉંમર (વર્ષ)" : "ઉંમર (વર્ષ)";
+
+    const saInput = document.getElementById('insSA');
+    saInput.min = plan.minSA; saInput.max = plan.maxSA;
+    if(saInput.value < plan.minSA || saInput.value > plan.maxSA) saInput.value = plan.minSA;
+
+    const termWrap = document.getElementById('termFieldWrap');
+    const termSel = document.getElementById('insTerm');
+    const termLabel = document.getElementById('termLabel');
+    if(plan.termMode === 'wholelife'){
+      termWrap.style.display = 'none';
+    } else if(plan.termMode === 'maturityAge'){
+      termWrap.style.display = '';
+      termLabel.textContent = "પરિપક્વતા વય પસંદ કરો";
+      termSel.innerHTML = plan.maturityAges.map(a=>`<option value="${a}">${a} વર્ષે</option>`).join("");
+    } else if(plan.termMode === 'fixedTerm'){
+      termWrap.style.display = '';
+      termLabel.textContent = "મુદત પસંદ કરો";
+      termSel.innerHTML = plan.termOptions.map(t=>`<option value="${t}">${t} વર્ષ</option>`).join("");
+    }
+
+    document.getElementById('insHint').textContent = plan.hint + `  (વીમા રકમ: ₹${plan.minSA.toLocaleString('en-IN')} થી ₹${plan.maxSA.toLocaleString('en-IN')})`;
+    calcInsurance();
+  }
+
+  function calcInsurance(){
+    const type = document.getElementById('insType').value;
+    const planKey = document.getElementById('insPlan').value;
+    const plan = INS_PLANS[type][planKey];
+    if(!plan) return;
+
+    let age = parseFloat(document.getElementById('insAge').value) || plan.minAge;
+    age = Math.min(Math.max(age, plan.minAge), plan.maxAge);
+    const sa = parseFloat(document.getElementById('insSA').value) || plan.minSA;
+
+    let annualPremium = 0, ratePer1000 = 0;
+
+    if(plan.termMode === 'wholelife'){
+      // illustrative age-based rate, rises with age
+      ratePer1000 = 16 + 0.8 * Math.max(age - 19, 0);
+      annualPremium = (sa/1000) * ratePer1000;
+    } else if(plan.termMode === 'maturityAge'){
+      const maturityAge = parseFloat(document.getElementById('insTerm').value) || plan.maturityAges[0];
+      const term = Math.max(maturityAge - age, 1);
+      const loading = 1.06 + 0.004 * Math.max(age - 19, 0);
+      annualPremium = (sa/term) * loading;
+      ratePer1000 = (annualPremium/sa) * 1000;
+    } else if(plan.termMode === 'fixedTerm'){
+      const term = parseFloat(document.getElementById('insTerm').value) || plan.termOptions[0];
+      // shorter terms / money-back plans carry a higher relative loading
+      const baseLoading = (planKey.includes('priya')) ? 1.28 : 1.22;
+      const loading = baseLoading + 0.004 * Math.max(age - 19, 0);
+      annualPremium = (sa/term) * loading;
+      ratePer1000 = (annualPremium/sa) * 1000;
+    }
+
+    const monthly = annualPremium / 12;
+    const halfYearly = annualPremium / 2;
+    const yearly = annualPremium;
+
+    document.getElementById('iMonthly').textContent = fmt(monthly);
+    document.getElementById('iHalfYearly').textContent = fmt(halfYearly);
+    document.getElementById('iYearly').textContent = fmt(yearly);
+    document.getElementById('iAnnual').textContent = fmt(annualPremium);
+    document.getElementById('iRate').textContent = "₹" + ratePer1000.toFixed(1);
   }
 
   // init
   onSchemeChange();
-  calcPremium();
-</script>
-<script>
+  onInsTypeChange();
+
   // Register service worker for offline support / installability
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
