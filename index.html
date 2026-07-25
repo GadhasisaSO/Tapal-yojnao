@@ -249,6 +249,7 @@
   .calc-result .row .v{ font-family:'Courier Prime',monospace; font-weight:700; font-size:1.15rem; color:#FFFFFF;}
   .calc-result .row.big .v{ font-size:1.5rem; color:#fff; }
   .calc-note{ font-size:.76rem; color:#7A4646; margin-top:14px; }
+  .calc-note.on-dark{ color:#FFF5F5; opacity:.85; }
   .freq-table{ width:100%; border-collapse:collapse; margin-top:8px; font-size:.9rem;}
   .freq-table th, .freq-table td{ padding:9px 10px; text-align:right; border-bottom:1px solid var(--line);}
   .freq-table th:first-child, .freq-table td:first-child{ text-align:right; }
@@ -265,6 +266,103 @@
   .doc-list li{ font-size:.9rem; display:flex; gap:8px; align-items:flex-start; }
   .doc-list li::before{ content:"✔"; color:var(--accent, var(--postal-red)); font-weight:700; flex:none; }
   .doc-note{ font-size:.78rem; color:#7A4646; margin-top:14px; }
+  .doc-links{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+  .doc-links a{
+    display:inline-flex; align-items:center; gap:6px; font-size:.85rem; font-weight:600;
+    padding:8px 16px; border-radius:3px; text-decoration:none;
+    background:var(--accent, var(--postal-red)); color:#fff;
+  }
+  .doc-links a:hover{ opacity:.9; }
+
+  /* ============ COMPARISON TABLE ============ */
+  .compare-wrap{ overflow-x:auto; margin-top:24px; border:1px solid var(--line); border-radius:3px; }
+  table.compare{ width:100%; border-collapse:collapse; font-size:.85rem; min-width:640px; background:#fff; }
+  table.compare th, table.compare td{ padding:10px 12px; text-align:center; border-bottom:1px solid var(--line); white-space:nowrap; }
+  table.compare th{ background:var(--accent-bg); color:var(--accent); font-family:'Noto Serif Gujarati',serif; font-weight:700; position:sticky; top:0; }
+  table.compare td:first-child, table.compare th:first-child{ text-align:right; position:sticky; left:0; background:#fff; font-weight:600; }
+  table.compare tr:hover td{ background:#FFFBF3; }
+  table.compare td.rate{ color:var(--accent); font-family:'Courier Prime',monospace; font-weight:700; }
+
+  /* ============ FAQ ACCORDION ============ */
+  .faq-item{
+    border:1px solid var(--line); border-radius:3px; margin-bottom:10px; background:#fff; overflow:hidden;
+  }
+  .faq-item summary{
+    padding:14px 16px; cursor:pointer; font-weight:600; font-size:.95rem; color:var(--navy);
+    list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary::after{ content:"+"; font-size:1.3rem; color:var(--accent); flex:none; }
+  .faq-item[open] summary::after{ content:"−"; }
+  .faq-item p{ padding:0 16px 16px; margin:0; font-size:.88rem; color:#5a3a3a; }
+
+  /* ============ SCHEME QUIZ ============ */
+  .quiz-box{
+    background:var(--accent-bg); border:1px solid var(--line); border-radius:3px; padding:24px; margin-top:24px;
+  }
+  .quiz-box h3{ font-size:1.05rem; color:var(--accent); margin-bottom:14px; }
+  .quiz-options{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; }
+  .quiz-options button{
+    padding:9px 16px; border-radius:20px; border:1.5px solid var(--accent); background:#fff;
+    color:var(--accent); font-size:.86rem; font-weight:600; cursor:pointer; font-family:'Noto Sans Gujarati',sans-serif;
+  }
+  .quiz-options button.active{ background:var(--accent); color:#fff; }
+  .quiz-result{
+    background:#fff; border-left:4px solid var(--accent); border-radius:2px; padding:16px 18px;
+    font-size:.9rem; display:none;
+  }
+  .quiz-result.show{ display:block; }
+  .quiz-result .qname{ font-weight:700; color:var(--accent); font-size:1rem; display:block; margin-bottom:4px; }
+
+  /* ============ WHATSAPP FLOATING BUTTON ============ */
+  .wa-float{
+    position:fixed; bottom:20px; right:20px; z-index:999;
+    width:56px; height:56px; border-radius:50%; background:#25D366;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,.25);
+    text-decoration:none;
+  }
+  .wa-float svg{ width:28px; height:28px; }
+
+  /* ============ TEXT SIZE TOGGLE ============ */
+  .text-toggle{
+    position:fixed; bottom:20px; left:20px; z-index:999;
+    background:#fff; border:2px solid var(--postal-red); border-radius:24px;
+    display:flex; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.15);
+  }
+  .text-toggle button{
+    border:none; background:#fff; color:var(--postal-red); font-weight:700; padding:10px 14px;
+    cursor:pointer; font-family:'Noto Sans Gujarati',sans-serif;
+  }
+  .text-toggle button:first-child{ border-right:1px solid var(--line); font-size:.8rem; }
+  .text-toggle button:last-child{ font-size:1.1rem; }
+  body.text-large{ font-size:1.18rem; }
+  body.text-large .hero p.sub{ font-size:1.22rem; }
+  body.text-large .stamp p, body.text-large .facility p{ font-size:1.05rem; }
+
+  /* ============ QUICK-START BAR ============ */
+  .quickbar{ background:#FBF0F0; border-bottom:1px solid var(--line); padding:16px 24px; }
+  .quickbar-inner{ max-width:1100px; margin:0 auto; }
+  .qb-row{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:10px; }
+  .qbtn{
+    display:inline-flex; align-items:center; gap:6px; padding:10px 16px; border-radius:20px;
+    background:#fff; border:1.5px solid var(--postal-red); color:var(--postal-red-dark);
+    font-size:.85rem; font-weight:600; text-decoration:none;
+  }
+  .qbtn:hover{ background:var(--postal-red); color:#fff; }
+  .util-row{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+  .util-btn{
+    display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border-radius:20px;
+    background:transparent; border:1px solid var(--navy); color:var(--navy);
+    font-size:.8rem; font-weight:600; cursor:pointer; font-family:'Noto Sans Gujarati',sans-serif;
+  }
+  .util-btn:hover{ background:var(--navy); color:#fff; }
+  .util-btn.active{ background:var(--navy); color:#fff; }
+
+  /* ============ PRINT ============ */
+  @media print{
+    .wa-float, .text-toggle, .quickbar, .masthead-inner nav{ display:none !important; }
+    body{ font-size:12pt; }
+  }
   @media (max-width:600px){ .doc-list{ grid-template-columns:1fr; } }
   @media (max-width:760px){ .calc-box{ grid-template-columns:1fr; } .calc-row{ grid-template-columns:1fr;} }
 
@@ -301,6 +399,15 @@
 </head>
 <body>
 
+<a class="wa-float" href="https://wa.me/919429006720" target="_blank" rel="noopener" aria-label="WhatsApp પર સંપર્ક કરો">
+  <svg viewBox="0 0 32 32" fill="#fff"><path d="M16 2C8.3 2 2 8.3 2 16c0 2.6.7 5.1 2 7.3L2 30l6.9-1.8c2.1 1.2 4.5 1.8 7.1 1.8 7.7 0 14-6.3 14-14S23.7 2 16 2zm0 25.5c-2.3 0-4.5-.6-6.4-1.8l-.5-.3-4.1 1.1 1.1-4-.3-.5C4.5 20 3.9 18 3.9 16c0-6.7 5.4-12.1 12.1-12.1S28.1 9.3 28.1 16 22.7 27.5 16 27.5zm6.6-9c-.4-.2-2.1-1-2.4-1.2-.3-.1-.5-.2-.8.2-.2.3-.9 1.2-1.1 1.4-.2.2-.4.3-.7.1-.4-.2-1.5-.6-2.9-1.8-1.1-1-1.8-2.1-2-2.5-.2-.4 0-.6.2-.7.2-.2.4-.4.6-.7.2-.2.3-.4.4-.6.1-.3.1-.5 0-.7-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.3 3.4 1.4 3.6c.2.2 2.5 3.9 6.2 5.4.9.4 1.5.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.1-.3-.2-.7-.4z"/></svg>
+</a>
+
+<div class="text-toggle" aria-label="ટેક્સ્ટ સાઈઝ">
+  <button onclick="setTextSize(false)">A</button>
+  <button onclick="setTextSize(true)">A+</button>
+</div>
+
 <div class="gov-strip">ભારત સરકાર · Government of India
   <span class="tricolor"><span style="background:#FF9933;"></span><span style="background:#FFFFFF;"></span><span style="background:#138808;"></span></span>
   સંચાર મંત્રાલય · ટપાલ વિભાગ (Department of Posts)
@@ -328,9 +435,26 @@
       <a href="#tapal">ટપાલ સેવાઓ</a>
       <a href="#digital">ડિજિટલ સેવાઓ</a>
       <a href="#anya">અન્ય સુવિધાઓ</a>
+      <a href="#faq">સવાલ-જવાબ</a>
     </nav>
   </div>
 </header>
+
+<div class="quickbar">
+  <div class="quickbar-inner">
+    <div class="qb-row">
+      <a href="#bachat" class="qbtn">💰 નવું ખાતું ખોલવું છે</a>
+      <a href="#vima" class="qbtn">🛡️ વીમો લેવો છે</a>
+      <a href="#tapal" class="qbtn">📮 ટપાલ ટ્રેક કરવી છે</a>
+      <a href="#digital" class="qbtn">💻 બેંકિંગ/IPPB સેવા</a>
+    </div>
+    <div class="util-row">
+      <button class="util-btn" id="readAloudBtn" onclick="toggleReadAloud()">🔊 મોટેથી વાંચો</button>
+      <button class="util-btn" onclick="sharePage()">📤 શેર કરો</button>
+      <button class="util-btn" onclick="window.print()">🖨️ પ્રિન્ટ કરો</button>
+    </div>
+  </div>
+</div>
 
 <div class="hero-band">
 <div class="hero">
@@ -478,6 +602,44 @@
 
   </div>
 
+  <h3 style="font-size:1.05rem; color:var(--accent); margin:30px 0 4px;">📊 તમામ યોજનાઓની સરખામણી</h3>
+  <div class="compare-wrap">
+    <table class="compare">
+      <thead>
+        <tr><th>યોજના</th><th>વ્યાજ દર</th><th>મુદત</th><th>લઘુત્તમ રોકાણ</th><th>80C કરરાહત</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>બચત ખાતું</td><td class="rate">4.0%</td><td>કોઈ મુદત નહીં</td><td>₹500</td><td>ના</td></tr>
+        <tr><td>RD</td><td class="rate">6.7%</td><td>5 વર્ષ</td><td>₹100/માસ</td><td>ના</td></tr>
+        <tr><td>TD (1 વર્ષ)</td><td class="rate">6.9%</td><td>1 વર્ષ</td><td>₹1,000</td><td>ના</td></tr>
+        <tr><td>TD (2 વર્ષ)</td><td class="rate">7.0%</td><td>2 વર્ષ</td><td>₹1,000</td><td>ના</td></tr>
+        <tr><td>TD (3 વર્ષ)</td><td class="rate">7.1%</td><td>3 વર્ષ</td><td>₹1,000</td><td>ના</td></tr>
+        <tr><td>TD (5 વર્ષ)</td><td class="rate">7.5%</td><td>5 વર્ષ</td><td>₹1,000</td><td>હા</td></tr>
+        <tr><td>MIS</td><td class="rate">7.4%</td><td>5 વર્ષ</td><td>₹1,000</td><td>ના</td></tr>
+        <tr><td>SCSS</td><td class="rate">8.2%</td><td>5 વર્ષ</td><td>₹1,000</td><td>હા</td></tr>
+        <tr><td>PPF</td><td class="rate">7.1%</td><td>15 વર્ષ</td><td>₹500/વર્ષ</td><td>હા</td></tr>
+        <tr><td>NSC</td><td class="rate">7.7%</td><td>5 વર્ષ</td><td>₹1,000</td><td>હા</td></tr>
+        <tr><td>KVP</td><td class="rate">7.5%</td><td>≈9 વર્ષ 7 મહિના</td><td>₹1,000</td><td>ના</td></tr>
+        <tr><td>SSY</td><td class="rate">8.2%</td><td>21 વર્ષ</td><td>₹250/વર્ષ</td><td>હા</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="quiz-box">
+    <h3>🧭 તમારા માટે કઈ યોજના યોગ્ય છે?</h3>
+    <p style="font-size:.88rem; color:#5a3a3a; margin-bottom:14px;">નીચે તમારી જરૂરિયાત પસંદ કરો:</p>
+    <div class="quiz-options" id="quizOptions">
+      <button onclick="quizPick('income', this)">દર મહિને/ત્રિમાસિકે નિયમિત આવક જોઈએ છે</button>
+      <button onclick="quizPick('daughter', this)">દીકરીના ભણતર/લગ્ન માટે બચત</button>
+      <button onclick="quizPick('senior', this)">હું વરિષ્ઠ નાગરિક (60+) છું</button>
+      <button onclick="quizPick('tax', this)">ટેક્સ બચાવવો છે</button>
+      <button onclick="quizPick('longterm', this)">લાંબા ગાળે મોટી રકમ ભેગી કરવી છે</button>
+      <button onclick="quizPick('small', this)">દર મહિને થોડી-થોડી બચત કરવી છે</button>
+      <button onclick="quizPick('anytime', this)">ગમે ત્યારે પૈસા ઉપાડી શકાય એવું જોઈએ છે</button>
+    </div>
+    <div class="quiz-result" id="quizResult"></div>
+  </div>
+
   <div class="doc-box">
     <h3>📋 ખાતું ખોલાવવા માટે જરૂરી દસ્તાવેજો</h3>
     <ul class="doc-list">
@@ -491,6 +653,10 @@
       <li>સગીર (18 વર્ષથી નાના) માટે: વાલીનું ID + સગીરની ઉંમરનો પુરાવો</li>
     </ul>
     <div class="doc-note">નોંધ: ₹50,000 કે તેથી વધુની જમા રકમ માટે પાન કાર્ડ ફરજિયાત છે, અને ₹10 લાખ કે તેથી વધુ માટે આવકનો પુરાવો (બેંક સ્ટેટમેન્ટ/ITR) જરૂરી બની શકે છે. ચોક્કસ યાદી માટે ગઢસીસા સબ પોસ્ટ ઓફિસનો સંપર્ક કરો.</div>
+    <div class="doc-links">
+      <a href="https://www.indiapost.gov.in/banking-services/savings" target="_blank" rel="noopener">📄 સત્તાવાર ફોર્મ અને વિગતો — indiapost.gov.in</a>
+      <a href="https://www.indiapost.gov.in/documents/reports/forms" target="_blank" rel="noopener">📄 તમામ ફોર્મ ડાઉનલોડ — India Post Forms</a>
+    </div>
   </div>
 </section>
 
@@ -541,7 +707,7 @@
       <div class="row"><span class="k">અંદાજિત વ્યાજ</span><span class="v" id="rInterest">₹0</span></div>
       <div class="row" id="rPeriodRow" style="display:none;"><span class="k" id="rPeriodLabel">-</span><span class="v" id="rPeriod">₹0</span></div>
       <div class="row big"><span class="k">પરિપક્વતા રકમ</span><span class="v" id="rMaturity">₹0</span></div>
-      <div class="calc-note">દર્શાવેલ વ્યાજ દર જુલાઈ–સપ્ટેમ્બર 2026ના ત્રિમાસિક ગાળા મુજબ છે અને દર ત્રિમાસિકે બદલાઈ શકે છે. ગણતરી સામાન્ય સૂત્ર પર આધારિત અંદાજ છે, વાસ્તવિક રકમ પોસ્ટ ઓફિસના નિયમો મુજબ થોડી અલગ હોઈ શકે.</div>
+      <div class="calc-note on-dark">દર્શાવેલ વ્યાજ દર જુલાઈ–સપ્ટેમ્બર 2026ના ત્રિમાસિક ગાળા મુજબ છે અને દર ત્રિમાસિકે બદલાઈ શકે છે. ગણતરી સામાન્ય સૂત્ર પર આધારિત અંદાજ છે, વાસ્તવિક રકમ પોસ્ટ ઓફિસના નિયમો મુજબ થોડી અલગ હોઈ શકે.</div>
     </div>
   </div>
 </section>
@@ -653,6 +819,11 @@
       <li>તબીબી તપાસનો રિપોર્ટ (ચોક્કસ ઉંમર/વીમા રકમથી વધુ હોય ત્યારે જરૂરી)</li>
     </ul>
     <div class="doc-note">નોંધ: PLI ફક્ત સરકારી/અર્ધ-સરકારી કર્મચારીઓ માટે છે (એટલે એમાં એમ્પ્લોયર સર્ટિફિકેટ જરૂરી), જ્યારે RPLI ગ્રામ્ય વિસ્તારના તમામ નાગરિકો માટે ખુલ્લી છે. તબીબી તપાસ સામાન્ય રીતે અમુક ઉંમર/વીમા રકમથી ઓછી હોય તો જરૂરી નથી હોતી, પણ ચોક્કસ નિયમો બદલાતા રહે છે — ગઢસીસા સબ પોસ્ટ ઓફિસનો સંપર્ક કરી ખાતરી કરો.</div>
+    <div class="doc-links">
+      <a href="https://pli.indiapost.gov.in/CustomerPortal/Documents/PLI%20Proposal%20Form.pdf" target="_blank" rel="noopener">📄 PLI પ્રપોઝલ ફોર્મ ડાઉનલોડ કરો</a>
+      <a href="https://pli.indiapost.gov.in/CustomerPortal/Documents/RPLI%20Proposal%20Form.pdf" target="_blank" rel="noopener">📄 RPLI પ્રપોઝલ ફોર્મ ડાઉનલોડ કરો</a>
+      <a href="https://pli.indiapost.gov.in" target="_blank" rel="noopener">🔗 pli.indiapost.gov.in (સત્તાવાર પોર્ટલ)</a>
+    </div>
   </div>
 </section>
 
@@ -710,6 +881,11 @@
         </tbody>
       </table>
       <div class="calc-note">અંદાજિત વાર્ષિક પ્રીમિયમ: <strong id="iAnnual" style="color:var(--accent);">₹0</strong> (દર ₹1,000 વીમા રકમે ≈ <span id="iRate">₹0</span>/વર્ષ)</div>
+
+      <div class="calc-result" style="margin-top:16px;" id="maturityBox">
+        <div class="row"><span class="k" id="maturityLabel">અંદાજિત પરિપક્વતા રકમ</span><span class="v" id="iMaturity">₹0</span></div>
+      </div>
+      <div class="calc-note" id="maturityNote"></div>
     </div>
   </div>
 </section>
@@ -724,11 +900,11 @@
   <div class="facility-grid">
     <div class="facility">
       <h3>સ્પીડ પોસ્ટ</h3>
-      <p>ઝડપી અને ટ્રેક કરી શકાય તેવી ટપાલ સેવા, દેશભરમાં અને આંતરરાષ્ટ્રીય સ્તરે ઉપલબ્ધ.</p>
+      <p>ઝડપી અને ટ્રેક કરી શકાય તેવી ટપાલ સેવા, દેશભરમાં અને આંતરરાષ્ટ્રીય સ્તરે ઉપલબ્ધ. <strong>1 સપ્ટેમ્બર 2025 થી રજિસ્ટર્ડ પોસ્ટ સેવા સ્પીડ પોસ્ટ સાથે merge કરવામાં આવી છે</strong> — હવે અગત્યના દસ્તાવેજો માટે પણ સ્પીડ પોસ્ટ જ વાપરવાની રહેશે.</p>
     </div>
     <div class="facility">
-      <h3>રજિસ્ટર્ડ પોસ્ટ</h3>
-      <p>મહત્વના દસ્તાવેજો સુરક્ષિત રીતે મોકલવા માટેની પ્રમાણભૂત સેવા, ડિલિવરીની પહોંચ સાથે.</p>
+      <h3>સાદી ટપાલ (Ordinary Post)</h3>
+      <p>સૌથી સસ્તી સેવા, ટ્રેકિંગ સુવિધા વગર — બિન-જરૂરી/સામાન્ય પત્રો માટે યોગ્ય.</p>
     </div>
     <div class="facility">
       <h3>મની ઓર્ડર / e-મની ઓર્ડર</h3>
@@ -737,6 +913,19 @@
     <div class="facility">
       <h3>પાર્સલ અને બિઝનેસ પોસ્ટ</h3>
       <p>વ્યાપારી ઉપયોગ માટે બલ્ક મેઈલ, લોજિસ્ટિક્સ પોસ્ટ અને ઈ-કોમર્સ પાર્સલ સેવા.</p>
+    </div>
+  </div>
+
+  <div class="doc-box">
+    <h3>📦 ટપાલ ટ્રેક કરો અને ભાડું (તારીફ) જાણો</h3>
+    <ul class="doc-list">
+      <li>વેબસાઈટ પર "Track 'N' Trace" વિભાગમાં કન્સાઈનમેન્ટ નંબર નાખી ટ્રેક કરો</li>
+      <li>SMS દ્વારા: <strong>POST TRACK &lt;કન્સાઈનમેન્ટ નંબર&gt;</strong> ટાઈપ કરી 166 અથવા 51969 પર મોકલો</li>
+      <li>ભાડું જાણવા વેબસાઈટ પર "Calculate Postage of Articles" ટૂલ વાપરો (વજન અને પિનકોડ નાખવાથી ચોક્કસ ભાડું બતાવે)</li>
+    </ul>
+    <div class="doc-note">નોંધ: ટપાલનું ભાડું વજન, અંતર અને GST મુજબ બદલાય છે. ચોક્કસ ભાડું જાણવા સત્તાવાર કેલ્ક્યુલેટર વાપરો અથવા ઓફિસના કાઉન્ટર પર પૂછો.</div>
+    <div class="doc-links">
+      <a href="https://www.indiapost.gov.in/" target="_blank" rel="noopener">📍 ટ્રેક કરો અને ભાડું ગણો — indiapost.gov.in</a>
     </div>
   </div>
 </section>
@@ -751,7 +940,7 @@
   <div class="facility-grid">
     <div class="facility">
       <h3>ઈન્ડિયા પોસ્ટ પેમેન્ટ્સ બેંક (IPPB)</h3>
-      <p>ઘરબેઠાં બેંકિંગ, આધાર-આધારિત ચુકવણી (AEPS), DBT અને મોબાઈલ બેંકિંગ સુવિધા.</p>
+      <p>ઘરબેઠાં બેંકિંગ, આધાર-આધારિત ચુકવણી (AEPS), DBT અને મોબાઈલ બેંકિંગ સુવિધા. બેલેન્સ/મિની સ્ટેટમેન્ટ માટે SMS અને મિસ્ડ કૉલ સુવિધા પણ ઉપલબ્ધ છે (નીચે જુઓ).</p>
     </div>
     <div class="facility">
       <h3>નેટ બેંકિંગ</h3>
@@ -764,6 +953,17 @@
     <div class="facility">
       <h3>ડોરસ્ટેપ બેંકિંગ સેવા</h3>
       <p>વરિષ્ઠ નાગરિકો અને દિવ્યાંગજનો માટે ઘરે બેઠાં રોકડ જમા/ઉપાડની સુવિધા.</p>
+    </div>
+  </div>
+
+  <div class="doc-box">
+    <h3>📱 IPPB બેલેન્સ/મિની સ્ટેટમેન્ટ — SMS અને મિસ્ડ કૉલ સુવિધા</h3>
+    <p style="font-size:.88rem; color:#5a3a3a; margin-bottom:12px;">IPPB ખાતાધારકો ઈન્ટરનેટ વગર પણ મિસ્ડ કૉલ અથવા SMS થી બેલેન્સ અને મિની સ્ટેટમેન્ટ જાણી શકે છે.</p>
+    <div class="doc-note">ચોક્કસ મિસ્ડ કૉલ/SMS નંબર માટે તમારો રજિસ્ટર્ડ મોબાઈલ નંબર IPPB સાથે જોડાયેલ છે કે નહીં ચકાસો (Dak Sewa/IPPB એપમાં જોઈ શકાય), અથવા નીચેની સત્તાવાર લિંક/કસ્ટમર કેર પર સંપર્ક કરો.</div>
+    <div class="doc-links">
+      <a href="https://ippbonline.bank.in/web/ippb/missed-call-banking" target="_blank" rel="noopener">📞 મિસ્ડ કૉલ બેંકિંગ — સત્તાવાર પેજ</a>
+      <a href="https://ippbonline.bank.in/web/ippb/sms-banking2" target="_blank" rel="noopener">💬 SMS બેંકિંગ — સત્તાવાર પેજ</a>
+      <a href="tel:155299">📞 IPPB કસ્ટમર કેર: 155299</a>
     </div>
   </div>
 </section>
@@ -795,6 +995,53 @@
   </div>
 </section>
 
+<!-- ============ FAQ ============ -->
+<section id="faq" class="cat-other">
+  <div class="section-head">
+    <span class="tag">મદદ</span>
+    <h2>❓ વારંવાર પુછાતા સવાલો</h2>
+  </div>
+  <hr class="perf">
+
+  <details class="faq-item">
+    <summary>ખાતું બંધ કરવું હોય તો શું કરવું?</summary>
+    <p>એકાઉન્ટ ક્લોઝર ફોર્મ ભરી, પાસબુક સાથે ગઢસીસા સબ પોસ્ટ ઓફિસના કાઉન્ટર પર જમા કરાવો. ઓળખનો પુરાવો સાથે રાખવો.</p>
+  </details>
+  <details class="faq-item">
+    <summary>નોમિની (વારસદાર) બદલવો હોય તો?</summary>
+    <p>નોમિનેશન ફોર્મ ભરી પાસબુક સાથે ઓફિસમાં જમા કરાવો. કોઈપણ સમયે નોમિની બદલી શકાય છે.</p>
+  </details>
+  <details class="faq-item">
+    <summary>પાસબુક ખોવાઈ જાય તો શું કરવું?</summary>
+    <p>ડુપ્લિકેટ પાસબુક માટે અરજી કરો — ઓળખનો પુરાવો અને એકાઉન્ટ નંબર સાથે રાખવો. નજીવી ફી લાગી શકે છે.</p>
+  </details>
+  <details class="faq-item">
+    <summary>RD/TD માં હપ્તો ચૂકી જાય તો શું થાય?</summary>
+    <p>નિયત તારીખ પછી મોડું ભરવા પર દંડ લાગે છે. લાંબા સમય સુધી ના ભરાય તો ખાતું ડિફોલ્ટ થઈ શકે — વહેલી તકે ઓફિસનો સંપર્ક કરો.</p>
+  </details>
+  <details class="faq-item">
+    <summary>ખાતું એક પોસ્ટ ઓફિસથી બીજી પોસ્ટ ઓફિસમાં ટ્રાન્સફર થઈ શકે?</summary>
+    <p>હા, ટ્રાન્સફર અરજી ફોર્મ ભરી કોઈપણ પોસ્ટ ઓફિસમાં ખાતું ટ્રાન્સફર કરાવી શકાય છે.</p>
+  </details>
+  <details class="faq-item">
+    <summary>ખાતાધારકના મૃત્યુ પછી રકમ કેવી રીતે મળે?</summary>
+    <p>નોમિની અથવા વારસદારે મૃત્યુ પ્રમાણપત્ર, પાસબુક અને પોતાનો ઓળખ/સરનામાનો પુરાવો સાથે ઓફિસમાં દાવો રજૂ કરવાનો રહે છે.</p>
+  </details>
+  <details class="faq-item">
+    <summary>PLI/RPLI પોલિસી પર લોન મળી શકે?</summary>
+    <p>હા, અમુક વર્ષો (સામાન્ય રીતે 3-4 વર્ષ) પોલિસી ચાલુ રહ્યા પછી સરન્ડર વેલ્યુ સામે લોન લઈ શકાય છે. ચોક્કસ પાત્રતા માટે ઓફિસનો સંપર્ક કરો.</p>
+  </details>
+  <details class="faq-item">
+    <summary>સગીર (બાળક) ના નામે ખાતું ખોલી શકાય?</summary>
+    <p>હા, 10 વર્ષથી મોટા બાળકના નામે સીધું ખાતું ખોલી શકાય, અથવા વાલી તરીકે કોઈપણ ઉંમરના બાળક માટે ખાતું ખોલી શકાય.</p>
+  </details>
+  <details class="faq-item">
+    <summary>ઓનલાઈન/મોબાઈલ બેંકિંગ કેવી રીતે શરૂ કરવું?</summary>
+    <p>ઓફિસમાં ઈ-બેંકિંગ/મોબાઈલ બેંકિંગ ફોર્મ ભરો — 48 કલાકમાં એક્ટિવેશન કોડ મળશે, જેનાથી ઓનલાઈન સેવાઓ શરૂ કરી શકાશે.</p>
+  </details>
+
+</section>
+
 <section>
   <div class="callout">
     <div>
@@ -804,6 +1051,7 @@
     <a class="btn primary" href="https://www.indiapost.gov.in/" target="_blank" rel="noopener">indiapost.gov.in ખોલો</a>
   </div>
 </section>
+
 
 <div class="disclaimer">
   નોંધ: આ પાનું જાગૃતિ અને સામાન્ય માહિતી માટે તૈયાર કરવામાં આવ્યું છે. વ્યાજ દર, નિયમો અને પાત્રતા સમય-સમય પર બદલાઈ શકે છે. રોકાણ કે અરજી કરતાં પહેલાં નજીકની પોસ્ટ ઓફિસ અથવા <a href="https://www.indiapost.gov.in" target="_blank" rel="noopener">www.indiapost.gov.in</a> પર સત્તાવાર અને વર્તમાન વિગતો ચકાસી લેવી. વ્યાજ દર જુલાઈ–સપ્ટેમ્બર 2026ના ત્રિમાસિક ગાળા મુજબ દર્શાવેલ છે.
@@ -815,6 +1063,7 @@
     મોબાઈલ: <a href="tel:+919429006720">94290 06720</a> · ઈમેલ: <a href="mailto:gadhasisaso@indiapost.gov.in">gadhasisaso@indiapost.gov.in</a><br>
     ટપાલ વિભાગ, સંચાર મંત્રાલય, ભારત સરકાર · વડું પોસ્ટ ઓફિસ: ભુજ H.O · ડિવિઝન: કચ્છ, રિજિયન: રાજકોટ, સર્કલ: ગુજરાત<br>
     સત્તાવાર વેબસાઈટ: <a href="https://www.indiapost.gov.in" target="_blank" rel="noopener">www.indiapost.gov.in</a>
+    <div style="margin-top:10px; font-size:.78rem; opacity:.8;">છેલ્લે અપડેટ થયું: 26 જુલાઈ 2026</div>
   </div>
 </footer>
 
@@ -895,8 +1144,10 @@
       invested = amount;
       maturity = amount * Math.pow(1 + r/400, 4*years);
       interest = maturity - invested;
-      periodLabel = "સરેરાશ વાર્ષિક વ્યાજ";
-      periodValue = interest / years;
+      // Real TD interest compounds quarterly and grows each year — an "average" isn't a real
+      // credited amount. Show the actual 1st-year interest instead (correct for any tenure).
+      periodLabel = "1 લા વર્ષનું વ્યાજ (અંદાજિત)";
+      periodValue = amount * (Math.pow(1 + r/400, 4) - 1);
     }
     else if(key === 'MIS'){
       invested = amount;
@@ -1080,6 +1331,38 @@
     document.getElementById('iYearly').textContent = fmt(yearly);
     document.getElementById('iAnnual').textContent = fmt(annualPremium);
     document.getElementById('iRate').textContent = "₹" + ratePer1000.toFixed(1);
+
+    // Expected maturity amount — illustrative only (actual bonus rate is declared
+    // yearly by PLI/RPLI and varies; whole-life plans pay on death, not at a fixed maturity)
+    const BONUS_RATE_PER_1000 = 65; // illustrative approx. bonus per ₹1,000 SA per year
+    let maturityAmount = null, maturityNoteText = "";
+
+    if(plan.termMode === 'wholelife'){
+      maturityNoteText = "આ યોજનામાં નિશ્ચિત પરિપક્વતા તારીખ નથી — વીમા રકમ + સંચિત બોનસ મૃત્યુ થાય ત્યારે (અથવા પસંદ કરેલ ઉંમરે એન્ડોમેન્ટમાં રૂપાંતર કરાવો ત્યારે) ચૂકવાય છે.";
+    } else {
+      let term;
+      if(plan.termMode === 'maturityAge'){
+        const maturityAge = parseFloat(document.getElementById('insTerm').value) || plan.maturityAges[0];
+        term = Math.max(maturityAge - age, 1);
+      } else {
+        term = parseFloat(document.getElementById('insTerm').value) || plan.termOptions[0];
+      }
+      const bonus = (sa/1000) * BONUS_RATE_PER_1000 * term;
+      maturityAmount = sa + bonus;
+      maturityNoteText = `અંદાજિત બોનસ દર ₹${BONUS_RATE_PER_1000}/1,000 વીમા રકમ/વર્ષ ધારીને ગણેલ છે — ખરો બોનસ દર દર વર્ષે જાહેર થાય છે અને બદલાય છે. ચોક્કસ પરિપક્વતા રકમ માટે pli.indiapost.gov.in અથવા ઓફિસનો સંપર્ક કરો.`;
+      if(plan.termMode === 'fixedTerm' && planKey.includes('sumangal')){
+        maturityNoteText += " મની-બેક યોજનામાં આ કુલ રકમનો એક ભાગ પોલિસી ગાળા દરમિયાન સમય-સમય પર ચૂકવાય છે, બાકીની રકમ પરિપક્વતાએ.";
+      }
+    }
+
+    if(maturityAmount === null){
+      document.getElementById('maturityLabel').textContent = "પરિપક્વતા";
+      document.getElementById('iMaturity').textContent = "લાગુ નથી — મૃત્યુ-આધારિત ચુકવણી";
+    } else {
+      document.getElementById('maturityLabel').textContent = "અંદાજિત પરિપક્વતા રકમ";
+      document.getElementById('iMaturity').textContent = fmt(maturityAmount);
+    }
+    document.getElementById('maturityNote').textContent = maturityNoteText;
   }
 
   // init
@@ -1113,6 +1396,73 @@
   window.addEventListener('appinstalled', () => {
     if (installBtn) installBtn.style.display = 'none';
   });
+
+  // Scheme recommendation quiz
+  const QUIZ_ANSWERS = {
+    income:   { name: "માસિક આવક યોજના (MIS) અથવા વરિષ્ઠ નાગરિક બચત યોજના (SCSS)", text: "MIS દર મહિને, અને SCSS દર ત્રિમાસિકે સીધું ખાતામાં વ્યાજ જમા કરે છે — નિયમિત આવક માટે બંને શ્રેષ્ઠ છે." },
+    daughter: { name: "સુકન્યા સમૃદ્ધિ યોજના (SSY)", text: "10 વર્ષથી નાની દીકરી માટે સૌથી વધુ વ્યાજ દર (8.2%) અને કરમુક્ત વળતર આપતી ખાસ યોજના." },
+    senior:   { name: "વરિષ્ઠ નાગરિક બચત યોજના (SCSS)", text: "60+ વર્ષના નાગરિકો માટે સૌથી વધુ વ્યાજ દર (8.2%) અને ત્રિમાસિક ચુકવણી સાથેની સલામત યોજના." },
+    tax:      { name: "PPF, NSC, 5-વર્ષ TD અથવા SCSS", text: "આ બધી યોજનાઓમાં કલમ 80C હેઠળ ₹1.5 લાખ સુધીની કરરાહત મળે છે." },
+    longterm: { name: "જાહેર ભવિષ્ય નિધિ (PPF)", text: "15 વર્ષની મુદત, કરમુક્ત ચક્રવૃદ્ધિ વ્યાજ — નિવૃત્તિ કે મોટા લક્ષ્ય માટે શ્રેષ્ઠ." },
+    small:    { name: "રિકરિંગ ડિપોઝિટ (RD)", text: "દર મહિને ઓછી રકમ (₹100 થી શરૂ) જમા કરી 5 વર્ષે સારું વળતર મેળવી શકાય." },
+    anytime:  { name: "પોસ્ટ ઓફિસ બચત ખાતું (SB)", text: "કોઈપણ સમયે જમા/ઉપાડ કરી શકાય તેવું સામાન્ય બચત ખાતું, કટોકટી માટે યોગ્ય." }
+  };
+  function quizPick(key, btn){
+    document.querySelectorAll('#quizOptions button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const ans = QUIZ_ANSWERS[key];
+    const resultBox = document.getElementById('quizResult');
+    resultBox.innerHTML = `<span class="qname">✅ ${ans.name}</span>${ans.text}`;
+    resultBox.classList.add('show');
+  }
+
+  // Read aloud (uses the browser's built-in speech synthesis, no external service)
+  function toggleReadAloud(){
+    const btn = document.getElementById('readAloudBtn');
+    if(!('speechSynthesis' in window)){
+      alert('માફ કરશો, તમારું બ્રાઉઝર આ સુવિધા સપોર્ટ કરતું નથી.');
+      return;
+    }
+    if(window.speechSynthesis.speaking){
+      window.speechSynthesis.cancel();
+      btn.textContent = '🔊 મોટેથી વાંચો';
+      btn.classList.remove('active');
+      return;
+    }
+    const mainText = document.body.innerText;
+    const utter = new SpeechSynthesisUtterance(mainText);
+    utter.lang = 'gu-IN';
+    utter.rate = 0.95;
+    utter.onend = () => { btn.textContent = '🔊 મોટેથી વાંચો'; btn.classList.remove('active'); };
+    utter.onerror = () => { btn.textContent = '🔊 મોટેથી વાંચો'; btn.classList.remove('active'); };
+    window.speechSynthesis.speak(utter);
+    btn.textContent = '⏹ બંધ કરો';
+    btn.classList.add('active');
+  }
+
+  // Share the page (native share sheet where available, WhatsApp link fallback)
+  function sharePage(){
+    const shareData = {
+      title: document.title,
+      text: 'ગઢસીસા સબ પોસ્ટ ઓફિસ — બચત યોજનાઓ, વીમા યોજનાઓ અને સેવાઓ',
+      url: window.location.href
+    };
+    if(navigator.share){
+      navigator.share(shareData).catch(() => {});
+    } else {
+      const waUrl = 'https://wa.me/?text=' + encodeURIComponent(shareData.text + ' ' + shareData.url);
+      window.open(waUrl, '_blank');
+    }
+  }
+
+  // Text size toggle (persists across visits)
+  function setTextSize(large){
+    document.body.classList.toggle('text-large', large);
+    try{ localStorage.setItem('gadhasisa-text-large', large ? '1' : '0'); }catch(e){}
+  }
+  try{
+    if(localStorage.getItem('gadhasisa-text-large') === '1'){ document.body.classList.add('text-large'); }
+  }catch(e){}
 </script>
 </body>
 </html>
