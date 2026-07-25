@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ગઢસીસા સબ પોસ્ટ ઓફિસ (370445) — યોજનાઓ અને સુવિધાઓ</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#C8102E">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
@@ -274,6 +278,7 @@
     <div class="hero-ctas">
       <a class="btn primary" href="#office">પોસ્ટ ઓફિસની વિગતો જુઓ</a>
       <a class="btn ghost" href="https://www.indiapost.gov.in/banking-services/savings" target="_blank" rel="noopener">સત્તાવાર વેબસાઇટ</a>
+      <button class="btn ghost" id="installBtn" style="display:none;">📱 એપ ઈન્સ્ટોલ કરો</button>
     </div>
   </div>
 
@@ -773,6 +778,35 @@
   // init
   onSchemeChange();
   calcPremium();
+</script>
+<script>
+  // Register service worker for offline support / installability
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js').catch(() => {});
+    });
+  }
+
+  // Show "Install App" button when the browser allows it
+  let deferredPrompt;
+  const installBtn = document.getElementById('installBtn');
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (installBtn) installBtn.style.display = 'inline-block';
+  });
+  if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+    });
+  }
+  window.addEventListener('appinstalled', () => {
+    if (installBtn) installBtn.style.display = 'none';
+  });
 </script>
 </body>
 </html>
