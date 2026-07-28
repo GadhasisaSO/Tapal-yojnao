@@ -291,6 +291,34 @@
   }
   .doc-links a:hover{ opacity:.9; }
 
+  /* ============ FEATURED RESOURCE (eye-catching download card) ============ */
+  .featured-box{
+    position:relative;
+    background: linear-gradient(135deg, #8E0E1E 0%, #C8102E 60%, #A6660B 130%);
+    border-radius:8px; padding:22px 24px; margin:22px 0 8px;
+    box-shadow:0 6px 20px rgba(142,14,30,.25);
+    overflow:hidden;
+  }
+  .featured-box::before{
+    content:"★ NEW ★"; position:absolute; top:10px; right:-32px;
+    background:#FFD84D; color:#5a3a00; font-weight:800; font-size:.68rem;
+    padding:4px 40px; transform:rotate(35deg); letter-spacing:.05em;
+  }
+  .featured-box h3{
+    color:#fff; font-size:1.15rem; font-weight:800; margin-bottom:8px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .featured-box p{ color:#FFE9E0; font-size:.9rem; margin-bottom:6px; }
+  .featured-box ul{ color:#FFF3EE; font-size:.85rem; margin:10px 0 14px 20px; line-height:1.7; }
+  .featured-box .credit{ color:#FFD9C9; font-size:.76rem; font-style:italic; margin-bottom:14px; }
+  .featured-box .btn-download{
+    display:inline-flex; align-items:center; gap:8px; background:#fff; color:#8E0E1E;
+    font-weight:800; padding:11px 22px; border-radius:24px; text-decoration:none; font-size:.92rem;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+  }
+  .featured-box .btn-download:hover{ background:#FFF3EE; }
+  .featured-box .filesize{ color:#FFD9C9; font-size:.72rem; margin-left:10px; }
+
   /* ============ COMPARISON TABLE ============ */
   .compare-wrap{ overflow-x:auto; margin-top:24px; border:1px solid var(--line); border-radius:3px; }
   table.compare{ width:100%; border-collapse:collapse; font-size:.85rem; min-width:640px; background:#fff; }
@@ -820,6 +848,20 @@
       <h3>અટલ પેન્શન યોજના (APY)</h3>
       <p>અસંગઠિત ક્ષેત્રના કામદારો માટે નિવૃત્તિ પછી નિશ્ચિત માસિક પેન્શનની ખાતરી આપતી યોજના.</p>
     </div>
+  </div>
+
+  <div class="featured-box">
+    <h3>📚 PLI/RPLI ના તમામ ફોર્મ — એક જ ફાઈલમાં!</h3>
+    <p>પ્રપોઝલ ફોર્મથી લઈને ક્લેમ, લોન, સરેન્ડર અને નોમિનેશન સુધી — બધા જ જરૂરી ફોર્મ હવે એક જ PDF ફાઈલમાં, અલગ-અલગ શોધવાની જરૂર નહીં:</p>
+    <ul>
+      <li>PLI/RPLI પ્રપોઝલ ફોર્મ, ચિલ્ડ્રન પોલિસી પ્રપોઝલ</li>
+      <li>મેચ્યોરિટી ક્લેમ, ડેથ ક્લેમ, સરેન્ડર ફોર્મ</li>
+      <li>લોન અરજી ફોર્મ, રિવાઈવલ ફોર્મ, CWA કન્વર્ઝન ફોર્મ</li>
+      <li>નોમિનેશન, નામ બદલવાનું ફોર્મ, SI/NACH મેન્ડેટ ફોર્મ</li>
+      <li>ઈન્ડેમ્નિટી લેટર (મેચ્યોરિટી અને ડેથ ક્લેમ માટે)</li>
+    </ul>
+    <div class="credit">સંકલન: શ્રી Viral K Chauhan, DOPLI કચ્છ ડિવિઝન</div>
+    <a class="btn-download" href="PLI_RPLI_All_in_One_File.pdf" target="_blank" rel="noopener">⬇️ તમામ ફોર્મ ડાઉનલોડ કરો (PDF)<span class="filesize">46 પાનાં · ~6 MB</span></a>
   </div>
 
   <div class="doc-box">
