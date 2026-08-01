@@ -227,6 +227,15 @@
   .streak-dot.done{ background:var(--mint); border-color:var(--mint); color:#06231a; font-weight:700; }
   .streak-note{ font-size:.76rem; color:var(--muted); margin-top:10px; }
   .streak-note b{ color:var(--ink); }
+  .badge-row{ display:flex; gap:10px; margin-top:14px; }
+  .badge{
+    flex:1; text-align:center; padding:10px 6px; border-radius:12px;
+    border:1px solid var(--line); background:var(--card-2);
+    font-size:.68rem; color:var(--muted);
+  }
+  .badge .ic{ font-size:1.3rem; display:block; margin-bottom:4px; filter:grayscale(1); opacity:.4; }
+  .badge.unlocked{ border-color:var(--amber); background:rgba(255,194,75,.1); color:var(--ink); }
+  .badge.unlocked .ic{ filter:none; opacity:1; }
 
   /* ===== POSTCARD MAKER ===== */
   .pc-wrap{ display:flex; flex-direction:column; gap:14px; }
@@ -271,6 +280,19 @@
   .compare-col li{ margin-bottom:5px; }
   .compare-disclaimer{ font-size:.68rem; color:var(--muted); margin-top:10px; }
 
+  /* ===== CHAT FAQ ===== */
+  .chat-wrap{ display:flex; flex-direction:column; gap:12px; }
+  .chat-row{ display:flex; gap:8px; align-items:flex-end; }
+  .chat-row.user{ justify-content:flex-end; }
+  .chat-row .avatar{
+    width:26px; height:26px; border-radius:50%; background:var(--card-2);
+    display:flex; align-items:center; justify-content:center; font-size:.85rem; flex:none;
+  }
+  .bubble{ max-width:78%; padding:10px 13px; border-radius:16px; font-size:.83rem; line-height:1.45; }
+  .bubble a{ color:inherit; text-decoration:underline; }
+  .bubble.user{ background:var(--red); color:#fff; border-bottom-right-radius:4px; }
+  .bubble.office{ background:var(--card); border:1px solid var(--line); color:var(--ink); border-bottom-left-radius:4px; }
+
   /* ===== CONTACT / FOOTER ===== */
   .contact-card{
     background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px;
@@ -278,6 +300,16 @@
   .contact-row{ display:flex; gap:10px; font-size:.85rem; padding:9px 0; border-bottom:1px solid var(--line); }
   .contact-row:last-child{ border-bottom:none; }
   .contact-row .ico{ flex:none; }
+  .qr-block{
+    display:flex; align-items:center; gap:12px; margin-top:16px;
+    background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px;
+  }
+  .qr-box{ flex:none; width:90px; height:90px; background:#fff; border-radius:8px; padding:6px; display:flex; align-items:center; justify-content:center; }
+  .qr-box img{ width:100%; height:100%; display:block; }
+  .qr-block span{ font-size:.78rem; color:var(--muted); line-height:1.5; }
+  .qr-fallback-link{ display:none; color:var(--blue); text-decoration:underline; }
+  .qr-block.qr-failed .qr-box{ display:none; }
+  .qr-block.qr-failed .qr-fallback-link{ display:inline-block; margin-top:2px; }
   footer{ text-align:center; padding:26px 20px 10px; color:var(--muted); font-size:.72rem; }
   footer a{ color:var(--blue); text-decoration:none; }
 
@@ -328,7 +360,10 @@
     <a class="story" href="#quiz"><div class="ring"><span>🧭</span></div><small>Quiz</small></a>
     <a class="story" href="#streak"><div class="ring"><span>🔥</span></div><small>Streak</small></a>
     <a class="story" href="#postcard"><div class="ring"><span>💌</span></div><small>Postcard</small></a>
+    <a class="story" href="#facts"><div class="ring"><span>📚</span></div><small>Facts</small></a>
+    <a class="story" href="#jobs"><div class="ring"><span>💼</span></div><small>Jobs</small></a>
     <a class="story" href="#quick"><div class="ring"><span>⚡</span></div><small>Quick</small></a>
+    <a class="story" href="#faqchat"><div class="ring"><span>💬</span></div><small>FAQ</small></a>
     <a class="story" href="#contact"><div class="ring"><span>📞</span></div><small>Contact</small></a>
   </div>
 
@@ -400,6 +435,8 @@
       <button class="chip" data-key="anytime">ગમે ત્યારે ઉપાડી શકાય એવું જોઈએ</button>
     </div>
     <div class="quiz-result" id="quizResult"></div>
+    <button class="btn ghost" id="quizShareBtn" style="display:none; margin-top:12px;">🖼️ મારું મેચ ડાઉનલોડ કર</button>
+    <canvas id="quizCardCanvas" width="600" height="340" style="display:none;"></canvas>
   </section>
 
   <!-- ===== STREAK ===== -->
@@ -415,7 +452,49 @@
         <div style="text-align:right;"><span class="count mono" id="streakTotal" style="font-size:1.1rem;color:var(--mint);">₹0</span><br><span class="lbl">જમા (અંદાજિત)</span></div>
       </div>
       <div class="streak-grid" id="streakGrid"></div>
+      <div class="badge-row" id="badgeRow"></div>
       <div class="streak-note">આ ફક્ત તારા ફોન પર <b>સ્થાનિક રીતે</b> સેવ થાય છે — ખરું RD ખાતું ખોલવા ઓફિસનો સંપર્ક કર.</div>
+    </div>
+  </section>
+
+  <!-- ===== FUN FACTS ===== -->
+  <section id="facts">
+    <div class="section-head">
+      <span class="tag">Did you know</span>
+      <h2>India Post ની ફેક્ટ્સ 📚</h2>
+      <p>સ્વાઈપ કરીને જો — 170+ વર્ષ જૂની સિસ્ટમ, હજુ પણ ચાલુ.</p>
+    </div>
+    <div class="goal-rail">
+      <div class="goal-card">
+        <div class="emoji">🌍</div>
+        <h3>દુનિયાનું સૌથી મોટું નેટવર્ક</h3>
+        <p>India Post પાસે 1,64,999 પોસ્ટ ઓફિસ છે (માર્ચ 2025) — દુનિયામાં સૌથી વધુ, કોઈપણ દેશ કરતાં.</p>
+      </div>
+      <div class="goal-card">
+        <div class="emoji">🕰️</div>
+        <h3>171+ વર્ષ જૂનું</h3>
+        <p>ડિપાર્ટમેન્ટ ઓફ પોસ્ટ્સ 1 ઓક્ટોબર 1854 થી કાર્યરત છે — આઝાદી પહેલાંથી.</p>
+      </div>
+      <div class="goal-card">
+        <div class="emoji">🎟️</div>
+        <h3>એશિયાની પહેલી સ્ટેમ્પ</h3>
+        <p>1852 માં સિંધમાં બહાર પડેલી "Scinde Dawk" એ એશિયાની પહેલી એડહેસિવ પોસ્ટેજ સ્ટેમ્પ હતી.</p>
+      </div>
+      <div class="goal-card">
+        <div class="emoji">🏘️</div>
+        <h3>90% ગામડાંઓમાં</h3>
+        <p>1,64,999 માંથી લગભગ 1,49,385 પોસ્ટ ઓફિસ ગ્રામ્ય વિસ્તારમાં છે — છેવાડાના ગામ સુધી પહોંચ.</p>
+      </div>
+      <div class="goal-card">
+        <div class="emoji">💳</div>
+        <h3>IPPB = 2018 થી</h3>
+        <p>India Post Payments Bank 1 સપ્ટેમ્બર 2018 એ શરૂ થઈ — પોસ્ટમેન દ્વારા ઘરે-ઘરે બેંકિંગ.</p>
+      </div>
+      <div class="goal-card">
+        <div class="emoji">🚲</div>
+        <h3>લાખો ગ્રામીણ ડાક સેવક</h3>
+        <p>લગભગ 2.78 લાખ ગ્રામીણ ડાક સેવક રોજ ગામડે-ગામડે ટપાલ અને સેવાઓ પહોંચાડે છે.</p>
+      </div>
     </div>
   </section>
 
@@ -506,6 +585,49 @@
     </div>
   </section>
 
+  <!-- ===== JOBS ===== -->
+  <section id="jobs">
+    <div class="section-head">
+      <span class="tag">Govt job, no written exam</span>
+      <h2>Post Office માં જોબ? 💼</h2>
+      <p>Gramin Dak Sevak (GDS) ભરતી — 10મું પાસ, પસંદગી ફક્ત 10મા ધોરણના માર્ક્સ પર.</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-row"><span class="ico">🎓</span><span>લાયકાત: 10મું ધોરણ પાસ, ઉંમર 18–40 વર્ષ</span></div>
+      <div class="contact-row"><span class="ico">📝</span><span>કોઈ લેખિત પરીક્ષા નહીં — ફક્ત 10મા ધોરણના માર્ક્સ પરથી મેરિટ લિસ્ટ</span></div>
+      <div class="contact-row"><span class="ico">💰</span><span>ABPM/GDS પગાર ₹15,000/મહિનેથી શરૂ (ભથ્થાં સહિત)</span></div>
+      <div class="contact-row"><span class="ico">🚲</span><span>જરૂરી: સાયકલ ચલાવતાં આવડવું, પાયાનું કમ્પ્યુટર જ્ઞાન</span></div>
+    </div>
+    <div class="hero-ctas" style="justify-content:flex-start; margin-top:14px;">
+      <a class="btn primary" href="https://www.indiapost.gov.in/gdsonlineengagement" target="_blank" rel="noopener">GDS ભરતી જુઓ →</a>
+    </div>
+    <p class="compare-disclaimer">ભરતી periodic cycle માં નીકળે છે — ચાલુ જગ્યાઓ અને તારીખો માટે ઉપરની સત્તાવાર લિંક ચેક કરવી.</p>
+  </section>
+
+  <!-- ===== FAQ CHAT ===== -->
+  <section id="faqchat">
+    <div class="section-head">
+      <span class="tag">Quick answers</span>
+      <h2>સવાલ-જવાબ 💬</h2>
+    </div>
+    <div class="chat-wrap">
+      <div class="chat-row user"><div class="bubble user">પાસબુક ખોવાઈ જાય તો?</div></div>
+      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office">ડુપ્લિકેટ પાસબુક માટે અરજી કરાય — ઓળખનો પુરાવો + એકાઉન્ટ નંબર જોઈએ, નજીવી ફી લાગી શકે. <a href="https://www.indiapost.gov.in/api/documents/file/1034vgz2oxl701hcp3cu870hc7a03a4g0s5cb3fmtn3e8eo04nkp0e32834uon" target="_blank" rel="noopener">ફોર્મ SB-41 ↓</a></div></div>
+
+      <div class="chat-row user"><div class="bubble user">RD નો હપ્તો ચૂકાય જાય તો?</div></div>
+      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office">મોડું ભરવા પર થોડો દંડ લાગે. બહુ લાંબુ ના ભરાય તો ખાતું ડિફોલ્ટ થઈ શકે — વહેલી તકે ઓફિસમાં વાત કરી લેવી સારું.</div></div>
+
+      <div class="chat-row user"><div class="bubble user">ખાતું બીજી પોસ્ટ ઓફિસમાં ટ્રાન્સફર થઈ શકે?</div></div>
+      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office">હા બિલકુલ — ટ્રાન્સફર ફોર્મ ભરીને કોઈપણ પોસ્ટ ઓફિસમાં ખાતું ટ્રાન્સફર કરાવી શકાય. <a href="https://www.indiapost.gov.in/api/documents/file/1007ion2oyfk3mp093be9t0hc7a08gek0sjre0e2iz3kbwm0483k0b9ej05ngm" target="_blank" rel="noopener">ટ્રાન્સફર ફોર્મ ↓</a></div></div>
+
+      <div class="chat-row user"><div class="bubble user">18 વર્ષથી નાનો છું, ખાતું ખોલી શકું?</div></div>
+      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office">10 વર્ષથી મોટા બાળકના નામે સીધું ખાતું ખૂલી શકે, નાની ઉંમર માટે વાલી તરીકે ખોલી શકાય. <a href="https://www.indiapost.gov.in/api/documents/file/100a9s52rrrl01hcp05npx04p3a01eko0s5lh3hhl73a0qr09vcx3ifwm05mh2" target="_blank" rel="noopener">ફોર્મ AOF ↓</a></div></div>
+
+      <div class="chat-row user"><div class="bubble user">ઓનલાઈન/મોબાઈલ બેંકિંગ કેમ શરૂ કરવું?</div></div>
+      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office">ઓફિસમાં ઈ-બેંકિંગ ફોર્મ ભરી દે — 48 કલાકમાં એક્ટિવેશન કોડ મળી જશે. <a href="https://www.indiapost.gov.in/api/documents/file/103d8n62qrm80b8rd01uyq0abd23enez0sjti0jqkr08vur39zwr0b9le34dtu" target="_blank" rel="noopener">બેંકિંગ ફોર્મ ↓</a></div></div>
+    </div>
+  </section>
+
   <!-- ===== CONTACT ===== -->
   <section id="contact">
     <div class="section-head">
@@ -521,6 +643,12 @@
     <div class="hero-ctas" style="justify-content:flex-start; margin-top:14px;">
       <a class="btn primary" href="https://wa.me/919429006720" target="_blank" rel="noopener">💬 WhatsApp કર</a>
       <a class="btn ghost" href="https://www.google.com/maps/search/Vathan+Chowk+Gadhasisa+Post+Office+370445" target="_blank" rel="noopener">નકશો</a>
+    </div>
+    <div class="qr-block">
+      <div class="qr-box">
+        <img id="waQr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwa.me%2F919429006720" width="90" height="90" alt="WhatsApp QR code" loading="lazy" onerror="this.closest('.qr-block').classList.add('qr-failed')">
+      </div>
+      <span>સ્કેન કરીને સીધું WhatsApp પર મેસેજ કર 👋<br><a href="https://wa.me/919429006720" target="_blank" rel="noopener" class="qr-fallback-link">QR ના દેખાય તો અહીં ટેપ કર →</a></span>
     </div>
   </section>
 
@@ -551,6 +679,40 @@
     small:    { name: "રિકરિંગ ડિપોઝિટ (RD)", text: "દર મહિને ઓછી રકમ (₹100 થી શરૂ) જમા કરી 5 વર્ષે સારું વળતર." },
     anytime:  { name: "પોસ્ટ ઓફિસ બચત ખાતું (SB)", text: "કોઈપણ સમયે જમા/ઉપાડ કરી શકાય, કટોકટી માટે યોગ્ય." }
   };
+  const quizShareBtn = document.getElementById('quizShareBtn');
+  const quizCardCanvas = document.getElementById('quizCardCanvas');
+  const qctx = quizCardCanvas.getContext('2d');
+  let currentMatch = null;
+
+  function drawQuizCard(matchName){
+    const w = quizCardCanvas.width, h = quizCardCanvas.height;
+    qctx.clearRect(0, 0, w, h);
+    const grad = qctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#0A0C14');
+    grad.addColorStop(1, '#1B2036');
+    qctx.fillStyle = grad;
+    qctx.fillRect(0, 0, w, h);
+
+    qctx.strokeStyle = '#FF3B4E';
+    qctx.setLineDash([8, 6]);
+    qctx.lineWidth = 3;
+    qctx.strokeRect(18, 18, w - 36, h - 36);
+    qctx.setLineDash([]);
+
+    qctx.fillStyle = '#FFC24B';
+    qctx.font = '700 15px "Space Mono", monospace';
+    qctx.textAlign = 'center';
+    qctx.fillText('MY SAVINGS MATCH · GADHASISA POST 370445', w / 2, 60);
+
+    qctx.fillStyle = '#F4F1E8';
+    qctx.font = '700 30px sans-serif';
+    wrapText(qctx, matchName, w / 2, 150, w - 100, 38);
+
+    qctx.fillStyle = '#2FE6A6';
+    qctx.font = '13px "Space Mono", monospace';
+    qctx.fillText('govt-backed · post office savings', w / 2, h - 40);
+  }
+
   document.getElementById('quizChips').addEventListener('click', (e) => {
     const btn = e.target.closest('.chip');
     if(!btn) return;
@@ -560,6 +722,17 @@
     const box = document.getElementById('quizResult');
     box.innerHTML = `<span class="qname">✅ ${ans.name}</span>${ans.text}`;
     box.classList.add('show');
+    currentMatch = ans.name;
+    drawQuizCard(currentMatch);
+    quizShareBtn.style.display = 'inline-flex';
+  });
+
+  quizShareBtn.addEventListener('click', () => {
+    if(!currentMatch) return;
+    const link = document.createElement('a');
+    link.download = 'my-savings-match.png';
+    link.href = quizCardCanvas.toDataURL('image/png');
+    link.click();
   });
 
   // ===== STREAK TRACKER =====
@@ -568,6 +741,13 @@
   let streak = [];
   try{ streak = JSON.parse(localStorage.getItem('genz-streak') || '[]'); }catch(e){ streak = []; }
   if(!Array.isArray(streak) || streak.length !== WEEKS){ streak = new Array(WEEKS).fill(false); }
+
+  const BADGES = [
+    { need: 4,  ic: '🔥', label: '4 વીક' },
+    { need: 8,  ic: '🏅', label: '8 વીક' },
+    { need: 12, ic: '🏆', label: 'ફુલ સ્ટ્રીક' }
+  ];
+  const badgeRow = document.getElementById('badgeRow');
 
   function renderStreak(){
     grid.innerHTML = '';
@@ -586,6 +766,15 @@
     const count = streak.filter(Boolean).length;
     document.getElementById('streakCount').textContent = count;
     document.getElementById('streakTotal').textContent = '₹' + (count * 100).toLocaleString('en-IN');
+
+    badgeRow.innerHTML = '';
+    BADGES.forEach(b => {
+      const unlocked = count >= b.need;
+      const el = document.createElement('div');
+      el.className = 'badge' + (unlocked ? ' unlocked' : '');
+      el.innerHTML = `<span class="ic">${b.ic}</span>${b.label}`;
+      badgeRow.appendChild(el);
+    });
   }
   renderStreak();
 
