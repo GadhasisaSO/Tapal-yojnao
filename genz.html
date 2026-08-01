@@ -280,6 +280,28 @@
   .compare-col li{ margin-bottom:5px; }
   .compare-disclaimer{ font-size:.68rem; color:var(--muted); margin-top:10px; }
 
+  /* ===== CALCULATOR ===== */
+  .calc-card{ background:var(--card); border:1px solid var(--line); border-radius:20px; padding:18px; }
+  .calc-row label{ font-size:.78rem; color:var(--muted); display:block; margin-bottom:8px; }
+  .calc-input-wrap{
+    display:flex; align-items:center; gap:6px; background:var(--card-2);
+    border:1px solid var(--line); border-radius:12px; padding:10px 14px;
+  }
+  .calc-input-wrap span{ color:var(--muted); font-family:'Space Mono',monospace; }
+  .calc-input-wrap input{
+    background:transparent; border:none; outline:none; color:var(--ink);
+    font-family:'Space Mono',monospace; font-size:1.15rem; width:100%;
+  }
+  input[type="range"]{ width:100%; margin:16px 0 6px; accent-color:var(--red); }
+  .calc-results{ display:flex; flex-direction:column; gap:10px; margin-top:14px; }
+  .calc-result{ display:flex; justify-content:space-between; align-items:center; font-size:.84rem; color:var(--muted); }
+  .calc-result.total{
+    border-top:1px dashed var(--line); padding-top:10px; margin-top:2px;
+    font-size:.95rem; color:var(--ink);
+  }
+  .calc-val{ font-size:1rem; }
+  .calc-result.total .calc-val{ font-size:1.3rem; color:var(--amber); }
+
   /* ===== CHAT FAQ ===== */
   .chat-wrap{ display:flex; flex-direction:column; gap:12px; }
   .chat-row{ display:flex; gap:8px; align-items:flex-end; }
@@ -357,6 +379,7 @@
   <!-- ===== STORY BAR ===== -->
   <div class="story-bar">
     <a class="story" href="#goals"><div class="ring"><span>🎯</span></div><small>Goals</small></a>
+    <a class="story" href="#calc"><div class="ring"><span>🧮</span></div><small>Calc</small></a>
     <a class="story" href="#quiz"><div class="ring"><span>🧭</span></div><small>Quiz</small></a>
     <a class="story" href="#streak"><div class="ring"><span>🔥</span></div><small>Streak</small></a>
     <a class="story" href="#postcard"><div class="ring"><span>💌</span></div><small>Postcard</small></a>
@@ -418,6 +441,39 @@
     </div>
   </section>
 
+  <!-- ===== LIVE CALCULATOR ===== -->
+  <section id="calc">
+    <div class="section-head">
+      <span class="tag">Real math, live</span>
+      <h2>તારો RD કેલ્ક્યુલેટર 🧮</h2>
+      <p>દર મહિને કેટલું જમા કરીશ? જો 5 વર્ષે કેટલા મળે.</p>
+    </div>
+    <div class="calc-card">
+      <div class="calc-row">
+        <label for="calcAmount">માસિક જમા રકમ</label>
+        <div class="calc-input-wrap">
+          <span>₹</span>
+          <input type="number" id="calcAmount" value="500" min="100" step="50">
+        </div>
+      </div>
+      <input type="range" id="calcSlider" min="100" max="10000" step="50" value="500">
+      <div class="calc-results">
+        <div class="calc-result">
+          <span class="calc-lbl">કુલ જમા</span>
+          <span class="calc-val mono" id="calcInvested">₹0</span>
+        </div>
+        <div class="calc-result">
+          <span class="calc-lbl">વ્યાજ (6.7%)</span>
+          <span class="calc-val mono" id="calcInterest" style="color:var(--mint);">₹0</span>
+        </div>
+        <div class="calc-result total">
+          <span class="calc-lbl">5 વર્ષે મળશે</span>
+          <span class="calc-val mono" id="calcMaturity">₹0</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== QUIZ ===== -->
   <section id="quiz">
     <div class="section-head">
@@ -454,6 +510,20 @@
       <div class="streak-grid" id="streakGrid"></div>
       <div class="badge-row" id="badgeRow"></div>
       <div class="streak-note">આ ફક્ત તારા ફોન પર <b>સ્થાનિક રીતે</b> સેવ થાય છે — ખરું RD ખાતું ખોલવા ઓફિસનો સંપર્ક કર.</div>
+    </div>
+  </section>
+
+  <!-- ===== REFER A FRIEND ===== -->
+  <section id="refer">
+    <div class="section-head">
+      <span class="tag">Save together</span>
+      <h2>મિત્રને પણ જોડ 🤝</h2>
+      <p>સાથે સેવ કરવાની મજા જ કંઈક ઓર છે — તારા મિત્રને આ પેજ મોકલ.</p>
+    </div>
+    <canvas id="referCanvas" width="600" height="340" style="display:none;"></canvas>
+    <div class="hero-ctas" style="justify-content:flex-start;">
+      <a class="btn primary" id="referWa" href="https://wa.me/?text=Hey!%20Gadhasisa%20Post%20Office%20ni%20savings%20goals%20%26%20RD%20streak%20check%20kar%20-%20genz.html" target="_blank" rel="noopener">💬 WhatsApp પર invite કર</a>
+      <button class="btn ghost" id="referDownload">🖼️ Invite કાર્ડ ડાઉનલોડ કર</button>
     </div>
   </section>
 
@@ -658,6 +728,7 @@
   </footer>
 
   <!-- ===== BOTTOM NAV ===== -->
+  <canvas id="confettiCanvas" style="position:fixed; inset:0; pointer-events:none; z-index:60; display:none;"></canvas>
   <nav class="bottom-nav" id="bottomNav">
     <a href="#home" data-target="home"><span class="ic">🏠</span>Home</a>
     <a href="#goals" data-target="goals"><span class="ic">🎯</span>Goals</a>
@@ -669,6 +740,86 @@
 </div>
 
 <script>
+  // ===== LIVE RD CALCULATOR (same formula as classic page) =====
+  const calcAmount = document.getElementById('calcAmount');
+  const calcSlider = document.getElementById('calcSlider');
+  const RD_RATE = 6.7;
+  const RD_YEARS = 5;
+
+  function runCalc(){
+    const amount = parseFloat(calcAmount.value) || 0;
+    const months = RD_YEARS * 12;
+    const i = RD_RATE / 400; // quarterly rate
+    const n = months / 3;    // number of quarters
+    const maturity = amount * ((Math.pow(1 + i, n) - 1) / (1 - Math.pow(1 + i, -1 / 3)));
+    const invested = amount * months;
+    const interest = maturity - invested;
+    document.getElementById('calcInvested').textContent = '₹' + Math.round(invested).toLocaleString('en-IN');
+    document.getElementById('calcInterest').textContent = '₹' + Math.round(interest).toLocaleString('en-IN');
+    document.getElementById('calcMaturity').textContent = '₹' + Math.round(maturity).toLocaleString('en-IN');
+  }
+  calcAmount.addEventListener('input', () => {
+    calcSlider.value = calcAmount.value;
+    runCalc();
+  });
+  calcSlider.addEventListener('input', () => {
+    calcAmount.value = calcSlider.value;
+    runCalc();
+  });
+  runCalc();
+
+  // ===== CONFETTI =====
+  const confettiCanvas = document.getElementById('confettiCanvas');
+  const cctx = confettiCanvas.getContext('2d');
+  const CONFETTI_COLORS = ['#FF3B4E', '#3E7BFA', '#2FE6A6', '#FFC24B'];
+  let confettiActive = false;
+
+  function fireConfetti(){
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = document.querySelector('.app-shell').getBoundingClientRect();
+    confettiCanvas.width = rect.width;
+    confettiCanvas.height = window.innerHeight;
+    confettiCanvas.style.left = rect.left + 'px';
+    confettiCanvas.style.top = '0px';
+    confettiCanvas.style.width = rect.width + 'px';
+    confettiCanvas.style.display = 'block';
+
+    const pieces = Array.from({ length: 70 }, () => ({
+      x: Math.random() * confettiCanvas.width,
+      y: -20 - Math.random() * 100,
+      w: 5 + Math.random() * 4,
+      h: 8 + Math.random() * 6,
+      vy: 2 + Math.random() * 3,
+      vx: -1.5 + Math.random() * 3,
+      rot: Math.random() * 360,
+      vr: -8 + Math.random() * 16,
+      color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)]
+    }));
+
+    confettiActive = true;
+    const start = performance.now();
+    function tick(now){
+      const elapsed = now - start;
+      cctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      pieces.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+        cctx.save();
+        cctx.translate(p.x, p.y);
+        cctx.rotate((p.rot * Math.PI) / 180);
+        cctx.fillStyle = p.color;
+        cctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        cctx.restore();
+      });
+      if(elapsed < 1600 && confettiActive){
+        requestAnimationFrame(tick);
+      } else {
+        confettiCanvas.style.display = 'none';
+        confettiActive = false;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
   // ===== QUIZ =====
   const QUIZ_ANSWERS = {
     income:   { name: "માસિક આવક યોજના (MIS) અથવા SCSS", text: "MIS દર મહિને, SCSS દર ત્રિમાસિકે સીધું ખાતામાં વ્યાજ જમા કરે છે." },
@@ -725,6 +876,7 @@
     currentMatch = ans.name;
     drawQuizCard(currentMatch);
     quizShareBtn.style.display = 'inline-flex';
+    fireConfetti();
   });
 
   quizShareBtn.addEventListener('click', () => {
@@ -913,6 +1065,47 @@
         alert('તારો ફોન સીધું image share સપોર્ટ નથી કરતું — postcard ડાઉનલોડ થઈ ગયું, હવે WhatsApp/Instagram પર manually attach કરી શકાય.');
       }
     }, 'image/png');
+  });
+
+  // ===== REFER A FRIEND =====
+  const referCanvas = document.getElementById('referCanvas');
+  const rctx = referCanvas.getContext('2d');
+
+  function drawReferCard(){
+    const w = referCanvas.width, h = referCanvas.height;
+    const grad = rctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#0A0C14');
+    grad.addColorStop(1, '#1B2036');
+    rctx.fillStyle = grad;
+    rctx.fillRect(0, 0, w, h);
+
+    rctx.strokeStyle = '#3E7BFA';
+    rctx.setLineDash([8, 6]);
+    rctx.lineWidth = 3;
+    rctx.strokeRect(18, 18, w - 36, h - 36);
+    rctx.setLineDash([]);
+
+    rctx.textAlign = 'center';
+    rctx.fillStyle = '#FFC24B';
+    rctx.font = '700 15px "Space Mono", monospace';
+    rctx.fillText('YOU\'RE INVITED', w / 2, 70);
+
+    rctx.fillStyle = '#F4F1E8';
+    rctx.font = '700 28px sans-serif';
+    rctx.fillText('ચાલ સાથે RD Streak', w / 2, 150);
+    rctx.fillText('શરૂ કરીએ 🔥', w / 2, 190);
+
+    rctx.fillStyle = '#2FE6A6';
+    rctx.font = '13px "Space Mono", monospace';
+    rctx.fillText('Gadhasisa Post · 370445', w / 2, h - 40);
+  }
+  drawReferCard();
+
+  document.getElementById('referDownload').addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.download = 'gadhasisa-invite.png';
+    link.href = referCanvas.toDataURL('image/png');
+    link.click();
   });
 
   // ===== BOTTOM NAV active state =====
