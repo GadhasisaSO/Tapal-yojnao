@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ગઢસીસા પોસ્ટ — Gen Z Edition</title>
+<meta name="theme-color" content="#0A0C14">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="ગઢસીસા પોસ્ટ — Gen Z Edition">
+<meta property="og:description" content="Goals, streaks ane postcards — post office ni saving schemes, tara style ma.">
+<meta property="og:locale" content="gu_IN">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0A0C14;
+    --bg-glow-red: rgba(255,59,78,.16);
+    --bg-glow-blue: rgba(62,123,250,.14);
+    --card:#131726;
+    --card-2:#1B2036;
+    --ink:#F4F1E8;
+    --muted:#8993AC;
+    --red:#FF3B4E;
+    --blue:#3E7BFA;
+    --mint:#2FE6A6;
+    --amber:#FFC24B;
+    --line: rgba(244,241,232,.12);
+    --shell-w: 480px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 0%, var(--bg-glow-red), transparent 45%),
+      radial-gradient(circle at 85% 15%, var(--bg-glow-blue), transparent 40%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans Gujarati', sans-serif;
+    line-height:1.55;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo Bhai 2','Noto Sans Gujarati',sans-serif;
+    color:var(--ink);
+    margin:0;
+    font-weight:700;
+  }
+  .mono{ font-family:'Space Mono', monospace; letter-spacing:.01em; }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+
+  .app-shell{
+    width:100%;
+    max-width:var(--shell-w);
+    background:linear-gradient(180deg, #0D1120 0%, #0A0C14 100%);
+    min-height:100vh;
+    position:relative;
+    padding-bottom:88px;
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  @media (min-width:560px){
+    body{ padding:24px 0; }
+    .app-shell{ min-height:auto; border-radius:28px; box-shadow:0 30px 80px rgba(0,0,0,.5), 0 0 0 1px var(--line); }
+  }
+
+  /* ===== TOPBAR ===== */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 18px;
+    background:rgba(10,12,20,.78);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .brand{ display:flex; align-items:center; gap:9px; }
+  .topbar .mark{
+    width:30px; height:30px; border-radius:50%;
+    background:conic-gradient(from 0deg, var(--red), var(--amber), var(--blue), var(--red));
+    display:flex; align-items:center; justify-content:center; flex:none;
+  }
+  .topbar .mark span{ width:22px; height:22px; border-radius:50%; background:var(--bg); display:flex; align-items:center; justify-content:center; font-size:.7rem; }
+  .topbar .brand-name{ font-family:'Baloo Bhai 2',sans-serif; font-weight:700; font-size:1rem; }
+  .topbar .classic-link{
+    font-size:.72rem; color:var(--muted); text-decoration:none;
+    border:1px solid var(--line); padding:6px 10px; border-radius:20px;
+    white-space:nowrap;
+  }
+
+  /* ===== HERO ===== */
+  .hero{ padding:34px 20px 22px; text-align:center; }
+  .stamp-seal{
+    width:110px; height:110px; margin:0 auto 18px;
+    border-radius:50%;
+    border:3px dashed var(--red);
+    display:flex; align-items:center; justify-content:center;
+    animation: stamp-in .55s cubic-bezier(.2,1.4,.4,1) both;
+    position:relative;
+  }
+  .stamp-seal::before{
+    content:"";
+    position:absolute; inset:10px;
+    border-radius:50%;
+    border:1px solid rgba(255,59,78,.4);
+  }
+  .stamp-seal .txt{
+    font-family:'Space Mono',monospace; font-size:.62rem; color:var(--red);
+    text-align:center; line-height:1.3; letter-spacing:.03em;
+  }
+  @keyframes stamp-in{
+    0%{ transform:scale(2.4) rotate(-14deg); opacity:0; }
+    70%{ transform:scale(.94) rotate(3deg); opacity:1; }
+    100%{ transform:scale(1) rotate(-6deg); }
+  }
+  .eyebrow{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:.68rem;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--amber);
+    border:1px solid rgba(255,194,75,.4); background:rgba(255,194,75,.08);
+    padding:4px 10px; border-radius:20px; margin-bottom:14px;
+  }
+  .hero h1{ font-size:clamp(1.7rem,7vw,2.15rem); line-height:1.28; }
+  .hero h1 .hl{ color:var(--red); }
+  .hero p{ color:var(--muted); font-size:.95rem; max-width:34ch; margin:14px auto 0; }
+  .hero-ctas{ display:flex; gap:10px; justify-content:center; margin-top:22px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:11px 18px; border-radius:14px; font-weight:600; font-size:.88rem;
+    text-decoration:none; border:1px solid transparent; cursor:pointer;
+  }
+  .btn.primary{ background:var(--red); color:#fff; }
+  .btn.ghost{ background:transparent; border-color:var(--line); color:var(--ink); }
+
+  /* ===== STORY BAR ===== */
+  .story-bar{
+    display:flex; gap:16px; overflow-x:auto; padding:18px 20px 6px;
+    scrollbar-width:none;
+  }
+  .story-bar::-webkit-scrollbar{ display:none; }
+  .story{
+    flex:none; display:flex; flex-direction:column; align-items:center; gap:6px;
+    text-decoration:none; width:62px;
+  }
+  .story .ring{
+    width:56px; height:56px; border-radius:50%;
+    background:conic-gradient(from 120deg, var(--red), var(--amber), var(--mint), var(--blue), var(--red));
+    padding:2.5px; display:flex; align-items:center; justify-content:center;
+  }
+  .story .ring span{
+    width:100%; height:100%; border-radius:50%; background:var(--card);
+    display:flex; align-items:center; justify-content:center; font-size:1.35rem;
+  }
+  .story small{ font-size:.66rem; color:var(--muted); text-align:center; line-height:1.2; }
+
+  /* ===== SECTIONS ===== */
+  section{ padding:30px 20px 6px; }
+  .section-head{ margin-bottom:16px; }
+  .section-head .tag{
+    font-family:'Space Mono',monospace; font-size:.66rem; letter-spacing:.1em;
+    color:var(--mint); text-transform:uppercase;
+  }
+  .section-head h2{ font-size:1.35rem; margin-top:4px; }
+  .section-head p{ color:var(--muted); font-size:.86rem; margin-top:6px; }
+
+  /* ===== GOAL CARDS (stamp shape) ===== */
+  .goal-rail{
+    display:flex; gap:14px; overflow-x:auto; padding:4px 20px 14px; margin:0 -20px;
+    scroll-snap-type:x mandatory; scrollbar-width:none;
+  }
+  .goal-rail::-webkit-scrollbar{ display:none; }
+  .goal-card{
+    flex:none; width:210px; scroll-snap-align:start;
+    background:var(--card);
+    border:1px dashed rgba(244,241,232,.18);
+    clip-path: polygon(0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px));
+    padding:16px 15px 15px;
+  }
+  .goal-card .emoji{ font-size:1.7rem; }
+  .goal-card h3{ font-size:1.02rem; margin-top:8px; }
+  .goal-card .rate{
+    display:inline-block; margin-top:8px; font-family:'Space Mono',monospace;
+    font-size:.82rem; color:var(--mint); border:1px solid rgba(47,230,166,.35);
+    background:rgba(47,230,166,.08); padding:2px 8px; border-radius:8px;
+  }
+  .goal-card p{ font-size:.78rem; color:var(--muted); margin:10px 0 0; }
+  .goal-card .meta{ font-size:.7rem; color:var(--muted); margin-top:8px; font-family:'Space Mono',monospace; }
+  .goal-card a.go{ display:block; margin-top:12px; font-size:.8rem; font-weight:600; color:var(--red); text-decoration:none; }
+
+  /* ===== QUIZ CHIPS ===== */
+  .quiz-chips{ display:flex; flex-wrap:wrap; gap:9px; }
+  .chip{
+    border:1px solid var(--line); background:var(--card);
+    color:var(--ink); font-size:.82rem; padding:10px 13px; border-radius:14px;
+    cursor:pointer; text-align:left;
+  }
+  .chip.active{ border-color:var(--red); background:rgba(255,59,78,.12); }
+  .quiz-result{
+    margin-top:16px; padding:16px; border-radius:16px;
+    background:var(--card-2); border:1px solid var(--line);
+    font-size:.86rem; color:var(--muted); display:none;
+  }
+  .quiz-result.show{ display:block; }
+  .quiz-result .qname{ display:block; font-family:'Baloo Bhai 2',sans-serif; color:var(--mint); font-size:1rem; margin-bottom:6px; }
+
+  /* ===== STREAK TRACKER ===== */
+  .streak-card{
+    background:var(--card); border:1px solid var(--line); border-radius:20px; padding:18px;
+  }
+  .streak-top{ display:flex; justify-content:space-between; align-items:baseline; }
+  .streak-top .count{ font-family:'Space Mono',monospace; font-size:1.5rem; color:var(--amber); }
+  .streak-top .lbl{ font-size:.72rem; color:var(--muted); }
+  .streak-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin:16px 0 4px; }
+  .streak-dot{
+    aspect-ratio:1; border-radius:9px; border:1px solid var(--line);
+    background:transparent; display:flex; align-items:center; justify-content:center;
+    font-size:.72rem; color:var(--muted); cursor:pointer;
+  }
+  .streak-dot.done{ background:var(--mint); border-color:var(--mint); color:#06231a; font-weight:700; }
+  .streak-note{ font-size:.76rem; color:var(--muted); margin-top:10px; }
+  .streak-note b{ color:var(--ink); }
+
+  /* ===== POSTCARD MAKER ===== */
+  .pc-wrap{ display:flex; flex-direction:column; gap:14px; }
+  canvas#pcCanvas{
+    width:100%; height:auto; border-radius:16px; border:1px solid var(--line);
+    background:#fff;
+  }
+  .pc-controls{ display:flex; flex-direction:column; gap:10px; }
+  .pc-swatches{ display:flex; gap:8px; }
+  .swatch{
+    width:30px; height:30px; border-radius:50%; border:2px solid transparent; cursor:pointer;
+  }
+  .swatch.active{ border-color:#fff; }
+  .field label{ font-size:.76rem; color:var(--muted); display:block; margin-bottom:5px; }
+  .field input, .field textarea{
+    width:100%; background:var(--card-2); border:1px solid var(--line); color:var(--ink);
+    border-radius:10px; padding:9px 11px; font-family:inherit; font-size:.86rem; resize:none;
+  }
+  .pc-actions{ display:flex; gap:10px; margin-top:2px; }
+
+  /* ===== QUICK GRID ===== */
+  .quick-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .quick-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px;
+    text-decoration:none; color:var(--ink); display:flex; flex-direction:column; gap:8px;
+  }
+  .quick-card .emoji{ font-size:1.3rem; }
+  .quick-card h3{ font-size:.86rem; }
+  .quick-card p{ font-size:.72rem; color:var(--muted); margin:0; }
+
+  /* ===== COMPARE MEME CARD ===== */
+  .compare-card{
+    display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--line); border-radius:16px; overflow:hidden;
+  }
+  .compare-col{ padding:16px 13px; font-size:.78rem; }
+  .compare-col.risky{ background:rgba(255,59,78,.08); }
+  .compare-col.safe{ background:rgba(47,230,166,.08); }
+  .compare-col h4{ font-family:'Baloo Bhai 2',sans-serif; font-size:.92rem; margin-bottom:8px; }
+  .compare-col.risky h4{ color:var(--red); }
+  .compare-col.safe h4{ color:var(--mint); }
+  .compare-col ul{ margin:0; padding-left:16px; color:var(--muted); }
+  .compare-col li{ margin-bottom:5px; }
+  .compare-disclaimer{ font-size:.68rem; color:var(--muted); margin-top:10px; }
+
+  /* ===== CONTACT / FOOTER ===== */
+  .contact-card{
+    background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px;
+  }
+  .contact-row{ display:flex; gap:10px; font-size:.85rem; padding:9px 0; border-bottom:1px solid var(--line); }
+  .contact-row:last-child{ border-bottom:none; }
+  .contact-row .ico{ flex:none; }
+  footer{ text-align:center; padding:26px 20px 10px; color:var(--muted); font-size:.72rem; }
+  footer a{ color:var(--blue); text-decoration:none; }
+
+  /* ===== BOTTOM NAV ===== */
+  .bottom-nav{
+    position:fixed; left:50%; transform:translateX(-50%); bottom:14px;
+    width:calc(100% - 28px); max-width:calc(var(--shell-w) - 28px);
+    background:rgba(19,23,38,.88); backdrop-filter:blur(12px);
+    border:1px solid var(--line); border-radius:20px;
+    display:flex; justify-content:space-around; padding:9px 4px; z-index:30;
+  }
+  .bottom-nav a{
+    display:flex; flex-direction:column; align-items:center; gap:2px;
+    text-decoration:none; color:var(--muted); font-size:.6rem; padding:4px 6px; border-radius:10px;
+  }
+  .bottom-nav a .ic{ font-size:1.05rem; }
+  .bottom-nav a.active{ color:var(--ink); background:rgba(255,255,255,.06); }
+
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--amber); outline-offset:2px; }
+</style>
+</head>
+<body>
+<div class="app-shell">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="mark"><span>📮</span></div>
+      <span class="brand-name">ગઢસીસા પોસ્ટ</span>
+    </div>
+    <a class="classic-link" href="index.html">ક્લાસિક વર્ઝન ↗</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <div class="hero" id="home">
+    <div class="stamp-seal"><div class="txt">GOVT<br>GUARANTEED</div></div>
+    <span class="eyebrow">Gen Z Edition · PIN 370445</span>
+    <h1>સેવિંગ્સ ને બનાવો <span class="hl">Goals</span>, ડ્રામા વગર</h1>
+    <p>એ જ સરકારી ગેરંટીવાળી પોસ્ટ ઓફિસ યોજનાઓ — પણ તારી ભાષામાં, તારી સ્પીડમાં.</p>
+    <div class="hero-ctas">
+      <a class="btn primary" href="#goals">ગોલ્સ જુઓ</a>
+      <a class="btn ghost" href="#quiz">મારે માટે શું?</a>
+    </div>
+  </div>
+
+  <!-- ===== STORY BAR ===== -->
+  <div class="story-bar">
+    <a class="story" href="#goals"><div class="ring"><span>🎯</span></div><small>Goals</small></a>
+    <a class="story" href="#quiz"><div class="ring"><span>🧭</span></div><small>Quiz</small></a>
+    <a class="story" href="#streak"><div class="ring"><span>🔥</span></div><small>Streak</small></a>
+    <a class="story" href="#postcard"><div class="ring"><span>💌</span></div><small>Postcard</small></a>
+    <a class="story" href="#quick"><div class="ring"><span>⚡</span></div><small>Quick</small></a>
+    <a class="story" href="#contact"><div class="ring"><span>📞</span></div><small>Contact</small></a>
+  </div>
+
+  <!-- ===== GOALS ===== -->
+  <section id="goals">
+    <div class="section-head">
+      <span class="tag">Real schemes, real rates</span>
+      <h2>તારો ગોલ પસંદ કર 🎯</h2>
+      <p>સ્વાઈપ કરીને જો — દરેક ગોલ પાછળ સરકારી બચત યોજના છે.</p>
+    </div>
+    <div class="goal-rail">
+      <div class="goal-card">
+        <div class="emoji">📱</div>
+        <h3>નવો ફોન</h3>
+        <span class="rate mono">6.7%</span>
+        <p>RD માં દર મહિને થોડું જમા કર, 5 વર્ષે સારું વળતર.</p>
+        <div class="meta">₹100/મહિનેથી શરૂ · 5 વર્ષ મુદત</div>
+        <a class="go" href="index.html#bachat">RD વિશે વધુ →</a>
+      </div>
+      <div class="goal-card">
+        <div class="emoji">✈️</div>
+        <h3>ટ્રિપ ફંડ</h3>
+        <span class="rate mono">6.9%</span>
+        <p>1 વર્ષની Time Deposit — ટૂંકા ગોલ માટે ફિક્સ વ્યાજ.</p>
+        <div class="meta">લઘુત્તમ ₹1,000 · 1 વર્ષ</div>
+        <a class="go" href="index.html#bachat">TD વિશે વધુ →</a>
+      </div>
+      <div class="goal-card">
+        <div class="emoji">👟</div>
+        <h3>ઈમરજન્સી સ્ટેશ</h3>
+        <span class="rate mono">4.0%</span>
+        <p>Savings Account — ગમે ત્યારે જમા/ઉપાડ, ATM સાથે.</p>
+        <div class="meta">₹500 થી ખાતું ખૂલે</div>
+        <a class="go" href="index.html#bachat">SB ખાતું વિશે →</a>
+      </div>
+      <div class="goal-card">
+        <div class="emoji">👧</div>
+        <h3>બહેન/દીકરીનું ભવિષ્ય</h3>
+        <span class="rate mono">8.2%</span>
+        <p>સુકન્યા સમૃદ્ધિ યોજના — સૌથી વધુ વ્યાજ, ટેક્સ ફ્રી.</p>
+        <div class="meta">₹250/વર્ષથી · 10 વર્ષથી નાની દીકરી</div>
+        <a class="go" href="index.html#bachat">SSY વિશે વધુ →</a>
+      </div>
+      <div class="goal-card">
+        <div class="emoji">🧾</div>
+        <h3>ટેક્સ સીઝન સેવ</h3>
+        <span class="rate mono">7.1–7.7%</span>
+        <p>PPF/NSC — સેક્શન 80C હેઠળ ₹1.5 લાખ સુધી કરરાહત.</p>
+        <div class="meta">₹500થી શરૂ · 5–15 વર્ષ</div>
+        <a class="go" href="index.html#bachat">PPF/NSC વિશે →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section id="quiz">
+    <div class="section-head">
+      <span class="tag">30-second match</span>
+      <h2>તારે માટે કઈ યોજના યોગ્ય? 🧭</h2>
+      <p>જે તારા જેવું લાગે એ ટેપ કર.</p>
+    </div>
+    <div class="quiz-chips" id="quizChips">
+      <button class="chip" data-key="income">દર મહિને નિયમિત આવક જોઈએ</button>
+      <button class="chip" data-key="daughter">દીકરી માટે બચત કરવી છે</button>
+      <button class="chip" data-key="senior">હું વરિષ્ઠ નાગરિક (60+) છું</button>
+      <button class="chip" data-key="tax">ટેક્સ બચાવવો છે</button>
+      <button class="chip" data-key="longterm">લાંબા ગાળે મોટી રકમ જોઈએ</button>
+      <button class="chip" data-key="small">દર મહિને થોડું-થોડું બચાવવું છે</button>
+      <button class="chip" data-key="anytime">ગમે ત્યારે ઉપાડી શકાય એવું જોઈએ</button>
+    </div>
+    <div class="quiz-result" id="quizResult"></div>
+  </section>
+
+  <!-- ===== STREAK ===== -->
+  <section id="streak">
+    <div class="section-head">
+      <span class="tag">Build the habit</span>
+      <h2>RD Streak 🔥</h2>
+      <p>ધારો કે તું દર અઠવાડિયે ₹100 RD માં જમા કરે છે — ટ્રૅક કરવા ટેપ કર.</p>
+    </div>
+    <div class="streak-card">
+      <div class="streak-top">
+        <div><span class="count mono" id="streakCount">0</span> <span class="lbl">અઠવાડિયા</span></div>
+        <div style="text-align:right;"><span class="count mono" id="streakTotal" style="font-size:1.1rem;color:var(--mint);">₹0</span><br><span class="lbl">જમા (અંદાજિત)</span></div>
+      </div>
+      <div class="streak-grid" id="streakGrid"></div>
+      <div class="streak-note">આ ફક્ત તારા ફોન પર <b>સ્થાનિક રીતે</b> સેવ થાય છે — ખરું RD ખાતું ખોલવા ઓફિસનો સંપર્ક કર.</div>
+    </div>
+  </section>
+
+  <!-- ===== POSTCARD MAKER ===== -->
+  <section id="postcard">
+    <div class="section-head">
+      <span class="tag">Send something real</span>
+      <h2>ડિજિટલ પોસ્ટકાર્ડ બનાવ 💌</h2>
+      <p>ડિઝાઈન કર, ડાઉનલોડ કર, WhatsApp/Story પર share કર — પછી ઓફિસમાંથી ખરેખર પણ મોકલી શકાય!</p>
+    </div>
+    <div class="pc-wrap">
+      <canvas id="pcCanvas" width="600" height="380"></canvas>
+      <div class="pc-controls">
+        <div class="field">
+          <label>રંગ</label>
+          <div class="pc-swatches" id="pcSwatches"></div>
+        </div>
+        <div class="field">
+          <label>કોના માટે?</label>
+          <input type="text" id="pcTo" maxlength="24" placeholder="દા.ત. Meet">
+        </div>
+        <div class="field">
+          <label>મેસેજ (120 અક્ષર સુધી)</label>
+          <textarea id="pcMsg" rows="3" maxlength="120" placeholder="તારો મેસેજ અહીં લખ..."></textarea>
+        </div>
+      </div>
+      <div class="pc-actions">
+        <button class="btn primary" id="pcDownload">⬇️ ડાઉનલોડ કર</button>
+        <button class="btn ghost" id="pcShare">📤 Share</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPARE ===== -->
+  <section>
+    <div class="section-head">
+      <span class="tag">Real talk</span>
+      <h2>ફિક્સ vs "સ્યોર શોટ" ટીપ 👀</h2>
+    </div>
+    <div class="compare-card">
+      <div class="compare-col risky">
+        <h4>😅 મિત્રની ટીપ</h4>
+        <ul>
+          <li>ઉપર-નીચે થાય</li>
+          <li>ગેરંટી નહીં</li>
+          <li>રિસર્ચ તારે કરવું પડે</li>
+        </ul>
+      </div>
+      <div class="compare-col safe">
+        <h4>📮 Post Office RD</h4>
+        <ul>
+          <li>ફિક્સ 6.7% વ્યાજ</li>
+          <li>સરકારી ગેરંટી</li>
+          <li>₹100/મહિનેથી શરૂ</li>
+        </ul>
+      </div>
+    </div>
+    <p class="compare-disclaimer">આ ફક્ત મજા ખાતર compare છે, investment advice નથી — પોતાની જરૂરિયાત મુજબ નિર્ણય લેવો.</p>
+  </section>
+
+  <!-- ===== QUICK GRID ===== -->
+  <section id="quick">
+    <div class="section-head">
+      <span class="tag">More stuff</span>
+      <h2>Quick Actions ⚡</h2>
+    </div>
+    <div class="quick-grid">
+      <a class="quick-card" href="index.html#tapal">
+        <span class="emoji">📦</span>
+        <h3>પાર્સલ ટ્રેક કરો</h3>
+        <p>Speed Post / parcel tracking</p>
+      </a>
+      <a class="quick-card" href="index.html#digital">
+        <span class="emoji">💳</span>
+        <h3>IPPB / Dak Sewa</h3>
+        <p>ડિજિટલ બેંકિંગ ઍપ</p>
+      </a>
+      <a class="quick-card" href="index.html#anya">
+        <span class="emoji">🎟️</span>
+        <h3>ટપાલ ટિકિટ કલેક્શન</h3>
+        <p>Philately — collectible stamps</p>
+      </a>
+      <a class="quick-card" href="index.html#vima">
+        <span class="emoji">🛡️</span>
+        <h3>PLI ઈન્સ્યોરન્સ</h3>
+        <p>નાના પ્રીમિયમથી કવર</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="section-head">
+      <span class="tag">IRL</span>
+      <h2>ઓફિસ પર મળીએ 🏤</h2>
+    </div>
+    <div class="contact-card">
+      <div class="contact-row"><span class="ico">📍</span><span>સબ પોસ્ટ માસ્તર, ગઢસીસા સબ પોસ્ટ ઓફિસ, વથાણ ચોક, ગઢસીસા, તાલુકો માંડવી, જિલ્લો કચ્છ, ગુજરાત — 370445</span></div>
+      <div class="contact-row"><span class="ico">🕐</span><span>ટપાલ/બેંકિંગ: 07:30–13:30 · પૂછપરછ: 07:30–15:30</span></div>
+      <div class="contact-row"><span class="ico">📱</span><a href="tel:+919429006720">94290 06720</a></div>
+      <div class="contact-row"><span class="ico">✉️</span><a href="mailto:gadhasisaso@indiapost.gov.in">gadhasisaso@indiapost.gov.in</a></div>
+    </div>
+    <div class="hero-ctas" style="justify-content:flex-start; margin-top:14px;">
+      <a class="btn primary" href="https://wa.me/919429006720" target="_blank" rel="noopener">💬 WhatsApp કર</a>
+      <a class="btn ghost" href="https://www.google.com/maps/search/Vathan+Chowk+Gadhasisa+Post+Office+370445" target="_blank" rel="noopener">નકશો</a>
+    </div>
+  </section>
+
+  <footer>
+    ગઢસીસા સબ પોસ્ટ ઓફિસ (370445) · <a href="index.html">ક્લાસિક વર્ઝન પર જાવ ↗</a><br>
+    ડિપાર્ટમેન્ટ ઓફ પોસ્ટ્સ, ભારત સરકાર
+  </footer>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav" id="bottomNav">
+    <a href="#home" data-target="home"><span class="ic">🏠</span>Home</a>
+    <a href="#goals" data-target="goals"><span class="ic">🎯</span>Goals</a>
+    <a href="#quiz" data-target="quiz"><span class="ic">🧭</span>Quiz</a>
+    <a href="#postcard" data-target="postcard"><span class="ic">💌</span>Card</a>
+    <a href="#contact" data-target="contact"><span class="ic">📞</span>Contact</a>
+  </nav>
+
+</div>
+
+<script>
+  // ===== QUIZ =====
+  const QUIZ_ANSWERS = {
+    income:   { name: "માસિક આવક યોજના (MIS) અથવા SCSS", text: "MIS દર મહિને, SCSS દર ત્રિમાસિકે સીધું ખાતામાં વ્યાજ જમા કરે છે." },
+    daughter: { name: "સુકન્યા સમૃદ્ધિ યોજના (SSY)", text: "10 વર્ષથી નાની દીકરી માટે સૌથી વધુ વ્યાજ દર (8.2%) અને કરમુક્ત વળતર." },
+    senior:   { name: "વરિષ્ઠ નાગરિક બચત યોજના (SCSS)", text: "60+ વર્ષના નાગરિકો માટે સૌથી વધુ વ્યાજ દર (8.2%) અને ત્રિમાસિક ચુકવણી." },
+    tax:      { name: "PPF, NSC, 5-વર્ષ TD અથવા SCSS", text: "આ બધી યોજનાઓમાં કલમ 80C હેઠળ ₹1.5 લાખ સુધીની કરરાહત મળે છે." },
+    longterm: { name: "જાહેર ભવિષ્ય નિધિ (PPF)", text: "15 વર્ષની મુદત, કરમુક્ત ચક્રવૃદ્ધિ વ્યાજ — મોટા લક્ષ્ય માટે શ્રેષ્ઠ." },
+    small:    { name: "રિકરિંગ ડિપોઝિટ (RD)", text: "દર મહિને ઓછી રકમ (₹100 થી શરૂ) જમા કરી 5 વર્ષે સારું વળતર." },
+    anytime:  { name: "પોસ્ટ ઓફિસ બચત ખાતું (SB)", text: "કોઈપણ સમયે જમા/ઉપાડ કરી શકાય, કટોકટી માટે યોગ્ય." }
+  };
+  document.getElementById('quizChips').addEventListener('click', (e) => {
+    const btn = e.target.closest('.chip');
+    if(!btn) return;
+    document.querySelectorAll('#quizChips .chip').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const ans = QUIZ_ANSWERS[btn.dataset.key];
+    const box = document.getElementById('quizResult');
+    box.innerHTML = `<span class="qname">✅ ${ans.name}</span>${ans.text}`;
+    box.classList.add('show');
+  });
+
+  // ===== STREAK TRACKER =====
+  const WEEKS = 12;
+  const grid = document.getElementById('streakGrid');
+  let streak = [];
+  try{ streak = JSON.parse(localStorage.getItem('genz-streak') || '[]'); }catch(e){ streak = []; }
+  if(!Array.isArray(streak) || streak.length !== WEEKS){ streak = new Array(WEEKS).fill(false); }
+
+  function renderStreak(){
+    grid.innerHTML = '';
+    streak.forEach((done, i) => {
+      const d = document.createElement('button');
+      d.className = 'streak-dot' + (done ? ' done' : '');
+      d.textContent = i + 1;
+      d.setAttribute('aria-label', 'અઠવાડિયું ' + (i + 1) + (done ? ' - પૂરું' : ''));
+      d.addEventListener('click', () => {
+        streak[i] = !streak[i];
+        try{ localStorage.setItem('genz-streak', JSON.stringify(streak)); }catch(e){}
+        renderStreak();
+      });
+      grid.appendChild(d);
+    });
+    const count = streak.filter(Boolean).length;
+    document.getElementById('streakCount').textContent = count;
+    document.getElementById('streakTotal').textContent = '₹' + (count * 100).toLocaleString('en-IN');
+  }
+  renderStreak();
+
+  // ===== POSTCARD MAKER =====
+  const pcColors = [
+    {hex:'#FF3B4E', name:'red'},
+    {hex:'#3E7BFA', name:'blue'},
+    {hex:'#2FE6A6', name:'mint'},
+    {hex:'#FFC24B', name:'amber'}
+  ];
+  let pcColor = pcColors[0].hex;
+  const swatchWrap = document.getElementById('pcSwatches');
+  pcColors.forEach((c, i) => {
+    const s = document.createElement('button');
+    s.className = 'swatch' + (i === 0 ? ' active' : '');
+    s.style.background = c.hex;
+    s.setAttribute('aria-label', c.name);
+    s.addEventListener('click', () => {
+      pcColor = c.hex;
+      document.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
+      s.classList.add('active');
+      drawPostcard();
+    });
+    swatchWrap.appendChild(s);
+  });
+
+  const pcCanvas = document.getElementById('pcCanvas');
+  const ctx = pcCanvas.getContext('2d');
+  const pcTo = document.getElementById('pcTo');
+  const pcMsg = document.getElementById('pcMsg');
+
+  function wrapText(context, text, x, y, maxWidth, lineHeight){
+    const words = text.split(' ');
+    let line = '';
+    let curY = y;
+    for(let n = 0; n < words.length; n++){
+      const testLine = line + words[n] + ' ';
+      if(context.measureText(testLine).width > maxWidth && n > 0){
+        context.fillText(line, x, curY);
+        line = words[n] + ' ';
+        curY += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    context.fillText(line, x, curY);
+    return curY;
+  }
+
+  function drawPostcard(){
+    const w = pcCanvas.width, h = pcCanvas.height;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, w, h);
+
+    // colored band
+    ctx.fillStyle = pcColor;
+    ctx.fillRect(0, 0, w, 14);
+    ctx.fillRect(0, h - 14, w, 14);
+
+    // divider line
+    ctx.strokeStyle = '#DADADA';
+    ctx.beginPath();
+    ctx.moveTo(w * 0.62, 30);
+    ctx.lineTo(w * 0.62, h - 30);
+    ctx.stroke();
+
+    // stamp box top-right
+    ctx.strokeStyle = pcColor;
+    ctx.setLineDash([6, 5]);
+    ctx.lineWidth = 2;
+    ctx.strokeRect(w - 110, 30, 78, 92);
+    ctx.setLineDash([]);
+    ctx.fillStyle = pcColor;
+    ctx.beginPath();
+    ctx.arc(w - 71, 76, 26, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.font = '700 11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('370445', w - 71, 80);
+
+    // postmark
+    ctx.strokeStyle = '#999';
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.arc(w - 71, 150, 34, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.fillStyle = '#999';
+    ctx.font = '600 9px "Space Mono", monospace';
+    ctx.fillText('GADHASISA', w - 71, 147);
+    ctx.fillText('POST', w - 71, 158);
+
+    // left message area
+    ctx.fillStyle = '#1a1a1a';
+    ctx.textAlign = 'left';
+    ctx.font = '600 15px sans-serif';
+    const msg = (pcMsg.value || 'તારો મેસેજ અહીં દેખાશે...').trim();
+    wrapText(ctx, msg, 34, 60, w * 0.5, 24);
+
+    // to line
+    const to = (pcTo.value || 'મિત્ર').trim();
+    ctx.font = '700 14px sans-serif';
+    ctx.fillStyle = pcColor;
+    ctx.fillText('પ્રિય ' + to + ',', 34, h - 40);
+
+    // sender footer
+    ctx.font = '11px "Space Mono", monospace';
+    ctx.fillStyle = '#999';
+    ctx.fillText('— ગઢસીસા સબ પોસ્ટ ઓફિસ · 370445', 34, h - 22);
+  }
+  pcTo.addEventListener('input', drawPostcard);
+  pcMsg.addEventListener('input', drawPostcard);
+  drawPostcard();
+
+  document.getElementById('pcDownload').addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.download = 'gadhasisa-postcard.png';
+    link.href = pcCanvas.toDataURL('image/png');
+    link.click();
+  });
+
+  document.getElementById('pcShare').addEventListener('click', async () => {
+    pcCanvas.toBlob(async (blob) => {
+      if(!blob) return;
+      const file = new File([blob], 'gadhasisa-postcard.png', { type: 'image/png' });
+      if(navigator.canShare && navigator.canShare({ files: [file] })){
+        try{
+          await navigator.share({ files: [file], title: 'ડિજિટલ પોસ્ટકાર્ડ', text: 'ગઢસીસા પોસ્ટ તરફથી 💌' });
+        }catch(e){}
+      } else {
+        const link = document.createElement('a');
+        link.download = 'gadhasisa-postcard.png';
+        link.href = pcCanvas.toDataURL('image/png');
+        link.click();
+        alert('તારો ફોન સીધું image share સપોર્ટ નથી કરતું — postcard ડાઉનલોડ થઈ ગયું, હવે WhatsApp/Instagram પર manually attach કરી શકાય.');
+      }
+    }, 'image/png');
+  });
+
+  // ===== BOTTOM NAV active state =====
+  const navLinks = document.querySelectorAll('#bottomNav a');
+  const targets = Array.from(navLinks).map(a => document.getElementById(a.dataset.target)).filter(Boolean);
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  targets.forEach(t => io.observe(t));
+</script>
+</body>
+</html>
