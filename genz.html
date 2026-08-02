@@ -4,12 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ગઢસીસા પોસ્ટ — Gen Z Edition</title>
+<meta name="description" content="Gadhasisa Sub Post Office (370445) savings schemes, RD calculator, and GDS jobs — explained for young savers. RD, SSY, PPF rates, goal-based savings, and more.">
+<meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0A0C14">
+<link rel="manifest" href="manifest-genz.json">
+<link rel="apple-touch-icon" href="icon-192.png">
 
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://gadhasisaso.github.io/Tapal-yojnao/genz.html">
 <meta property="og:title" content="ગઢસીસા પોસ્ટ — Gen Z Edition">
 <meta property="og:description" content="Goals, streaks ane postcards — post office ni saving schemes, tara style ma.">
 <meta property="og:locale" content="gu_IN">
+<meta property="og:image" content="https://gadhasisaso.github.io/Tapal-yojnao/og-genz.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gadhasisaso.github.io/Tapal-yojnao/og-genz.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,6 +94,7 @@
     border-bottom:1px solid var(--line);
   }
   .topbar .brand{ display:flex; align-items:center; gap:9px; }
+  .topbar-right{ display:flex; align-items:center; gap:8px; }
   .topbar .mark{
     width:30px; height:30px; border-radius:50%;
     background:conic-gradient(from 0deg, var(--red), var(--amber), var(--blue), var(--red));
@@ -359,20 +370,24 @@
   <div class="topbar">
     <div class="brand">
       <div class="mark"><span>📮</span></div>
-      <span class="brand-name">ગઢસીસા પોસ્ટ</span>
+      <span class="brand-name" data-en="Gadhasisa Post">ગઢસીસા પોસ્ટ</span>
     </div>
-    <a class="classic-link" href="index.html">ક્લાસિક વર્ઝન ↗</a>
+    <div class="topbar-right">
+      <button class="classic-link" id="langToggle" style="cursor:pointer;">EN</button>
+      <a class="classic-link" href="index.html" data-en="Classic Version ↗">ક્લાસિક વર્ઝન ↗</a>
+      <button class="classic-link" id="installBtn" style="display:none; cursor:pointer;">⬇️ Install</button>
+    </div>
   </div>
 
   <!-- ===== HERO ===== -->
   <div class="hero" id="home">
     <div class="stamp-seal"><div class="txt">GOVT<br>GUARANTEED</div></div>
     <span class="eyebrow">Gen Z Edition · PIN 370445</span>
-    <h1>સેવિંગ્સ ને બનાવો <span class="hl">Goals</span>, ડ્રામા વગર</h1>
-    <p>એ જ સરકારી ગેરંટીવાળી પોસ્ટ ઓફિસ યોજનાઓ — પણ તારી ભાષામાં, તારી સ્પીડમાં.</p>
+    <h1 data-en='Turn savings into <span class="hl">Goals</span>, drama-free'>સેવિંગ્સ ને બનાવો <span class="hl">Goals</span>, ડ્રામા વગર</h1>
+    <p data-en="Same government-guaranteed post office schemes — just in your language, your speed.">એ જ સરકારી ગેરંટીવાળી પોસ્ટ ઓફિસ યોજનાઓ — પણ તારી ભાષામાં, તારી સ્પીડમાં.</p>
     <div class="hero-ctas">
-      <a class="btn primary" href="#goals">ગોલ્સ જુઓ</a>
-      <a class="btn ghost" href="#quiz">મારે માટે શું?</a>
+      <a class="btn primary" href="#goals" data-en="See Goals">ગોલ્સ જુઓ</a>
+      <a class="btn ghost" href="#quiz" data-en="What fits me?">મારે માટે શું?</a>
     </div>
   </div>
 
@@ -394,49 +409,49 @@
   <section id="goals">
     <div class="section-head">
       <span class="tag">Real schemes, real rates</span>
-      <h2>તારો ગોલ પસંદ કર 🎯</h2>
-      <p>સ્વાઈપ કરીને જો — દરેક ગોલ પાછળ સરકારી બચત યોજના છે.</p>
+      <h2 data-en="Pick Your Goal 🎯">તારો ગોલ પસંદ કર 🎯</h2>
+      <p data-en="Swipe through — each goal is backed by a real government savings scheme.">સ્વાઈપ કરીને જો — દરેક ગોલ પાછળ સરકારી બચત યોજના છે.</p>
     </div>
     <div class="goal-rail">
       <div class="goal-card">
         <div class="emoji">📱</div>
-        <h3>નવો ફોન</h3>
+        <h3 data-en="New Phone">નવો ફોન</h3>
         <span class="rate mono">6.7%</span>
-        <p>RD માં દર મહિને થોડું જમા કર, 5 વર્ષે સારું વળતર.</p>
-        <div class="meta">₹100/મહિનેથી શરૂ · 5 વર્ષ મુદત</div>
-        <a class="go" href="index.html#bachat">RD વિશે વધુ →</a>
+        <p data-en="Put a little into RD every month, get solid returns in 5 years.">RD માં દર મહિને થોડું જમા કર, 5 વર્ષે સારું વળતર.</p>
+        <div class="meta" data-en="From ₹100/month · 5-year term">₹100/મહિનેથી શરૂ · 5 વર્ષ મુદત</div>
+        <a class="go" href="index.html#bachat" data-en="More about RD →">RD વિશે વધુ →</a>
       </div>
       <div class="goal-card">
         <div class="emoji">✈️</div>
-        <h3>ટ્રિપ ફંડ</h3>
+        <h3 data-en="Trip Fund">ટ્રિપ ફંડ</h3>
         <span class="rate mono">6.9%</span>
-        <p>1 વર્ષની Time Deposit — ટૂંકા ગોલ માટે ફિક્સ વ્યાજ.</p>
-        <div class="meta">લઘુત્તમ ₹1,000 · 1 વર્ષ</div>
-        <a class="go" href="index.html#bachat">TD વિશે વધુ →</a>
+        <p data-en="1-year Time Deposit — fixed interest for short-term goals.">1 વર્ષની Time Deposit — ટૂંકા ગોલ માટે ફિક્સ વ્યાજ.</p>
+        <div class="meta" data-en="Min ₹1,000 · 1 year">લઘુત્તમ ₹1,000 · 1 વર્ષ</div>
+        <a class="go" href="index.html#bachat" data-en="More about TD →">TD વિશે વધુ →</a>
       </div>
       <div class="goal-card">
         <div class="emoji">👟</div>
-        <h3>ઈમરજન્સી સ્ટેશ</h3>
+        <h3 data-en="Emergency Stash">ઈમરજન્સી સ્ટેશ</h3>
         <span class="rate mono">4.0%</span>
-        <p>Savings Account — ગમે ત્યારે જમા/ઉપાડ, ATM સાથે.</p>
-        <div class="meta">₹500 થી ખાતું ખૂલે</div>
-        <a class="go" href="index.html#bachat">SB ખાતું વિશે →</a>
+        <p data-en="Savings Account — deposit/withdraw anytime, with ATM.">Savings Account — ગમે ત્યારે જમા/ઉપાડ, ATM સાથે.</p>
+        <div class="meta" data-en="Account opens with ₹500">₹500 થી ખાતું ખૂલે</div>
+        <a class="go" href="index.html#bachat" data-en="More about SB account →">SB ખાતું વિશે →</a>
       </div>
       <div class="goal-card">
         <div class="emoji">👧</div>
-        <h3>બહેન/દીકરીનું ભવિષ્ય</h3>
+        <h3 data-en="Sister/Daughter's Future">બહેન/દીકરીનું ભવિષ્ય</h3>
         <span class="rate mono">8.2%</span>
-        <p>સુકન્યા સમૃદ્ધિ યોજના — સૌથી વધુ વ્યાજ, ટેક્સ ફ્રી.</p>
-        <div class="meta">₹250/વર્ષથી · 10 વર્ષથી નાની દીકરી</div>
-        <a class="go" href="index.html#bachat">SSY વિશે વધુ →</a>
+        <p data-en="Sukanya Samriddhi Yojana — highest interest, tax-free.">સુકન્યા સમૃદ્ધિ યોજના — સૌથી વધુ વ્યાજ, ટેક્સ ફ્રી.</p>
+        <div class="meta" data-en="From ₹250/year · daughter under 10">₹250/વર્ષથી · 10 વર્ષથી નાની દીકરી</div>
+        <a class="go" href="index.html#bachat" data-en="More about SSY →">SSY વિશે વધુ →</a>
       </div>
       <div class="goal-card">
         <div class="emoji">🧾</div>
-        <h3>ટેક્સ સીઝન સેવ</h3>
+        <h3 data-en="Tax Season Save">ટેક્સ સીઝન સેવ</h3>
         <span class="rate mono">7.1–7.7%</span>
-        <p>PPF/NSC — સેક્શન 80C હેઠળ ₹1.5 લાખ સુધી કરરાહત.</p>
-        <div class="meta">₹500થી શરૂ · 5–15 વર્ષ</div>
-        <a class="go" href="index.html#bachat">PPF/NSC વિશે →</a>
+        <p data-en="PPF/NSC — tax relief up to ₹1.5 lakh under Section 80C.">PPF/NSC — સેક્શન 80C હેઠળ ₹1.5 લાખ સુધી કરરાહત.</p>
+        <div class="meta" data-en="From ₹500 · 5–15 years">₹500થી શરૂ · 5–15 વર્ષ</div>
+        <a class="go" href="index.html#bachat" data-en="More about PPF/NSC →">PPF/NSC વિશે →</a>
       </div>
     </div>
   </section>
@@ -445,12 +460,12 @@
   <section id="calc">
     <div class="section-head">
       <span class="tag">Real math, live</span>
-      <h2>તારો RD કેલ્ક્યુલેટર 🧮</h2>
-      <p>દર મહિને કેટલું જમા કરીશ? જો 5 વર્ષે કેટલા મળે.</p>
+      <h2 data-en="Your RD Calculator 🧮">તારો RD કેલ્ક્યુલેટર 🧮</h2>
+      <p data-en="How much will you deposit monthly? See what you get in 5 years.">દર મહિને કેટલું જમા કરીશ? જો 5 વર્ષે કેટલા મળે.</p>
     </div>
     <div class="calc-card">
       <div class="calc-row">
-        <label for="calcAmount">માસિક જમા રકમ</label>
+        <label for="calcAmount" data-en="Monthly deposit amount">માસિક જમા રકમ</label>
         <div class="calc-input-wrap">
           <span>₹</span>
           <input type="number" id="calcAmount" value="500" min="100" step="50">
@@ -459,15 +474,15 @@
       <input type="range" id="calcSlider" min="100" max="10000" step="50" value="500">
       <div class="calc-results">
         <div class="calc-result">
-          <span class="calc-lbl">કુલ જમા</span>
+          <span class="calc-lbl" data-en="Total deposited">કુલ જમા</span>
           <span class="calc-val mono" id="calcInvested">₹0</span>
         </div>
         <div class="calc-result">
-          <span class="calc-lbl">વ્યાજ (6.7%)</span>
+          <span class="calc-lbl" data-en="Interest (6.7%)">વ્યાજ (6.7%)</span>
           <span class="calc-val mono" id="calcInterest" style="color:var(--mint);">₹0</span>
         </div>
         <div class="calc-result total">
-          <span class="calc-lbl">5 વર્ષે મળશે</span>
+          <span class="calc-lbl" data-en="You'll get in 5 years">5 વર્ષે મળશે</span>
           <span class="calc-val mono" id="calcMaturity">₹0</span>
         </div>
       </div>
@@ -478,20 +493,20 @@
   <section id="quiz">
     <div class="section-head">
       <span class="tag">30-second match</span>
-      <h2>તારે માટે કઈ યોજના યોગ્ય? 🧭</h2>
-      <p>જે તારા જેવું લાગે એ ટેપ કર.</p>
+      <h2 data-en="Which Scheme Fits You? 🧭">તારે માટે કઈ યોજના યોગ્ય? 🧭</h2>
+      <p data-en="Tap whichever sounds like you.">જે તારા જેવું લાગે એ ટેપ કર.</p>
     </div>
     <div class="quiz-chips" id="quizChips">
-      <button class="chip" data-key="income">દર મહિને નિયમિત આવક જોઈએ</button>
-      <button class="chip" data-key="daughter">દીકરી માટે બચત કરવી છે</button>
-      <button class="chip" data-key="senior">હું વરિષ્ઠ નાગરિક (60+) છું</button>
-      <button class="chip" data-key="tax">ટેક્સ બચાવવો છે</button>
-      <button class="chip" data-key="longterm">લાંબા ગાળે મોટી રકમ જોઈએ</button>
-      <button class="chip" data-key="small">દર મહિને થોડું-થોડું બચાવવું છે</button>
-      <button class="chip" data-key="anytime">ગમે ત્યારે ઉપાડી શકાય એવું જોઈએ</button>
+      <button class="chip" data-key="income" data-en="I want regular monthly income">દર મહિને નિયમિત આવક જોઈએ</button>
+      <button class="chip" data-key="daughter" data-en="I want to save for a daughter">દીકરી માટે બચત કરવી છે</button>
+      <button class="chip" data-key="senior" data-en="I'm a senior citizen (60+)">હું વરિષ્ઠ નાગરિક (60+) છું</button>
+      <button class="chip" data-key="tax" data-en="I want to save on tax">ટેક્સ બચાવવો છે</button>
+      <button class="chip" data-key="longterm" data-en="I want a large sum long-term">લાંબા ગાળે મોટી રકમ જોઈએ</button>
+      <button class="chip" data-key="small" data-en="I want to save a little each month">દર મહિને થોડું-થોડું બચાવવું છે</button>
+      <button class="chip" data-key="anytime" data-en="I want something I can withdraw anytime">ગમે ત્યારે ઉપાડી શકાય એવું જોઈએ</button>
     </div>
     <div class="quiz-result" id="quizResult"></div>
-    <button class="btn ghost" id="quizShareBtn" style="display:none; margin-top:12px;">🖼️ મારું મેચ ડાઉનલોડ કર</button>
+    <button class="btn ghost" id="quizShareBtn" style="display:none; margin-top:12px;" data-en="🖼️ Download my match">🖼️ મારું મેચ ડાઉનલોડ કર</button>
     <canvas id="quizCardCanvas" width="600" height="340" style="display:none;"></canvas>
   </section>
 
@@ -500,16 +515,16 @@
     <div class="section-head">
       <span class="tag">Build the habit</span>
       <h2>RD Streak 🔥</h2>
-      <p>ધારો કે તું દર અઠવાડિયે ₹100 RD માં જમા કરે છે — ટ્રૅક કરવા ટેપ કર.</p>
+      <p data-en="Say you deposit ₹100 into RD every week — tap to track it.">ધારો કે તું દર અઠવાડિયે ₹100 RD માં જમા કરે છે — ટ્રૅક કરવા ટેપ કર.</p>
     </div>
     <div class="streak-card">
       <div class="streak-top">
-        <div><span class="count mono" id="streakCount">0</span> <span class="lbl">અઠવાડિયા</span></div>
-        <div style="text-align:right;"><span class="count mono" id="streakTotal" style="font-size:1.1rem;color:var(--mint);">₹0</span><br><span class="lbl">જમા (અંદાજિત)</span></div>
+        <div><span class="count mono" id="streakCount">0</span> <span class="lbl" data-en="weeks">અઠવાડિયા</span></div>
+        <div style="text-align:right;"><span class="count mono" id="streakTotal" style="font-size:1.1rem;color:var(--mint);">₹0</span><br><span class="lbl" data-en="deposited (est.)">જમા (અંદાજિત)</span></div>
       </div>
       <div class="streak-grid" id="streakGrid"></div>
       <div class="badge-row" id="badgeRow"></div>
-      <div class="streak-note">આ ફક્ત તારા ફોન પર <b>સ્થાનિક રીતે</b> સેવ થાય છે — ખરું RD ખાતું ખોલવા ઓફિસનો સંપર્ક કર.</div>
+      <div class="streak-note" data-en="This is saved <b>only locally</b> on your phone — contact the office to open a real RD account.">આ ફક્ત તારા ફોન પર <b>સ્થાનિક રીતે</b> સેવ થાય છે — ખરું RD ખાતું ખોલવા ઓફિસનો સંપર્ક કર.</div>
     </div>
   </section>
 
@@ -517,13 +532,13 @@
   <section id="refer">
     <div class="section-head">
       <span class="tag">Save together</span>
-      <h2>મિત્રને પણ જોડ 🤝</h2>
-      <p>સાથે સેવ કરવાની મજા જ કંઈક ઓર છે — તારા મિત્રને આ પેજ મોકલ.</p>
+      <h2 data-en="Bring a Friend In 🤝">મિત્રને પણ જોડ 🤝</h2>
+      <p data-en="Saving together just hits different — send this page to a friend.">સાથે સેવ કરવાની મજા જ કંઈક ઓર છે — તારા મિત્રને આ પેજ મોકલ.</p>
     </div>
     <canvas id="referCanvas" width="600" height="340" style="display:none;"></canvas>
     <div class="hero-ctas" style="justify-content:flex-start;">
-      <a class="btn primary" id="referWa" href="https://wa.me/?text=Hey!%20Gadhasisa%20Post%20Office%20ni%20savings%20goals%20%26%20RD%20streak%20check%20kar%20-%20genz.html" target="_blank" rel="noopener">💬 WhatsApp પર invite કર</a>
-      <button class="btn ghost" id="referDownload">🖼️ Invite કાર્ડ ડાઉનલોડ કર</button>
+      <a class="btn primary" id="referWa" href="https://wa.me/?text=Hey!%20Gadhasisa%20Post%20Office%20ni%20savings%20goals%20%26%20RD%20streak%20check%20kar%20-%20genz.html" target="_blank" rel="noopener" data-en="💬 Invite on WhatsApp">💬 WhatsApp પર invite કર</a>
+      <button class="btn ghost" id="referDownload" data-en="🖼️ Download invite card">🖼️ Invite કાર્ડ ડાઉનલોડ કર</button>
     </div>
   </section>
 
@@ -531,39 +546,39 @@
   <section id="facts">
     <div class="section-head">
       <span class="tag">Did you know</span>
-      <h2>India Post ની ફેક્ટ્સ 📚</h2>
-      <p>સ્વાઈપ કરીને જો — 170+ વર્ષ જૂની સિસ્ટમ, હજુ પણ ચાલુ.</p>
+      <h2 data-en="India Post Facts 📚">India Post ની ફેક્ટ્સ 📚</h2>
+      <p data-en="Swipe through — a 170+ year old system, still running strong.">સ્વાઈપ કરીને જો — 170+ વર્ષ જૂની સિસ્ટમ, હજુ પણ ચાલુ.</p>
     </div>
     <div class="goal-rail">
       <div class="goal-card">
         <div class="emoji">🌍</div>
-        <h3>દુનિયાનું સૌથી મોટું નેટવર્ક</h3>
-        <p>India Post પાસે 1,64,999 પોસ્ટ ઓફિસ છે (માર્ચ 2025) — દુનિયામાં સૌથી વધુ, કોઈપણ દેશ કરતાં.</p>
+        <h3 data-en="World's Largest Network">દુનિયાનું સૌથી મોટું નેટવર્ક</h3>
+        <p data-en="India Post has 1,64,999 post offices (March 2025) — more than any other country in the world.">India Post પાસે 1,64,999 પોસ્ટ ઓફિસ છે (માર્ચ 2025) — દુનિયામાં સૌથી વધુ, કોઈપણ દેશ કરતાં.</p>
       </div>
       <div class="goal-card">
         <div class="emoji">🕰️</div>
-        <h3>171+ વર્ષ જૂનું</h3>
-        <p>ડિપાર્ટમેન્ટ ઓફ પોસ્ટ્સ 1 ઓક્ટોબર 1854 થી કાર્યરત છે — આઝાદી પહેલાંથી.</p>
+        <h3 data-en="171+ Years Old">171+ વર્ષ જૂનું</h3>
+        <p data-en="The Department of Posts has been running since 1 October 1854 — since before independence.">ડિપાર્ટમેન્ટ ઓફ પોસ્ટ્સ 1 ઓક્ટોબર 1854 થી કાર્યરત છે — આઝાદી પહેલાંથી.</p>
       </div>
       <div class="goal-card">
         <div class="emoji">🎟️</div>
-        <h3>એશિયાની પહેલી સ્ટેમ્પ</h3>
-        <p>1852 માં સિંધમાં બહાર પડેલી "Scinde Dawk" એ એશિયાની પહેલી એડહેસિવ પોસ્ટેજ સ્ટેમ્પ હતી.</p>
+        <h3 data-en="Asia's First Stamp">એશિયાની પહેલી સ્ટેમ્પ</h3>
+        <p data-en='The "Scinde Dawk", issued in Sindh in 1852, was Asia&#39;s first adhesive postage stamp.'>1852 માં સિંધમાં બહાર પડેલી "Scinde Dawk" એ એશિયાની પહેલી એડહેસિવ પોસ્ટેજ સ્ટેમ્પ હતી.</p>
       </div>
       <div class="goal-card">
         <div class="emoji">🏘️</div>
-        <h3>90% ગામડાંઓમાં</h3>
-        <p>1,64,999 માંથી લગભગ 1,49,385 પોસ્ટ ઓફિસ ગ્રામ્ય વિસ્તારમાં છે — છેવાડાના ગામ સુધી પહોંચ.</p>
+        <h3 data-en="90% in Villages">90% ગામડાંઓમાં</h3>
+        <p data-en="About 1,49,385 of the 1,64,999 post offices are in rural areas — reach right up to the last village.">1,64,999 માંથી લગભગ 1,49,385 પોસ્ટ ઓફિસ ગ્રામ્ય વિસ્તારમાં છે — છેવાડાના ગામ સુધી પહોંચ.</p>
       </div>
       <div class="goal-card">
         <div class="emoji">💳</div>
-        <h3>IPPB = 2018 થી</h3>
-        <p>India Post Payments Bank 1 સપ્ટેમ્બર 2018 એ શરૂ થઈ — પોસ્ટમેન દ્વારા ઘરે-ઘરે બેંકિંગ.</p>
+        <h3 data-en="IPPB Since 2018">IPPB = 2018 થી</h3>
+        <p data-en="India Post Payments Bank launched on 1 September 2018 — doorstep banking through postmen.">India Post Payments Bank 1 સપ્ટેમ્બર 2018 એ શરૂ થઈ — પોસ્ટમેન દ્વારા ઘરે-ઘરે બેંકિંગ.</p>
       </div>
       <div class="goal-card">
         <div class="emoji">🚲</div>
-        <h3>લાખો ગ્રામીણ ડાક સેવક</h3>
-        <p>લગભગ 2.78 લાખ ગ્રામીણ ડાક સેવક રોજ ગામડે-ગામડે ટપાલ અને સેવાઓ પહોંચાડે છે.</p>
+        <h3 data-en="Lakhs of Gramin Dak Sevaks">લાખો ગ્રામીણ ડાક સેવક</h3>
+        <p data-en="About 2.78 lakh Gramin Dak Sevaks deliver mail and services village to village every day.">લગભગ 2.78 લાખ ગ્રામીણ ડાક સેવક રોજ ગામડે-ગામડે ટપાલ અને સેવાઓ પહોંચાડે છે.</p>
       </div>
     </div>
   </section>
@@ -572,27 +587,27 @@
   <section id="postcard">
     <div class="section-head">
       <span class="tag">Send something real</span>
-      <h2>ડિજિટલ પોસ્ટકાર્ડ બનાવ 💌</h2>
-      <p>ડિઝાઈન કર, ડાઉનલોડ કર, WhatsApp/Story પર share કર — પછી ઓફિસમાંથી ખરેખર પણ મોકલી શકાય!</p>
+      <h2 data-en="Make a Digital Postcard 💌">ડિજિટલ પોસ્ટકાર્ડ બનાવ 💌</h2>
+      <p data-en="Design it, download it, share on WhatsApp/Story — or send a real one from the office too!">ડિઝાઈન કર, ડાઉનલોડ કર, WhatsApp/Story પર share કર — પછી ઓફિસમાંથી ખરેખર પણ મોકલી શકાય!</p>
     </div>
     <div class="pc-wrap">
       <canvas id="pcCanvas" width="600" height="380"></canvas>
       <div class="pc-controls">
         <div class="field">
-          <label>રંગ</label>
+          <label data-en="Color">રંગ</label>
           <div class="pc-swatches" id="pcSwatches"></div>
         </div>
         <div class="field">
-          <label>કોના માટે?</label>
-          <input type="text" id="pcTo" maxlength="24" placeholder="દા.ત. Meet">
+          <label data-en="Who's it for?">કોના માટે?</label>
+          <input type="text" id="pcTo" maxlength="24" placeholder="દા.ત. Meet" data-en-placeholder="e.g. Meet">
         </div>
         <div class="field">
-          <label>મેસેજ (120 અક્ષર સુધી)</label>
-          <textarea id="pcMsg" rows="3" maxlength="120" placeholder="તારો મેસેજ અહીં લખ..."></textarea>
+          <label data-en="Message (up to 120 characters)">મેસેજ (120 અક્ષર સુધી)</label>
+          <textarea id="pcMsg" rows="3" maxlength="120" placeholder="તારો મેસેજ અહીં લખ..." data-en-placeholder="Write your message here..."></textarea>
         </div>
       </div>
       <div class="pc-actions">
-        <button class="btn primary" id="pcDownload">⬇️ ડાઉનલોડ કર</button>
+        <button class="btn primary" id="pcDownload" data-en="⬇️ Download">⬇️ ડાઉનલોડ કર</button>
         <button class="btn ghost" id="pcShare">📤 Share</button>
       </div>
     </div>
@@ -602,27 +617,27 @@
   <section>
     <div class="section-head">
       <span class="tag">Real talk</span>
-      <h2>ફિક્સ vs "સ્યોર શોટ" ટીપ 👀</h2>
+      <h2 data-en='Fixed vs a "Sure Shot" Tip 👀'>ફિક્સ vs "સ્યોર શોટ" ટીપ 👀</h2>
     </div>
     <div class="compare-card">
       <div class="compare-col risky">
-        <h4>😅 મિત્રની ટીપ</h4>
+        <h4 data-en="😅 A Friend's Tip">😅 મિત્રની ટીપ</h4>
         <ul>
-          <li>ઉપર-નીચે થાય</li>
-          <li>ગેરંટી નહીં</li>
-          <li>રિસર્ચ તારે કરવું પડે</li>
+          <li data-en="Goes up and down">ઉપર-નીચે થાય</li>
+          <li data-en="No guarantee">ગેરંટી નહીં</li>
+          <li data-en="You have to do the research">રિસર્ચ તારે કરવું પડે</li>
         </ul>
       </div>
       <div class="compare-col safe">
         <h4>📮 Post Office RD</h4>
         <ul>
-          <li>ફિક્સ 6.7% વ્યાજ</li>
-          <li>સરકારી ગેરંટી</li>
-          <li>₹100/મહિનેથી શરૂ</li>
+          <li data-en="Fixed 6.7% interest">ફિક્સ 6.7% વ્યાજ</li>
+          <li data-en="Government guarantee">સરકારી ગેરંટી</li>
+          <li data-en="Starts from ₹100/month">₹100/મહિનેથી શરૂ</li>
         </ul>
       </div>
     </div>
-    <p class="compare-disclaimer">આ ફક્ત મજા ખાતર compare છે, investment advice નથી — પોતાની જરૂરિયાત મુજબ નિર્ણય લેવો.</p>
+    <p class="compare-disclaimer" data-en="This comparison is just for fun, not investment advice — decide based on your own needs.">આ ફક્ત મજા ખાતર compare છે, investment advice નથી — પોતાની જરૂરિયાત મુજબ નિર્ણય લેવો.</p>
   </section>
 
   <!-- ===== QUICK GRID ===== -->
@@ -634,23 +649,23 @@
     <div class="quick-grid">
       <a class="quick-card" href="index.html#tapal">
         <span class="emoji">📦</span>
-        <h3>પાર્સલ ટ્રેક કરો</h3>
+        <h3 data-en="Track Parcel">પાર્સલ ટ્રેક કરો</h3>
         <p>Speed Post / parcel tracking</p>
       </a>
       <a class="quick-card" href="index.html#digital">
         <span class="emoji">💳</span>
         <h3>IPPB / Dak Sewa</h3>
-        <p>ડિજિટલ બેંકિંગ ઍપ</p>
+        <p data-en="Digital banking app">ડિજિટલ બેંકિંગ ઍપ</p>
       </a>
       <a class="quick-card" href="index.html#anya">
         <span class="emoji">🎟️</span>
-        <h3>ટપાલ ટિકિટ કલેક્શન</h3>
+        <h3 data-en="Stamp Collection">ટપાલ ટિકિટ કલેક્શન</h3>
         <p>Philately — collectible stamps</p>
       </a>
       <a class="quick-card" href="index.html#vima">
         <span class="emoji">🛡️</span>
-        <h3>PLI ઈન્સ્યોરન્સ</h3>
-        <p>નાના પ્રીમિયમથી કવર</p>
+        <h3 data-en="PLI Insurance">PLI ઈન્સ્યોરન્સ</h3>
+        <p data-en="Cover from a small premium">નાના પ્રીમિયમથી કવર</p>
       </a>
     </div>
   </section>
@@ -659,42 +674,42 @@
   <section id="jobs">
     <div class="section-head">
       <span class="tag">Govt job, no written exam</span>
-      <h2>Post Office માં જોબ? 💼</h2>
-      <p>Gramin Dak Sevak (GDS) ભરતી — 10મું પાસ, પસંદગી ફક્ત 10મા ધોરણના માર્ક્સ પર.</p>
+      <h2 data-en="A Job at Post Office? 💼">Post Office માં જોબ? 💼</h2>
+      <p data-en="Gramin Dak Sevak (GDS) recruitment — 10th pass, selection purely on 10th-grade marks.">Gramin Dak Sevak (GDS) ભરતી — 10મું પાસ, પસંદગી ફક્ત 10મા ધોરણના માર્ક્સ પર.</p>
     </div>
     <div class="contact-card">
-      <div class="contact-row"><span class="ico">🎓</span><span>લાયકાત: 10મું ધોરણ પાસ, ઉંમર 18–40 વર્ષ</span></div>
-      <div class="contact-row"><span class="ico">📝</span><span>કોઈ લેખિત પરીક્ષા નહીં — ફક્ત 10મા ધોરણના માર્ક્સ પરથી મેરિટ લિસ્ટ</span></div>
-      <div class="contact-row"><span class="ico">💰</span><span>ABPM/GDS પગાર ₹15,000/મહિનેથી શરૂ (ભથ્થાં સહિત)</span></div>
-      <div class="contact-row"><span class="ico">🚲</span><span>જરૂરી: સાયકલ ચલાવતાં આવડવું, પાયાનું કમ્પ્યુટર જ્ઞાન</span></div>
+      <div class="contact-row"><span class="ico">🎓</span><span data-en="Eligibility: 10th grade pass, age 18–40 years">લાયકાત: 10મું ધોરણ પાસ, ઉંમર 18–40 વર્ષ</span></div>
+      <div class="contact-row"><span class="ico">📝</span><span data-en="No written exam — merit list based purely on 10th-grade marks">કોઈ લેખિત પરીક્ષા નહીં — ફક્ત 10મા ધોરણના માર્ક્સ પરથી મેરિટ લિસ્ટ</span></div>
+      <div class="contact-row"><span class="ico">💰</span><span data-en="ABPM/GDS pay starts from ₹15,000/month (with allowances)">ABPM/GDS પગાર ₹15,000/મહિનેથી શરૂ (ભથ્થાં સહિત)</span></div>
+      <div class="contact-row"><span class="ico">🚲</span><span data-en="Required: know how to ride a bicycle, basic computer knowledge">જરૂરી: સાયકલ ચલાવતાં આવડવું, પાયાનું કમ્પ્યુટર જ્ઞાન</span></div>
     </div>
     <div class="hero-ctas" style="justify-content:flex-start; margin-top:14px;">
-      <a class="btn primary" href="https://www.indiapost.gov.in/gdsonlineengagement" target="_blank" rel="noopener">GDS ભરતી જુઓ →</a>
+      <a class="btn primary" href="https://www.indiapost.gov.in/gdsonlineengagement" target="_blank" rel="noopener" data-en="See GDS Recruitment →">GDS ભરતી જુઓ →</a>
     </div>
-    <p class="compare-disclaimer">ભરતી periodic cycle માં નીકળે છે — ચાલુ જગ્યાઓ અને તારીખો માટે ઉપરની સત્તાવાર લિંક ચેક કરવી.</p>
+    <p class="compare-disclaimer" data-en="Recruitment opens in periodic cycles — check the official link above for current openings and dates.">ભરતી periodic cycle માં નીકળે છે — ચાલુ જગ્યાઓ અને તારીખો માટે ઉપરની સત્તાવાર લિંક ચેક કરવી.</p>
   </section>
 
   <!-- ===== FAQ CHAT ===== -->
   <section id="faqchat">
     <div class="section-head">
       <span class="tag">Quick answers</span>
-      <h2>સવાલ-જવાબ 💬</h2>
+      <h2 data-en="FAQ 💬">સવાલ-જવાબ 💬</h2>
     </div>
     <div class="chat-wrap">
-      <div class="chat-row user"><div class="bubble user">પાસબુક ખોવાઈ જાય તો?</div></div>
-      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office">ડુપ્લિકેટ પાસબુક માટે અરજી કરાય — ઓળખનો પુરાવો + એકાઉન્ટ નંબર જોઈએ, નજીવી ફી લાગી શકે. <a href="https://www.indiapost.gov.in/api/documents/file/1034vgz2oxl701hcp3cu870hc7a03a4g0s5cb3fmtn3e8eo04nkp0e32834uon" target="_blank" rel="noopener">ફોર્મ SB-41 ↓</a></div></div>
+      <div class="chat-row user"><div class="bubble user" data-en="What if I lose my passbook?">પાસબુક ખોવાઈ જાય તો?</div></div>
+      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office" data-en='You can apply for a duplicate passbook — you&#39;ll need ID proof + account number, a small fee may apply. <a href="https://www.indiapost.gov.in/api/documents/file/1034vgz2oxl701hcp3cu870hc7a03a4g0s5cb3fmtn3e8eo04nkp0e32834uon" target="_blank" rel="noopener">Form SB-41 ↓</a>'>ડુપ્લિકેટ પાસબુક માટે અરજી કરાય — ઓળખનો પુરાવો + એકાઉન્ટ નંબર જોઈએ, નજીવી ફી લાગી શકે. <a href="https://www.indiapost.gov.in/api/documents/file/1034vgz2oxl701hcp3cu870hc7a03a4g0s5cb3fmtn3e8eo04nkp0e32834uon" target="_blank" rel="noopener">ફોર્મ SB-41 ↓</a></div></div>
 
-      <div class="chat-row user"><div class="bubble user">RD નો હપ્તો ચૂકાય જાય તો?</div></div>
-      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office">મોડું ભરવા પર થોડો દંડ લાગે. બહુ લાંબુ ના ભરાય તો ખાતું ડિફોલ્ટ થઈ શકે — વહેલી તકે ઓફિસમાં વાત કરી લેવી સારું.</div></div>
+      <div class="chat-row user"><div class="bubble user" data-en="What if I miss an RD installment?">RD નો હપ્તો ચૂકાય જાય તો?</div></div>
+      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office" data-en="A small penalty applies for late payment. If it stays unpaid too long, the account can go into default — best to talk to the office early.">મોડું ભરવા પર થોડો દંડ લાગે. બહુ લાંબુ ના ભરાય તો ખાતું ડિફોલ્ટ થઈ શકે — વહેલી તકે ઓફિસમાં વાત કરી લેવી સારું.</div></div>
 
-      <div class="chat-row user"><div class="bubble user">ખાતું બીજી પોસ્ટ ઓફિસમાં ટ્રાન્સફર થઈ શકે?</div></div>
-      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office">હા બિલકુલ — ટ્રાન્સફર ફોર્મ ભરીને કોઈપણ પોસ્ટ ઓફિસમાં ખાતું ટ્રાન્સફર કરાવી શકાય. <a href="https://www.indiapost.gov.in/api/documents/file/1007ion2oyfk3mp093be9t0hc7a08gek0sjre0e2iz3kbwm0483k0b9ej05ngm" target="_blank" rel="noopener">ટ્રાન્સફર ફોર્મ ↓</a></div></div>
+      <div class="chat-row user"><div class="bubble user" data-en="Can my account be transferred to another post office?">ખાતું બીજી પોસ્ટ ઓફિસમાં ટ્રાન્સફર થઈ શકે?</div></div>
+      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office" data-en='Yes, definitely — fill out a transfer form and your account can be moved to any post office. <a href="https://www.indiapost.gov.in/api/documents/file/1007ion2oyfk3mp093be9t0hc7a08gek0sjre0e2iz3kbwm0483k0b9ej05ngm" target="_blank" rel="noopener">Transfer form ↓</a>'>હા બિલકુલ — ટ્રાન્સફર ફોર્મ ભરીને કોઈપણ પોસ્ટ ઓફિસમાં ખાતું ટ્રાન્સફર કરાવી શકાય. <a href="https://www.indiapost.gov.in/api/documents/file/1007ion2oyfk3mp093be9t0hc7a08gek0sjre0e2iz3kbwm0483k0b9ej05ngm" target="_blank" rel="noopener">ટ્રાન્સફર ફોર્મ ↓</a></div></div>
 
-      <div class="chat-row user"><div class="bubble user">18 વર્ષથી નાનો છું, ખાતું ખોલી શકું?</div></div>
-      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office">10 વર્ષથી મોટા બાળકના નામે સીધું ખાતું ખૂલી શકે, નાની ઉંમર માટે વાલી તરીકે ખોલી શકાય. <a href="https://www.indiapost.gov.in/api/documents/file/100a9s52rrrl01hcp05npx04p3a01eko0s5lh3hhl73a0qr09vcx3ifwm05mh2" target="_blank" rel="noopener">ફોર્મ AOF ↓</a></div></div>
+      <div class="chat-row user"><div class="bubble user" data-en="I'm under 18, can I open an account?">18 વર્ષથી નાનો છું, ખાતું ખોલી શકું?</div></div>
+      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office" data-en='A child over 10 can have an account directly in their name; for younger children, a guardian can open one. <a href="https://www.indiapost.gov.in/api/documents/file/100a9s52rrrl01hcp05npx04p3a01eko0s5lh3hhl73a0qr09vcx3ifwm05mh2" target="_blank" rel="noopener">Form AOF ↓</a>'>10 વર્ષથી મોટા બાળકના નામે સીધું ખાતું ખૂલી શકે, નાની ઉંમર માટે વાલી તરીકે ખોલી શકાય. <a href="https://www.indiapost.gov.in/api/documents/file/100a9s52rrrl01hcp05npx04p3a01eko0s5lh3hhl73a0qr09vcx3ifwm05mh2" target="_blank" rel="noopener">ફોર્મ AOF ↓</a></div></div>
 
-      <div class="chat-row user"><div class="bubble user">ઓનલાઈન/મોબાઈલ બેંકિંગ કેમ શરૂ કરવું?</div></div>
-      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office">ઓફિસમાં ઈ-બેંકિંગ ફોર્મ ભરી દે — 48 કલાકમાં એક્ટિવેશન કોડ મળી જશે. <a href="https://www.indiapost.gov.in/api/documents/file/103d8n62qrm80b8rd01uyq0abd23enez0sjti0jqkr08vur39zwr0b9le34dtu" target="_blank" rel="noopener">બેંકિંગ ફોર્મ ↓</a></div></div>
+      <div class="chat-row user"><div class="bubble user" data-en="How do I start online/mobile banking?">ઓનલાઈન/મોબાઈલ બેંકિંગ કેમ શરૂ કરવું?</div></div>
+      <div class="chat-row office"><div class="avatar">📮</div><div class="bubble office" data-en='Fill out the e-banking form at the office — you&#39;ll get an activation code within 48 hours. <a href="https://www.indiapost.gov.in/api/documents/file/103d8n62qrm80b8rd01uyq0abd23enez0sjti0jqkr08vur39zwr0b9le34dtu" target="_blank" rel="noopener">Banking form ↓</a>'>ઓફિસમાં ઈ-બેંકિંગ ફોર્મ ભરી દે — 48 કલાકમાં એક્ટિવેશન કોડ મળી જશે. <a href="https://www.indiapost.gov.in/api/documents/file/103d8n62qrm80b8rd01uyq0abd23enez0sjti0jqkr08vur39zwr0b9le34dtu" target="_blank" rel="noopener">બેંકિંગ ફોર્મ ↓</a></div></div>
     </div>
   </section>
 
@@ -702,29 +717,33 @@
   <section id="contact">
     <div class="section-head">
       <span class="tag">IRL</span>
-      <h2>ઓફિસ પર મળીએ 🏤</h2>
+      <h2 data-en="Meet Us at the Office 🏤">ઓફિસ પર મળીએ 🏤</h2>
     </div>
     <div class="contact-card">
-      <div class="contact-row"><span class="ico">📍</span><span>સબ પોસ્ટ માસ્તર, ગઢસીસા સબ પોસ્ટ ઓફિસ, વથાણ ચોક, ગઢસીસા, તાલુકો માંડવી, જિલ્લો કચ્છ, ગુજરાત — 370445</span></div>
-      <div class="contact-row"><span class="ico">🕐</span><span>ટપાલ/બેંકિંગ: 07:30–13:30 · પૂછપરછ: 07:30–15:30</span></div>
+      <div class="contact-row"><span class="ico">📍</span><span data-en="Sub Post Master, Gadhasisa Sub Post Office, Vathan Chowk, Gadhasisa, Taluka Mandvi, District Kutch, Gujarat — 370445">સબ પોસ્ટ માસ્તર, ગઢસીસા સબ પોસ્ટ ઓફિસ, વથાણ ચોક, ગઢસીસા, તાલુકો માંડવી, જિલ્લો કચ્છ, ગુજરાત — 370445</span></div>
+      <div class="contact-row"><span class="ico">🕐</span><span data-en="Mail/Banking: 07:30–13:30 · Enquiries: 07:30–15:30">ટપાલ/બેંકિંગ: 07:30–13:30 · પૂછપરછ: 07:30–15:30</span></div>
       <div class="contact-row"><span class="ico">📱</span><a href="tel:+919429006720">94290 06720</a></div>
       <div class="contact-row"><span class="ico">✉️</span><a href="mailto:gadhasisaso@indiapost.gov.in">gadhasisaso@indiapost.gov.in</a></div>
     </div>
     <div class="hero-ctas" style="justify-content:flex-start; margin-top:14px;">
-      <a class="btn primary" href="https://wa.me/919429006720" target="_blank" rel="noopener">💬 WhatsApp કર</a>
-      <a class="btn ghost" href="https://www.google.com/maps/search/Vathan+Chowk+Gadhasisa+Post+Office+370445" target="_blank" rel="noopener">નકશો</a>
+      <a class="btn primary" href="https://wa.me/919429006720" target="_blank" rel="noopener" data-en="💬 WhatsApp Us">💬 WhatsApp કર</a>
+      <a class="btn ghost" href="https://www.google.com/maps/search/Vathan+Chowk+Gadhasisa+Post+Office+370445" target="_blank" rel="noopener" data-en="Map">નકશો</a>
+    </div>
+    <!-- TODO: replace mailto: below with your Google Form link once created -->
+    <div class="hero-ctas" style="justify-content:flex-start; margin-top:10px;">
+      <a class="btn ghost" href="mailto:gadhasisaso@indiapost.gov.in?subject=Gen%20Z%20page%20feedback" id="feedbackLink" data-en="📝 Give feedback">📝 સૂચન/ફીડબેક આપો</a>
     </div>
     <div class="qr-block">
       <div class="qr-box">
         <img id="waQr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwa.me%2F919429006720" width="90" height="90" alt="WhatsApp QR code" loading="lazy" onerror="this.closest('.qr-block').classList.add('qr-failed')">
       </div>
-      <span>સ્કેન કરીને સીધું WhatsApp પર મેસેજ કર 👋<br><a href="https://wa.me/919429006720" target="_blank" rel="noopener" class="qr-fallback-link">QR ના દેખાય તો અહીં ટેપ કર →</a></span>
+      <span data-en='Scan to message directly on WhatsApp 👋<br><a href="https://wa.me/919429006720" target="_blank" rel="noopener" class="qr-fallback-link">If QR doesn&#39;t show, tap here →</a>'>સ્કેન કરીને સીધું WhatsApp પર મેસેજ કર 👋<br><a href="https://wa.me/919429006720" target="_blank" rel="noopener" class="qr-fallback-link">QR ના દેખાય તો અહીં ટેપ કર →</a></span>
     </div>
   </section>
 
   <footer>
-    ગઢસીસા સબ પોસ્ટ ઓફિસ (370445) · <a href="index.html">ક્લાસિક વર્ઝન પર જાવ ↗</a><br>
-    ડિપાર્ટમેન્ટ ઓફ પોસ્ટ્સ, ભારત સરકાર
+    <span data-en='Gadhasisa Sub Post Office (370445) · <a href="index.html">Go to Classic Version ↗</a>'>ગઢસીસા સબ પોસ્ટ ઓફિસ (370445) · <a href="index.html">ક્લાસિક વર્ઝન પર જાવ ↗</a></span><br>
+    <span data-en="Department of Posts, Government of India">ડિપાર્ટમેન્ટ ઓફ પોસ્ટ્સ, ભારત સરકાર</span>
   </footer>
 
   <!-- ===== BOTTOM NAV ===== -->
@@ -740,6 +759,59 @@
 </div>
 
 <script>
+  // ===== I18N TOGGLE =====
+  let currentLang = localStorage.getItem('genz-lang') || 'gu';
+  const langToggle = document.getElementById('langToggle');
+
+  function applyLang(lang){
+    currentLang = lang;
+    document.documentElement.lang = lang === 'en' ? 'en' : 'gu';
+    document.querySelectorAll('[data-en]').forEach(el => {
+      if(lang === 'en'){
+        if(el.dataset.guOrig === undefined) el.dataset.guOrig = el.innerHTML;
+        el.innerHTML = el.dataset.en;
+      } else if(el.dataset.guOrig !== undefined){
+        el.innerHTML = el.dataset.guOrig;
+      }
+    });
+    document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+      if(lang === 'en'){
+        if(el.dataset.guPlaceholder === undefined) el.dataset.guPlaceholder = el.placeholder;
+        el.placeholder = el.dataset.enPlaceholder;
+      } else if(el.dataset.guPlaceholder !== undefined){
+        el.placeholder = el.dataset.guPlaceholder;
+      }
+    });
+    langToggle.textContent = lang === 'en' ? 'ગુ' : 'EN';
+    localStorage.setItem('genz-lang', lang);
+    renderStreak();
+  }
+  langToggle.addEventListener('click', () => {
+    applyLang(currentLang === 'en' ? 'gu' : 'en');
+  });
+
+  // ===== PWA: service worker + install prompt =====
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('service-worker.js').catch(() => {});
+  }
+  let deferredInstallPrompt = null;
+  const installBtn = document.getElementById('installBtn');
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    installBtn.style.display = 'inline-flex';
+  });
+  installBtn.addEventListener('click', async () => {
+    if(!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    installBtn.style.display = 'none';
+  });
+  window.addEventListener('appinstalled', () => {
+    installBtn.style.display = 'none';
+  });
+
   // ===== LIVE RD CALCULATOR (same formula as classic page) =====
   const calcAmount = document.getElementById('calcAmount');
   const calcSlider = document.getElementById('calcSlider');
@@ -822,13 +894,20 @@
 
   // ===== QUIZ =====
   const QUIZ_ANSWERS = {
-    income:   { name: "માસિક આવક યોજના (MIS) અથવા SCSS", text: "MIS દર મહિને, SCSS દર ત્રિમાસિકે સીધું ખાતામાં વ્યાજ જમા કરે છે." },
-    daughter: { name: "સુકન્યા સમૃદ્ધિ યોજના (SSY)", text: "10 વર્ષથી નાની દીકરી માટે સૌથી વધુ વ્યાજ દર (8.2%) અને કરમુક્ત વળતર." },
-    senior:   { name: "વરિષ્ઠ નાગરિક બચત યોજના (SCSS)", text: "60+ વર્ષના નાગરિકો માટે સૌથી વધુ વ્યાજ દર (8.2%) અને ત્રિમાસિક ચુકવણી." },
-    tax:      { name: "PPF, NSC, 5-વર્ષ TD અથવા SCSS", text: "આ બધી યોજનાઓમાં કલમ 80C હેઠળ ₹1.5 લાખ સુધીની કરરાહત મળે છે." },
-    longterm: { name: "જાહેર ભવિષ્ય નિધિ (PPF)", text: "15 વર્ષની મુદત, કરમુક્ત ચક્રવૃદ્ધિ વ્યાજ — મોટા લક્ષ્ય માટે શ્રેષ્ઠ." },
-    small:    { name: "રિકરિંગ ડિપોઝિટ (RD)", text: "દર મહિને ઓછી રકમ (₹100 થી શરૂ) જમા કરી 5 વર્ષે સારું વળતર." },
-    anytime:  { name: "પોસ્ટ ઓફિસ બચત ખાતું (SB)", text: "કોઈપણ સમયે જમા/ઉપાડ કરી શકાય, કટોકટી માટે યોગ્ય." }
+    income:   { name: "માસિક આવક યોજના (MIS) અથવા SCSS", text: "MIS દર મહિને, SCSS દર ત્રિમાસિકે સીધું ખાતામાં વ્યાજ જમા કરે છે.",
+                nameEn: "Monthly Income Scheme (MIS) or SCSS", textEn: "MIS pays interest into your account monthly, SCSS pays quarterly." },
+    daughter: { name: "સુકન્યા સમૃદ્ધિ યોજના (SSY)", text: "10 વર્ષથી નાની દીકરી માટે સૌથી વધુ વ્યાજ દર (8.2%) અને કરમુક્ત વળતર.",
+                nameEn: "Sukanya Samriddhi Yojana (SSY)", textEn: "Highest interest rate (8.2%) and tax-free returns, for a daughter under 10." },
+    senior:   { name: "વરિષ્ઠ નાગરિક બચત યોજના (SCSS)", text: "60+ વર્ષના નાગરિકો માટે સૌથી વધુ વ્યાજ દર (8.2%) અને ત્રિમાસિક ચુકવણી.",
+                nameEn: "Senior Citizen Savings Scheme (SCSS)", textEn: "Highest interest rate (8.2%) for 60+ citizens, paid quarterly." },
+    tax:      { name: "PPF, NSC, 5-વર્ષ TD અથવા SCSS", text: "આ બધી યોજનાઓમાં કલમ 80C હેઠળ ₹1.5 લાખ સુધીની કરરાહત મળે છે.",
+                nameEn: "PPF, NSC, 5-year TD, or SCSS", textEn: "All of these give tax relief up to ₹1.5 lakh under Section 80C." },
+    longterm: { name: "જાહેર ભવિષ્ય નિધિ (PPF)", text: "15 વર્ષની મુદત, કરમુક્ત ચક્રવૃદ્ધિ વ્યાજ — મોટા લક્ષ્ય માટે શ્રેષ્ઠ.",
+                nameEn: "Public Provident Fund (PPF)", textEn: "15-year term, tax-free compounding interest — best for big goals." },
+    small:    { name: "રિકરિંગ ડિપોઝિટ (RD)", text: "દર મહિને ઓછી રકમ (₹100 થી શરૂ) જમા કરી 5 વર્ષે સારું વળતર.",
+                nameEn: "Recurring Deposit (RD)", textEn: "Deposit a small amount monthly (from ₹100), get solid returns in 5 years." },
+    anytime:  { name: "પોસ્ટ ઓફિસ બચત ખાતું (SB)", text: "કોઈપણ સમયે જમા/ઉપાડ કરી શકાય, કટોકટી માટે યોગ્ય.",
+                nameEn: "Post Office Savings Account (SB)", textEn: "Deposit/withdraw anytime — good for emergencies." }
   };
   const quizShareBtn = document.getElementById('quizShareBtn');
   const quizCardCanvas = document.getElementById('quizCardCanvas');
@@ -871,9 +950,11 @@
     btn.classList.add('active');
     const ans = QUIZ_ANSWERS[btn.dataset.key];
     const box = document.getElementById('quizResult');
-    box.innerHTML = `<span class="qname">✅ ${ans.name}</span>${ans.text}`;
+    const name = currentLang === 'en' ? ans.nameEn : ans.name;
+    const text = currentLang === 'en' ? ans.textEn : ans.text;
+    box.innerHTML = `<span class="qname">✅ ${name}</span>${text}`;
     box.classList.add('show');
-    currentMatch = ans.name;
+    currentMatch = name;
     drawQuizCard(currentMatch);
     quizShareBtn.style.display = 'inline-flex';
     fireConfetti();
@@ -895,9 +976,9 @@
   if(!Array.isArray(streak) || streak.length !== WEEKS){ streak = new Array(WEEKS).fill(false); }
 
   const BADGES = [
-    { need: 4,  ic: '🔥', label: '4 વીક' },
-    { need: 8,  ic: '🏅', label: '8 વીક' },
-    { need: 12, ic: '🏆', label: 'ફુલ સ્ટ્રીક' }
+    { need: 4,  ic: '🔥', label: '4 વીક', labelEn: '4 wks' },
+    { need: 8,  ic: '🏅', label: '8 વીક', labelEn: '8 wks' },
+    { need: 12, ic: '🏆', label: 'ફુલ સ્ટ્રીક', labelEn: 'Full streak' }
   ];
   const badgeRow = document.getElementById('badgeRow');
 
@@ -924,7 +1005,7 @@
       const unlocked = count >= b.need;
       const el = document.createElement('div');
       el.className = 'badge' + (unlocked ? ' unlocked' : '');
-      el.innerHTML = `<span class="ic">${b.ic}</span>${b.label}`;
+      el.innerHTML = `<span class="ic">${b.ic}</span>${currentLang === 'en' ? b.labelEn : b.label}`;
       badgeRow.appendChild(el);
     });
   }
@@ -1020,23 +1101,30 @@
     ctx.fillText('GADHASISA', w - 71, 147);
     ctx.fillText('POST', w - 71, 158);
 
-    // left message area
+    // left side: message only
     ctx.fillStyle = '#1a1a1a';
     ctx.textAlign = 'left';
     ctx.font = '600 15px sans-serif';
     const msg = (pcMsg.value || 'તારો મેસેજ અહીં દેખાશે...').trim();
     wrapText(ctx, msg, 34, 60, w * 0.5, 24);
 
-    // to line
-    const to = (pcTo.value || 'મિત્ર').trim();
-    ctx.font = '700 14px sans-serif';
-    ctx.fillStyle = pcColor;
-    ctx.fillText('પ્રિય ' + to + ',', 34, h - 40);
-
-    // sender footer
+    // sender footer (stays on the message side)
     ctx.font = '11px "Space Mono", monospace';
     ctx.fillStyle = '#999';
     ctx.fillText('— ગઢસીસા સબ પોસ્ટ ઓફિસ · 370445', 34, h - 22);
+
+    // right side: recipient / address block (below the postmark, same side as the stamp)
+    const rightX = w * 0.62 + 24;
+    const rightW = w - rightX - 24;
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#999';
+    ctx.font = '600 10px "Space Mono", monospace';
+    ctx.fillText('TO,', rightX, 215);
+
+    const to = (pcTo.value || 'મિત્ર').trim();
+    ctx.fillStyle = pcColor;
+    ctx.font = '700 17px sans-serif';
+    wrapText(ctx, to, rightX, 240, rightW, 22);
   }
   pcTo.addEventListener('input', drawPostcard);
   pcMsg.addEventListener('input', drawPostcard);
@@ -1120,6 +1208,9 @@
     });
   }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
   targets.forEach(t => io.observe(t));
+
+  // Apply saved language preference now that all functions/elements exist
+  applyLang(currentLang);
 </script>
 </body>
 </html>
