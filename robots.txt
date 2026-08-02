@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gadhasisaso.github.io/Tapal-yojnao/sitemap.xml
