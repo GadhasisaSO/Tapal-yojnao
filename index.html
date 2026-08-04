@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ગઢસીસા સબ પોસ્ટ ઓફિસ (370445) — યોજનાઓ અને સુવિધાઓ</title>
-<meta name="description" content="Gadhasisa Sub Post Office, Vathan Chowk, Taluka Mandvi, Kutch, Gujarat (370445) — savings schemes (RD, PPF, SSY, SCSS, MIS, NSC, KVP), insurance, speed post, IPPB banking, and office hours.">
-<meta name="robots" content="index, follow">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#C8102E">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -481,7 +479,6 @@
       <a href="#anya">અન્ય સુવિધાઓ</a>
       <a href="#rakhi">રક્ષાબંધન સ્પેશિયલ</a>
       <a href="#faq">સવાલ-જવાબ</a>
-      <a href="genz.html">✨ Gen Z Edition</a>
     </nav>
   </div>
 </header>
@@ -495,8 +492,6 @@
       <a href="#tapal" class="qbtn">📮 ટપાલ ટ્રેક કરવી છે</a>
       <a href="#digital" class="qbtn">💻 બેંકિંગ/IPPB સેવા</a>
       <a href="#rakhi" class="qbtn">🎀 રક્ષાબંધન સ્પેશિયલ</a>
-      <a href="genz.html" class="qbtn">✨ Gen Z Edition જુઓ</a>
-      <a href="mailto:gadhasisaso@indiapost.gov.in?subject=Website%20feedback" class="qbtn">📝 સૂચન આપો</a>
     </div>
     <div class="util-row">
       <button class="util-btn" id="readAloudBtn" onclick="toggleReadAloud()">🔊 મોટેથી વાંચો</button>
@@ -770,7 +765,7 @@
       <div class="row"><span class="k">કુલ જમા રકમ</span><span class="v" id="rInvested">₹0</span></div>
       <div class="row"><span class="k">અંદાજિત વ્યાજ</span><span class="v" id="rInterest">₹0</span></div>
       <div class="row" id="rPeriodRow" style="display:none;"><span class="k" id="rPeriodLabel">-</span><span class="v" id="rPeriod">₹0</span></div>
-      <div class="row big"><span class="k">પરિપક્વતા રકમ</span><span class="v" id="rMaturity">₹0</span></div>
+      <div class="row big"><span class="k" id="rMaturityLabel">પરિપક્વતા રકમ</span><span class="v" id="rMaturity">₹0</span></div>
       <div class="calc-note on-dark">દર્શાવેલ વ્યાજ દર જુલાઈ–સપ્ટેમ્બર 2026ના ત્રિમાસિક ગાળા મુજબ છે અને દર ત્રિમાસિકે બદલાઈ શકે છે. ગણતરી સામાન્ય સૂત્ર પર આધારિત અંદાજ છે, વાસ્તવિક રકમ પોસ્ટ ઓફિસના નિયમો મુજબ થોડી અલગ હોઈ શકે.</div>
     </div>
   </div>
@@ -1227,7 +1222,7 @@
     SB:  { rate:4.0,  label:"પોસ્ટ ઓફિસ બચત ખાતું", amountLabel:"જમા રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:1, tenureFixed:false,
            hint:"કોઈપણ સમયે જમા/ઉપાડ શક્ય. વ્યાજ સાદા ધોરણે, વાર્ષિક ગણેલ છે." },
     RD:  { rate:6.7,  label:"રિકરિંગ ડિપોઝિટ", amountLabel:"માસિક જમા રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:5, tenureFixed:true, fixedVal:5,
-           hint:"5 વર્ષની નિશ્ચિત મુદત. દર મહિને આ રકમ જમા કરવાની રહેશે (ત્રિમાસિક ચક્રવૃદ્ધિ)." },
+           hint:"5 વર્ષની નિશ્ચિત મુદત, ત્યારબાદ વધુ 5 વર્ષ માટે લંબાવી શકાય (કુલ 10 વર્ષ). દર મહિને આ રકમ જમા કરવાની રહેશે (ત્રિમાસિક ચક્રવૃદ્ધિ)." },
     TD1: { rate:6.9,  label:"ટાઈમ ડિપોઝિટ 1 વર્ષ", amountLabel:"એકસામટી રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:1, tenureFixed:true, fixedVal:1,
            hint:"1 વર્ષની નિશ્ચિત મુદત, ત્રિમાસિક ચક્રવૃદ્ધિ વ્યાજ." },
     TD2: { rate:7.0,  label:"ટાઈમ ડિપોઝિટ 2 વર્ષ", amountLabel:"એકસામટી રકમ (₹)", tenureLabel:"મુદત (વર્ષ)", defTenure:2, tenureFixed:true, fixedVal:2,
@@ -1293,6 +1288,14 @@
       maturity = amount * ( (Math.pow(1+i, n) - 1) / (1 - Math.pow(1+i, -1/3)) );
       invested = amount * months;
       interest = maturity - invested;
+
+      // RD can be extended once for another 5 years (total 10 years) at the same
+      // monthly deposit — show that value too, using the same (current) rate.
+      const months10 = 120;
+      const n10 = months10/3;
+      const maturity10 = amount * ( (Math.pow(1+i, n10) - 1) / (1 - Math.pow(1+i, -1/3)) );
+      periodLabel = "10 વર્ષે પરિપક્વતા (5 વર્ષ લંબાવ્યા પછી, અંદાજિત)";
+      periodValue = maturity10;
     }
     else if(key.startsWith('TD')){
       invested = amount;
@@ -1351,6 +1354,7 @@
     if(key === 'MIS' || key === 'SCSS'){
       document.getElementById('rMaturity').textContent = fmt(invested + interest);
     }
+    document.getElementById('rMaturityLabel').textContent = (key === 'RD') ? "5 વર્ષે પરિપક્વતા રકમ" : "પરિપક્વતા રકમ";
 
     const periodRow = document.getElementById('rPeriodRow');
     if(periodLabel){
