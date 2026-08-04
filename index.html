@@ -790,8 +790,8 @@
   <hr class="perf">
 
   <div class="compare-box" id="compareWidget">
-    <h3>🔍 RD vs PPF vs SSY vs PLI vs RPLI — સાચી સરખામણી</h3>
-    <p class="section-note" style="margin-bottom:0;">તમારી ઉંમર અને માસિક રકમ નાખો — પાંચેયના આંકડા આપણા સત્તાવાર કોષ્ટકો/દર પરથી સીધા ગણાય છે (કોઈ એજન્ટના આંકડા નહીં). RD/PLI/RPLI ની મુદત તમે પસંદ કરો છો; PPF (15 વર્ષ) અને SSY (21 વર્ષ) ની મુદત યોજના પ્રમાણે નિશ્ચિત છે.</p>
+    <h3>🔍 RD vs PLI vs RPLI — સાચી સરખામણી</h3>
+    <p class="section-note" style="margin-bottom:0;">તમારી ઉંમર અને માસિક રકમ નાખો — ત્રણેયના આંકડા આપણા સત્તાવાર કોષ્ટકો/દર પરથી સીધા ગણાય છે (કોઈ એજન્ટના આંકડા નહીં). RD/PLI/RPLI ની મુદત તમે પસંદ કરો છો.</p>
 
     <div class="calc-row" style="margin-top:16px;">
       <div class="field">
@@ -836,22 +836,10 @@
         <div class="row"><span class="k">વીમા કવચ</span><span class="v" id="cmpRPLISA">₹0</span></div>
         <div class="row big"><span class="k">પરિપક્વતા (SA+બોનસ)</span><span class="v" id="cmpRPLIMaturity">₹0</span></div>
       </div>
-      <div class="calc-result compare-col">
-        <h4>🏦 PPF (15 વર્ષ, નિશ્ચિત)</h4>
-        <div class="row"><span class="k">મુદત</span><span class="v">15 વર્ષ</span></div>
-        <div class="row"><span class="k">કુલ જમા</span><span class="v" id="cmpPPFInvested">₹0</span></div>
-        <div class="row big"><span class="k">પરિપક્વતા</span><span class="v" id="cmpPPFMaturity">₹0</span></div>
-      </div>
-      <div class="calc-result compare-col">
-        <h4>👧 SSY (21 વર્ષ, નિશ્ચિત)</h4>
-        <div class="row"><span class="k">મુદત</span><span class="v">21 વર્ષ (15 વર્ષ જમા)</span></div>
-        <div class="row"><span class="k">કુલ જમા</span><span class="v" id="cmpSSYInvested">₹0</span></div>
-        <div class="row big"><span class="k">પરિપક્વતા</span><span class="v" id="cmpSSYMaturity">₹0</span></div>
-      </div>
     </div>
 
     <div class="calc-note" id="cmpNote" style="margin-top:16px;">
-      <strong>નોંધ:</strong> RD નું 10 વર્ષનું આંકડું ધારે છે કે 5 વર્ષ પછી Form-4 ભરીને એ જ વ્યાજ દરે બીજા 5 વર્ષ લંબાવ્યું છે. PPF/SSY માટે માસિક રકમ × 12 ને વાર્ષિક જમા ગણી, દર વર્ષે એ જ રકમ ભરવાની ધારણા સાથે ગણેલ છે (ખરેખર PPF/SSY માં જમા રકમ વર્ષ-દર-વર્ષે બદલી શકાય છે). PLI/RPLI માં પરિપક્વતા સુધી <strong>જીવન વીમા કવચ</strong> પણ સામેલ છે, અને PPF/SSY નું વ્યાજ સંપૂર્ણ કરમુક્ત છે — આ બધા પરિબળો ધ્યાનમાં રાખવા, ફક્ત આંકડો જોઈને નિર્ણય ન લેવો. બોનસ/વ્યાજ દર છેલ્લે સત્તાવાર રીતે જાહેર થયેલ મુજબ છે અને બદલાઈ શકે છે. ચોક્કસ વિગત માટે ઓફિસનો સંપર્ક કરો.
+      <strong>નોંધ:</strong> RD નું 10 વર્ષનું આંકડું ધારે છે કે 5 વર્ષ પછી Form-4 ભરીને એ જ વ્યાજ દરે બીજા 5 વર્ષ લંબાવ્યું છે. PLI/RPLI માં પરિપક્વતા સુધી <strong>જીવન વીમા કવચ</strong> પણ સામેલ છે — આ પરિબળ ધ્યાનમાં રાખવું, ફક્ત આંકડો જોઈને નિર્ણય ન લેવો. બોનસ/વ્યાજ દર છેલ્લે સત્તાવાર રીતે જાહેર થયેલ મુજબ છે અને બદલાઈ શકે છે. ચોક્કસ વિગત માટે ઓફિસનો સંપર્ક કરો.
     </div>
   </div>
 
@@ -1525,24 +1513,6 @@ const YUGAL_SURAKSHA = {"rates":{"21":{"5":191.0,"6":159.0,"7":136.0,"8":118.0,"
 
     computeEndowmentFromPremium('cmpPLI', SANTOSH, 10000, BONUS_PER_1000.santosh, age, matAge, amount, term);
     computeEndowmentFromPremium('cmpRPLI', GRAM_SANTOSH, 1000, BONUS_PER_1000.gram_santosh, age, matAge, amount, term);
-
-    // PPF (15-year fixed term) and SSY (21-year maturity, 15 years of deposits) —
-    // both use the same annual-compounding loop as calculate() above, just fed
-    // the same monthly amount converted to an annual deposit for consistency.
-    computePPFOrSSY('cmpPPF', SCHEMES.PPF.rate, 15, 15, amount);
-    computePPFOrSSY('cmpSSY', SCHEMES.SSY.rate, 21, 15, amount);
-  }
-
-  function computePPFOrSSY(prefix, rate, totalYears, depYears, monthlyAmount){
-    const annual = monthlyAmount * 12;
-    let balance = 0;
-    for(let yr = 1; yr <= totalYears; yr++){
-      if(yr <= depYears) balance += annual;
-      balance += balance * (rate/100);
-    }
-    const invested = annual * depYears;
-    document.getElementById(prefix + 'Invested').textContent = fmt(invested);
-    document.getElementById(prefix + 'Maturity').textContent = fmt(balance);
   }
 
   function computeEndowmentFromPremium(prefix, table, unit, bonusRate, age, matAge, monthlyAmount, term){
