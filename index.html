@@ -267,6 +267,14 @@
   .calc-result .row.big .v{ font-size:1.5rem; color:#fff; }
   .calc-note{ font-size:.76rem; color:#7A4646; margin-top:14px; }
   .calc-note.on-dark{ color:#FFF5F5; opacity:.85; }
+  .compare-box{
+    background:#FFF8F8; border:1px solid var(--line); border-radius:3px;
+    padding:26px; margin-bottom:30px;
+  }
+  .compare-box h3{ font-size:1.05rem; color:var(--accent); margin:0 0 8px; }
+  .compare-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:18px; }
+  .compare-col.highlight{ outline:2px solid var(--postal-red); outline-offset:-1px; }
+  .compare-col h4{ margin:0 0 12px; font-size:.95rem; color:#fff; }
   .freq-table{ width:100%; border-collapse:collapse; margin-top:8px; font-size:.9rem;}
   .freq-table th, .freq-table td{ padding:9px 10px; text-align:right; border-bottom:1px solid var(--line);}
   .freq-table th:first-child, .freq-table td:first-child{ text-align:right; }
@@ -409,7 +417,7 @@
     body{ font-size:12pt; }
   }
   @media (max-width:600px){ .doc-list{ grid-template-columns:1fr; } }
-  @media (max-width:760px){ .calc-box{ grid-template-columns:1fr; } .calc-row{ grid-template-columns:1fr;} }
+  @media (max-width:760px){ .calc-box{ grid-template-columns:1fr; } .calc-row{ grid-template-columns:1fr;} .compare-grid{ grid-template-columns:1fr; } }
 
   /* ============ CALLOUT ============ */
   .callout{
@@ -488,6 +496,7 @@
     <div class="qb-row">
       <a href="#bachat" class="qbtn">💰 નવું ખાતું ખોલવું છે</a>
       <a href="https://www.google.com/search?q=posbseva+indiapost+ePassbook+login" target="_blank" rel="noopener" class="qbtn">📲 બેલેન્સ ચેક કરવો છે</a>
+      <a href="#compareWidget" class="qbtn">🔍 RD vs PLI vs RPLI સરખાવો</a>
       <a href="#vima" class="qbtn">🛡️ વીમો લેવો છે</a>
       <a href="#tapal" class="qbtn">📮 ટપાલ ટ્રેક કરવી છે</a>
       <a href="#digital" class="qbtn">💻 બેંકિંગ/IPPB સેવા</a>
@@ -779,6 +788,59 @@
   </div>
   <p class="section-note">પોસ્ટ ઓફિસ બે પ્રકારની જીવન વીમા યોજનાઓ આપે છે — <strong>PLI</strong> (સરકારી/અર્ધ-સરકારી કર્મચારીઓ, વ્યવસાયિકો તેમજ ગ્રેજ્યુએટ/ડિપ્લોમા/ITI ધારકો માટે) અને <strong>RPLI</strong> (ગ્રામ્ય વિસ્તારના તમામ નાગરિકો માટે) — ઉપરાંત કેન્દ્ર સરકારની સામાજિક સુરક્ષા યોજનાઓ પણ અહીં મળે છે.</p>
   <hr class="perf">
+
+  <div class="compare-box" id="compareWidget">
+    <h3>🔍 RD vs PLI vs RPLI — સાચી સરખામણી</h3>
+    <p class="section-note" style="margin-bottom:0;">તમારી ઉંમર, માસિક રકમ અને PLI/RPLI ની પરિપક્વતા વય નાખો — ત્રણેયના આંકડા આપણા સત્તાવાર કોષ્ટકો પરથી સીધા ગણાય છે (કોઈ એજન્ટના આંકડા નહીં).</p>
+
+    <div class="calc-row" style="margin-top:16px;">
+      <div class="field">
+        <label for="cmpAge">તમારી ઉંમર (વર્ષ)</label>
+        <input type="number" id="cmpAge" value="30" min="19" max="55" oninput="runCompare()">
+      </div>
+      <div class="field">
+        <label for="cmpAmount">માસિક રકમ (₹)</label>
+        <input type="number" id="cmpAmount" value="500" min="50" step="50" oninput="runCompare()">
+      </div>
+      <div class="field">
+        <label for="cmpMaturityAge">PLI/RPLI પરિપક્વતા વય</label>
+        <select id="cmpMaturityAge" onchange="runCompare()">
+          <option value="35">35</option>
+          <option value="40">40</option>
+          <option value="45">45</option>
+          <option value="50">50</option>
+          <option value="55" selected>55</option>
+          <option value="58">58</option>
+          <option value="60">60</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="calc-result compare-col">
+        <h4>💰 RD (5 વર્ષ, નિશ્ચિત)</h4>
+        <div class="row"><span class="k">મુદત</span><span class="v">5 વર્ષ</span></div>
+        <div class="row"><span class="k">કુલ જમા</span><span class="v" id="cmpRDInvested">₹0</span></div>
+        <div class="row big"><span class="k">પરિપક્વતા</span><span class="v" id="cmpRDMaturity">₹0</span></div>
+      </div>
+      <div class="calc-result compare-col highlight">
+        <h4>🛡️ PLI સંતોષ</h4>
+        <div class="row"><span class="k">મુદત</span><span class="v" id="cmpPLITerm">—</span></div>
+        <div class="row"><span class="k">વીમા કવચ</span><span class="v" id="cmpPLISA">₹0</span></div>
+        <div class="row big"><span class="k">પરિપક્વતા (SA+બોનસ)</span><span class="v" id="cmpPLIMaturity">₹0</span></div>
+      </div>
+      <div class="calc-result compare-col">
+        <h4>🌾 RPLI ગ્રામ સંતોષ</h4>
+        <div class="row"><span class="k">મુદત</span><span class="v" id="cmpRPLITerm">—</span></div>
+        <div class="row"><span class="k">વીમા કવચ</span><span class="v" id="cmpRPLISA">₹0</span></div>
+        <div class="row big"><span class="k">પરિપક્વતા (SA+બોનસ)</span><span class="v" id="cmpRPLIMaturity">₹0</span></div>
+      </div>
+    </div>
+
+    <div class="calc-note" id="cmpNote" style="margin-top:16px;">
+      <strong>નોંધ:</strong> RD 5 વર્ષે પાકે છે; PLI/RPLI તમે પસંદ કરેલ ઉંમરે (સામાન્ય રીતે લાંબા ગાળે) પાકે છે — આ "કોણ વધુ પૈસા આપે" એવી સીધી સરખામણી નથી, કારણ કે PLI/RPLI માં પરિપક્વતા સુધી <strong>જીવન વીમા કવચ</strong> પણ સામેલ છે જે RD માં નથી. બોનસ દર છેલ્લે સત્તાવાર રીતે જાહેર થયેલ દર મુજબ અંદાજિત છે (વર્ષે બદલાઈ શકે છે). ચોક્કસ પ્રીમિયમ/પરિપક્વતા માટે ઓફિસનો સંપર્ક કરો.
+    </div>
+  </div>
 
   <h3 style="font-size:1.05rem; color:var(--accent); margin-bottom:14px;">પોસ્ટલ લાઈફ ઈન્સ્યોરન્સ — PLI (સરકારી/અર્ધ-સરકારી કર્મચારીઓ, વ્યવસાયિકો અને ગ્રેજ્યુએટ/ડિપ્લોમા/ITI ધારકો માટે)</h3>
   <div class="stamp-grid" style="margin-bottom:34px;">
@@ -1421,6 +1483,57 @@ const YUGAL_SURAKSHA = {"rates":{"21":{"5":191.0,"6":159.0,"7":136.0,"8":118.0,"
     }
   };
 
+  // ================= RD vs PLI vs RPLI COMPARISON WIDGET =================
+  // Reuses the exact same RD maturity formula (see calculate()) and the exact
+  // same premium/bonus formulas as calcPremium() above, just run in reverse
+  // (monthly amount -> sum assured) so all three figures stay consistent
+  // with the rest of the page's official-table-based calculators.
+  function runCompare(){
+    const age = parseInt(document.getElementById('cmpAge').value) || 0;
+    const amount = parseFloat(document.getElementById('cmpAmount').value) || 0;
+    const matAge = parseInt(document.getElementById('cmpMaturityAge').value);
+    const term = matAge - age;
+
+    // RD: 5-year fixed term, same formula as the main calculator
+    const rdMonths = 60;
+    const rdI = 6.7/400;
+    const rdN = rdMonths/3;
+    const rdMaturity = amount * ( (Math.pow(1+rdI, rdN) - 1) / (1 - Math.pow(1+rdI, -1/3)) );
+    const rdInvested = amount * rdMonths;
+    document.getElementById('cmpRDInvested').textContent = fmt(rdInvested);
+    document.getElementById('cmpRDMaturity').textContent = fmt(rdMaturity);
+
+    computeEndowmentFromPremium('cmpPLI', SANTOSH, 10000, BONUS_PER_1000.santosh, age, matAge, amount, term);
+    computeEndowmentFromPremium('cmpRPLI', GRAM_SANTOSH, 1000, BONUS_PER_1000.gram_santosh, age, matAge, amount, term);
+  }
+
+  function computeEndowmentFromPremium(prefix, table, unit, bonusRate, age, matAge, monthlyAmount, term){
+    const termEl = document.getElementById(prefix + 'Term');
+    const saEl = document.getElementById(prefix + 'SA');
+    const matEl = document.getElementById(prefix + 'Maturity');
+    const rate = (table.monthly[age] && table.monthly[age][matAge] !== undefined) ? table.monthly[age][matAge] : undefined;
+
+    if(rate === undefined || term <= 0){
+      termEl.textContent = '—';
+      saEl.textContent = '—';
+      matEl.textContent = 'ઉપલબ્ધ નથી';
+      return;
+    }
+
+    // Invert premiumFromRate(): premium = SA*(rate/unit) - (SA/20000)*rebate
+    const rebate = REBATE_PER_20K.monthly || 0;
+    const k = (rate/unit) - (rebate/20000);
+    let sa = k > 0 ? (monthlyAmount / k) : 0;
+    sa = Math.round(sa/1000) * 1000; // round to nearest ₹1,000, like real SA slabs
+
+    const annualBonus = (sa/1000) * bonusRate;
+    const maturity = sa + (annualBonus * term);
+
+    termEl.textContent = term + ' વર્ષ (' + age + ' → ' + matAge + ')';
+    saEl.textContent = fmt(sa);
+    matEl.textContent = fmt(maturity);
+  }
+
   function fmtOrDash(n){ return (n===null || n===undefined || isNaN(n)) ? "—" : fmt(n); }
 
   // premium = (SA/tableUnit)*rate - (SA/20000)*rebate   [verified against official worked examples]
@@ -1642,6 +1755,7 @@ const YUGAL_SURAKSHA = {"rates":{"21":{"5":191.0,"6":159.0,"7":136.0,"8":118.0,"
   // init
   onSchemeChange();
   onInsTypeChange();
+  runCompare();
 
   // Register service worker for offline support / installability
   if ('serviceWorker' in navigator) {
