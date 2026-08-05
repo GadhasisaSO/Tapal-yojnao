@@ -509,7 +509,6 @@
       <a href="#rakhi" class="qbtn">🎀 રક્ષાબંધન સ્પેશિયલ</a>
     </div>
     <div class="util-row">
-      <button class="util-btn" id="readAloudBtn" onclick="toggleReadAloud()">🔊 મોટેથી વાંચો</button>
       <button class="util-btn" onclick="sharePage()">📤 શેર કરો</button>
       <button class="util-btn" onclick="window.print()">🖨️ પ્રિન્ટ કરો</button>
     </div>
@@ -1817,96 +1816,6 @@ const YUGAL_SURAKSHA = {"rates":{"21":{"5":191.0,"6":159.0,"7":136.0,"8":118.0,"
     const resultBox = document.getElementById('quizResult');
     resultBox.innerHTML = `<span class="qname">✅ ${ans.name}</span>${ans.text}`;
     resultBox.classList.add('show');
-  }
-
-  // Read aloud (uses the browser's built-in speech synthesis, no external service)
-  function toggleReadAloud(){
-    const btn = document.getElementById('readAloudBtn');
-    if(!('speechSynthesis' in window)){
-      alert('માફ કરશો, તમારું બ્રાઉઝર આ સુવિધા સપોર્ટ કરતું નથી.');
-      return;
-    }
-    if(window.speechSynthesis.speaking || window.speechSynthesis.pending){
-      window.speechSynthesis.cancel();
-      btn.textContent = '🔊 મોટેથી વાંચો';
-      btn.classList.remove('active');
-      return;
-    }
-
-    const startReading = (voices) => {
-      // Prefer a Gujarati voice; fall back to Hindi (far more commonly installed
-      // on Indian Android phones); otherwise ask the user before using a
-      // mismatched voice, since it would mispronounce everything.
-      let lang = 'gu-IN';
-      let voice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('gu'));
-      if(!voice){
-        voice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('hi'));
-        if(voice){
-          lang = voice.lang;
-          if(!confirm('તમારા ફોનમાં ગુજરાતી અવાજ (Text-to-Speech) ઈન્સ્ટોલ નથી. હિન્દી અવાજથી સાંભળવું છે? (ઉચ્ચારણ થોડું અલગ હશે)\n\nગુજરાતી ઉમેરવા માટે: ફોનના Settings → System → Languages → Text-to-speech માં જાવ.')){
-            return;
-          }
-        } else {
-          alert('તમારા ફોનમાં ગુજરાતી કે હિન્દી માટે Text-to-Speech અવાજ ઈન્સ્ટોલ થયેલ નથી, એટલે આ સુવિધા કામ નહીં કરે.\n\nફોનના Settings → System → Languages → Text-to-speech માં જઈ ભાષા ઉમેરી શકાય છે.');
-          return;
-        }
-      }
-
-      // Chunk the text — long single utterances silently fail on many Android
-      // TTS engines (this page's full text is ~32,000 characters).
-      const fullText = document.body.innerText;
-      const sentences = fullText.split(/(?<=[.।!?\n])\s+/).filter(s => s.trim().length > 0);
-      const chunks = [];
-      let current = "";
-      for(const s of sentences){
-        if((current + s).length > 200){
-          if(current) chunks.push(current);
-          current = s;
-        } else {
-          current += (current ? " " : "") + s;
-        }
-      }
-      if(current) chunks.push(current);
-
-      let i = 0;
-      function speakNext(){
-        if(i >= chunks.length){
-          btn.textContent = '🔊 મોટેથી વાંચો';
-          btn.classList.remove('active');
-          return;
-        }
-        const utter = new SpeechSynthesisUtterance(chunks[i]);
-        utter.lang = lang;
-        if(voice) utter.voice = voice;
-        utter.rate = 0.95;
-        utter.onend = () => { i++; speakNext(); };
-        utter.onerror = (e) => {
-          btn.textContent = '🔊 મોટેથી વાંચો';
-          btn.classList.remove('active');
-          alert('વાંચવામાં ભૂલ આવી (' + (e.error || 'અજ્ઞાત') + '). ફોનનું Text-to-Speech સેટિંગ ચકાસો.');
-        };
-        window.speechSynthesis.speak(utter);
-      }
-      btn.textContent = '⏹ બંધ કરો';
-      btn.classList.add('active');
-      speakNext();
-    };
-
-    let voices = window.speechSynthesis.getVoices();
-    if(voices.length === 0){
-      // Voices often load asynchronously — wait for them once.
-      window.speechSynthesis.onvoiceschanged = () => {
-        startReading(window.speechSynthesis.getVoices());
-      };
-      // Some browsers never fire the event; fail gracefully after a short wait.
-      setTimeout(() => {
-        if(window.speechSynthesis.getVoices().length === 0){
-          alert('ફોનનું Text-to-Speech એન્જિન લોડ ના થયું. ફોન રીસ્ટાર્ટ કરીને ફરી પ્રયત્ન કરો, અથવા Settings → System → Languages → Text-to-speech ચકાસો.');
-        }
-      }, 1500);
-    } else {
-      startReading(voices);
-    }
   }
 
   // Share the page (native share sheet where available, WhatsApp link fallback)
