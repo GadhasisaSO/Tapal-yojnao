@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="gu">
 <head>
+<script>
+  // Apply saved / system theme before first paint (avoids flash of wrong theme)
+  (function(){
+    try{
+      var saved = localStorage.getItem('gadhasisa-theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      if(theme === 'dark'){ document.documentElement.setAttribute('data-theme', 'dark'); }
+    }catch(e){}
+  })();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ગઢસીસા સબ પોસ્ટ ઓફિસ (370445) — યોજનાઓ અને સુવિધાઓ</title>
@@ -63,6 +73,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap"></noscript>
 <style>
   :root{
+    color-scheme: light;
     --paper:#FFFFFF;
     --paper-2:#FBEAEA;
     --postal-red:#C8102E;
@@ -84,7 +95,71 @@
     --teal-bg:#E0F3F3;
     --gold:#8A5A00;
     --gold-bg:#FBF0D8;
+    /* surfaces / muted text — themeable so dark mode can swap them cleanly */
+    --card-bg:#FFF8F8;
+    --quickbar-bg:#FBF0F0;
+    --text-muted:#5a3a3a;
+    --text-muted2:#7A4646;
+    --hover-bg:#FFFBF3;
   }
+  /* ============ DARK THEME ============ */
+  [data-theme="dark"]{
+    color-scheme: dark;
+    --paper:#1A1414;
+    --paper-2:#2A1717;
+    --ink:#EFE0E0;
+    --line:#4A2B2B;
+    --blue:#6FA8F5;
+    --blue-bg:#122540;
+    --green:#5FCB93;
+    --green-bg:#0F2A1C;
+    --orange:#F0965F;
+    --orange-bg:#2E1A0C;
+    --purple:#C09AEE;
+    --purple-bg:#241432;
+    --teal:#5FD6D6;
+    --teal-bg:#0D2A2A;
+    --gold:#F0C15F;
+    --gold-bg:#2E2308;
+    --card-bg:#241818;
+    --quickbar-bg:#241717;
+    --text-muted:#CBA9A9;
+    --text-muted2:#B08A8A;
+    --hover-bg:rgba(255,255,255,.04);
+  }
+  [data-theme="dark"] body::before{
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.025) 0, transparent 60%),
+      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.025) 0, transparent 60%);
+  }
+  [data-theme="dark"] .hero-band{
+    background:
+      radial-gradient(circle at 8% 15%, rgba(111,168,245,.14) 0, transparent 40%),
+      radial-gradient(circle at 92% 20%, rgba(95,203,147,.14) 0, transparent 42%),
+      radial-gradient(circle at 85% 90%, rgba(240,150,95,.13) 0, transparent 40%),
+      radial-gradient(circle at 10% 90%, rgba(192,154,238,.12) 0, transparent 40%),
+      linear-gradient(180deg, #201717 0%, var(--paper) 70%);
+  }
+  [data-theme="dark"] .hero-eyebrow{ color:#FF9C9C; border-color:#8a4a4a; }
+  [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] .display{ color:#F3D6D6; }
+  [data-theme="dark"] .btn.ghost{ color:#F0C9C9; border-color:#8a4a4a; }
+  [data-theme="dark"] .calc-box label{ color:#E8B9B9; }
+  [data-theme="dark"] .faq-item summary{ color:#F3D6D6; }
+  [data-theme="dark"] .util-btn{ border-color:#C9A9A9; color:#E8CFCF; }
+  [data-theme="dark"] .util-btn:hover, [data-theme="dark"] .util-btn.active{ color:#fff; }
+  [data-theme="dark"] .qbtn{ color:#FF9B9B; border-color:#FF9B9B; }
+  [data-theme="dark"] .qbtn:hover{ background:#5a1f1f; color:#fff; }
+  [data-theme="dark"] .text-toggle{ border-color:#FF8A8A; }
+  [data-theme="dark"] .text-toggle button{ color:#FF8A8A; }
+  [data-theme="dark"] table.compare tr:hover td{ background: var(--hover-bg); }
+  [data-theme="dark"] .doc-box{ background: var(--accent-bg, var(--paper-2)); }
+  /* theme toggle button */
+  .theme-toggle{
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.4);
+    color:inherit; padding:4px 12px; border-radius:14px; font-weight:600; font-size:.85rem;
+    cursor:pointer; font-family:'Noto Sans Gujarati', sans-serif;
+  }
+  .theme-toggle:hover{ background:rgba(255,255,255,.24); }
   .cat-savings{ --accent:var(--blue); --accent-bg:var(--blue-bg); }
   .cat-insurance{ --accent:var(--green); --accent-bg:var(--green-bg); }
   .cat-mail{ --accent:var(--orange); --accent-bg:var(--orange-bg); }
@@ -189,7 +264,7 @@
   }
   .hero h1 em{ font-style:normal; color:var(--postal-red); }
   .hero p.sub{
-    max-width:46ch; margin-top:18px; font-size:1.05rem; color:#5a3535;
+    max-width:46ch; margin-top:18px; font-size:1.05rem; color:var(--text-muted);
   }
   .hero-ctas{ margin-top:28px; display:flex; gap:14px; flex-wrap:wrap;}
   .btn{
@@ -219,7 +294,7 @@
     background:var(--accent-bg, transparent);
   }
   .section-head h2{ font-size:clamp(1.4rem,2.6vw,1.9rem); font-weight:700;}
-  .section-note{ color:#5a3a3a; font-size:.95rem; max-width:70ch; margin-top:6px;}
+  .section-note{ color:var(--text-muted); font-size:.95rem; max-width:70ch; margin-top:6px;}
   hr.perf{
     border:none; height:1px; margin:8px 0 34px;
     background-image: linear-gradient(to right, var(--line) 60%, transparent 0%);
@@ -231,7 +306,7 @@
     display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:22px;
   }
   .stamp{
-    background:#FFF8F8;
+    background:var(--card-bg);
     padding:20px 18px 18px;
     position:relative;
     border-radius:2px;
@@ -252,10 +327,10 @@
   }
   .stamp .rate small{ font-size:.6em; font-weight:400; color:var(--ink); }
   .stamp h3{ font-size:1.05rem; font-weight:600; color:var(--navy); min-height:2.6em;}
-  .stamp p{ font-size:.9rem; color:#5a3a3a; margin:10px 0 0;}
+  .stamp p{ font-size:.9rem; color:var(--text-muted); margin:10px 0 0;}
   .stamp .meta{
     margin-top:12px; padding-top:10px; border-top:1px dashed var(--line);
-    font-size:.8rem; color:#7A4646; display:flex; flex-direction:column; gap:3px;
+    font-size:.8rem; color:var(--text-muted2); display:flex; flex-direction:column; gap:3px;
   }
 
   /* ============ FACILITY LIST ROWS (non-financial services) ============ */
@@ -269,34 +344,34 @@
     padding:16px 18px; border-radius:2px;
   }
   .facility h3{ font-size:1rem; font-weight:600; margin-bottom:6px;}
-  .facility p{ font-size:.88rem; color:#5a3a3a; margin:0;}
+  .facility p{ font-size:.88rem; color:var(--text-muted); margin:0;}
 
   /* ============ RATE TABLE STRIP ============ */
   .rate-strip{
     display:flex; gap:0; flex-wrap:wrap; border:1px solid var(--line); border-radius:2px; overflow:hidden;
-    background:#FFF8F8;
+    background:var(--card-bg);
   }
   .rate-strip .cell{
     flex:1 1 150px; padding:16px; text-align:center; border-right:1px dashed var(--line);
   }
   .rate-strip .cell:last-child{ border-right:none; }
   .rate-strip .cell .num{ font-family:'Courier Prime',monospace; font-weight:700; color:var(--accent, var(--postal-red)); font-size:1.3rem; display:block;}
-  .rate-strip .cell .lbl{ font-size:.78rem; color:#5a3a3a; margin-top:4px; display:block;}
+  .rate-strip .cell .lbl{ font-size:.78rem; color:var(--text-muted); margin-top:4px; display:block;}
 
   /* ============ CALCULATOR ============ */
   .calc-box{
-    background:#FFF8F8; border:1px solid var(--line); border-radius:3px;
+    background:var(--card-bg); border:1px solid var(--line); border-radius:3px;
     padding:26px; display:grid; grid-template-columns:1.1fr 1fr; gap:30px;
   }
   .calc-box .field{ margin-bottom:16px; }
   .calc-box label{ display:block; font-size:.85rem; color:var(--navy); font-weight:600; margin-bottom:6px;}
   .calc-box select, .calc-box input[type=number]{
     width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:3px;
-    background:#fff; font-family:'Noto Sans Gujarati',sans-serif; font-size:.95rem; color:var(--ink);
+    background:var(--card-bg); font-family:'Noto Sans Gujarati',sans-serif; font-size:.95rem; color:var(--ink);
   }
   .calc-box select:focus, .calc-box input:focus{ outline:2px solid var(--postal-red); }
   .calc-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .calc-hint{ font-size:.78rem; color:#7A4646; margin-top:4px;}
+  .calc-hint{ font-size:.78rem; color:var(--text-muted2); margin-top:4px;}
   .calc-result{
     background:var(--accent, var(--navy)); color:#FFF5F5; border-radius:3px; padding:20px 22px;
     display:flex; flex-direction:column; gap:12px; justify-content:center;
@@ -306,10 +381,10 @@
   .calc-result .row .k{ font-size:.85rem; color:#FFFFFF; opacity:.92;}
   .calc-result .row .v{ font-family:'Courier Prime',monospace; font-weight:700; font-size:1.15rem; color:#FFFFFF;}
   .calc-result .row.big .v{ font-size:1.5rem; color:#fff; }
-  .calc-note{ font-size:.76rem; color:#7A4646; margin-top:14px; }
+  .calc-note{ font-size:.76rem; color:var(--text-muted2); margin-top:14px; }
   .calc-note.on-dark{ color:#FFF5F5; }
   .compare-box{
-    background:#FFF8F8; border:1px solid var(--line); border-radius:3px;
+    background:var(--card-bg); border:1px solid var(--line); border-radius:3px;
     padding:26px; margin-bottom:30px;
   }
   .compare-box h3{ font-size:1.05rem; color:var(--accent); margin:0 0 8px; }
@@ -331,7 +406,7 @@
   .doc-list{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:8px 20px; }
   .doc-list li{ font-size:.9rem; display:flex; gap:8px; align-items:flex-start; }
   .doc-list li::before{ content:"✔"; color:var(--accent, var(--postal-red)); font-weight:700; flex:none; }
-  .doc-note{ font-size:.78rem; color:#7A4646; margin-top:14px; }
+  .doc-note{ font-size:.78rem; color:var(--text-muted2); margin-top:14px; }
   .doc-links{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
   .doc-links a{
     display:inline-flex; align-items:center; gap:6px; font-size:.85rem; font-weight:600;
@@ -339,6 +414,10 @@
     background:var(--accent, var(--postal-red)); color:#fff;
   }
   .doc-links a:hover{ opacity:.9; }
+
+  /* ============ NOTE / WARNING BOX ============ */
+  .note-box{ background:#FFF3CD; border:1px solid #E8C468; color:#5a4a20; }
+  [data-theme="dark"] .note-box{ background:#332908; border-color:#8a6a1a; color:#F0D98A; }
 
   /* ============ FEATURED RESOURCE (eye-catching download card) ============ */
   .featured-box{
@@ -370,16 +449,16 @@
 
   /* ============ COMPARISON TABLE ============ */
   .compare-wrap{ overflow-x:auto; margin-top:24px; border:1px solid var(--line); border-radius:3px; }
-  table.compare{ width:100%; border-collapse:collapse; font-size:.85rem; min-width:640px; background:#fff; }
+  table.compare{ width:100%; border-collapse:collapse; font-size:.85rem; min-width:640px; background:var(--card-bg); }
   table.compare th, table.compare td{ padding:10px 12px; text-align:center; border-bottom:1px solid var(--line); white-space:nowrap; }
   table.compare th{ background:var(--accent-bg); color:var(--accent); font-family:'Noto Serif Gujarati',serif; font-weight:700; position:sticky; top:0; }
-  table.compare td:first-child, table.compare th:first-child{ text-align:right; position:sticky; left:0; background:#fff; font-weight:600; }
-  table.compare tr:hover td{ background:#FFFBF3; }
+  table.compare td:first-child, table.compare th:first-child{ text-align:right; position:sticky; left:0; background:var(--card-bg); font-weight:600; }
+  table.compare tr:hover td{ background:var(--hover-bg); }
   table.compare td.rate{ color:var(--accent); font-family:'Courier Prime',monospace; font-weight:700; }
 
   /* ============ FAQ ACCORDION ============ */
   .faq-item{
-    border:1px solid var(--line); border-radius:3px; margin-bottom:10px; background:#fff; overflow:hidden;
+    border:1px solid var(--line); border-radius:3px; margin-bottom:10px; background:var(--card-bg); overflow:hidden;
   }
   .faq-item summary{
     padding:14px 16px; cursor:pointer; font-weight:600; font-size:.95rem; color:var(--navy);
@@ -388,7 +467,7 @@
   .faq-item summary::-webkit-details-marker{ display:none; }
   .faq-item summary::after{ content:"+"; font-size:1.3rem; color:var(--accent); flex:none; }
   .faq-item[open] summary::after{ content:"−"; }
-  .faq-item p{ padding:0 16px 16px; margin:0; font-size:.88rem; color:#5a3a3a; }
+  .faq-item p{ padding:0 16px 16px; margin:0; font-size:.88rem; color:var(--text-muted); }
 
   /* ============ SCHEME QUIZ ============ */
   .quiz-box{
@@ -397,12 +476,12 @@
   .quiz-box h3{ font-size:1.05rem; color:var(--accent); margin-bottom:14px; }
   .quiz-options{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; }
   .quiz-options button{
-    padding:9px 16px; border-radius:20px; border:1.5px solid var(--accent); background:#fff;
+    padding:9px 16px; border-radius:20px; border:1.5px solid var(--accent); background:var(--card-bg);
     color:var(--accent); font-size:.86rem; font-weight:600; cursor:pointer; font-family:'Noto Sans Gujarati',sans-serif;
   }
   .quiz-options button.active{ background:var(--accent); color:#fff; }
   .quiz-result{
-    background:#fff; border-left:4px solid var(--accent); border-radius:2px; padding:16px 18px;
+    background:var(--card-bg); border-left:4px solid var(--accent); border-radius:2px; padding:16px 18px;
     font-size:.9rem; display:none;
   }
   .quiz-result.show{ display:block; }
@@ -420,11 +499,11 @@
   /* ============ TEXT SIZE TOGGLE ============ */
   .text-toggle{
     position:fixed; bottom:calc(20px + env(safe-area-inset-bottom)); left:calc(20px + env(safe-area-inset-left)); z-index:999;
-    background:#fff; border:2px solid var(--postal-red); border-radius:24px;
+    background:var(--card-bg); border:2px solid var(--postal-red); border-radius:24px;
     display:flex; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.15);
   }
   .text-toggle button{
-    border:none; background:#fff; color:var(--postal-red); font-weight:700; padding:10px 14px;
+    border:none; background:var(--card-bg); color:var(--postal-red); font-weight:700; padding:10px 14px;
     cursor:pointer; font-family:'Noto Sans Gujarati',sans-serif;
   }
   .text-toggle button:first-child{ border-right:1px solid var(--line); font-size:.8rem; }
@@ -434,12 +513,12 @@
   body.text-large .stamp p, body.text-large .facility p{ font-size:1.05rem; }
 
   /* ============ QUICK-START BAR ============ */
-  .quickbar{ background:#FBF0F0; border-bottom:1px solid var(--line); padding:16px 24px; }
+  .quickbar{ background:var(--quickbar-bg); border-bottom:1px solid var(--line); padding:16px 24px; }
   .quickbar-inner{ max-width:1100px; margin:0 auto; }
   .qb-row{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:10px; }
   .qbtn{
     display:inline-flex; align-items:center; gap:6px; padding:10px 16px; border-radius:20px;
-    background:#fff; border:1.5px solid var(--postal-red); color:var(--postal-red-dark);
+    background:var(--card-bg); border:1.5px solid var(--postal-red); color:var(--postal-red-dark);
     font-size:.85rem; font-weight:600; text-decoration:none;
   }
   .qbtn:hover{ background:var(--postal-red); color:#fff; }
@@ -479,7 +558,7 @@
   .footer-inner{ max-width:1100px; margin:0 auto; padding:34px 24px; font-size:.85rem;}
   .footer-inner a{ color:#FFFFFF; text-decoration:underline; }
   .disclaimer{
-    max-width:1100px; margin:0 auto; padding:0 24px 30px; font-size:.78rem; color:#7A4646;
+    max-width:1100px; margin:0 auto; padding:0 24px 30px; font-size:.78rem; color:var(--text-muted2);
   }
 
   @media (max-width:760px){
@@ -544,6 +623,7 @@
       <a href="#rakhi">રક્ષાબંધન સ્પેશિયલ</a>
       <a href="#faq">સવાલ-જવાબ</a>
       <a href="genz.html" class="nav-genz">✨ Gen Z Edition</a>
+      <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="ડાર્ક/લાઈટ મોડ બદલો">🌙</button>
     </nav>
   </div>
 </header>
@@ -738,7 +818,7 @@
 
   <div class="quiz-box">
     <h3>🧭 તમારા માટે કઈ યોજના યોગ્ય છે?</h3>
-    <p style="font-size:.88rem; color:#5a3a3a; margin-bottom:14px;">નીચે તમારી જરૂરિયાત પસંદ કરો:</p>
+    <p style="font-size:.88rem; color:var(--text-muted); margin-bottom:14px;">નીચે તમારી જરૂરિયાત પસંદ કરો:</p>
     <div class="quiz-options" id="quizOptions">
       <button onclick="quizPick('income', this)">દર મહિને/ત્રિમાસિકે નિયમિત આવક જોઈએ છે</button>
       <button onclick="quizPick('daughter', this)">દીકરીના ભણતર/લગ્ન માટે બચત</button>
@@ -753,7 +833,7 @@
 
   <div class="doc-box" style="margin-top:24px;">
     <h3>📲 ePassbook — ઓનલાઈન બેલેન્સ અને મિની સ્ટેટમેન્ટ</h3>
-    <p style="font-size:.88rem; color:#5a3a3a; margin-bottom:10px;">Savings Account, PPF અને Sukanya Samriddhi ખાતાધારકો હવે પોસ્ટ ઓફિસ ગયા વગર, ઘરે બેઠાં જ મોબાઈલ નંબર અને OTP થી પોતાનું બેલેન્સ અને મિની સ્ટેટમેન્ટ ઓનલાઈન જોઈ શકે છે.</p>
+    <p style="font-size:.88rem; color:var(--text-muted); margin-bottom:10px;">Savings Account, PPF અને Sukanya Samriddhi ખાતાધારકો હવે પોસ્ટ ઓફિસ ગયા વગર, ઘરે બેઠાં જ મોબાઈલ નંબર અને OTP થી પોતાનું બેલેન્સ અને મિની સ્ટેટમેન્ટ ઓનલાઈન જોઈ શકે છે.</p>
     <ul class="doc-list">
       <li>નીચે "ePassbook ખોલો" બટન દબાવો — Google search ખૂલશે, ત્યાં પહેલા પરિણામ (posbseva.indiapost.gov.in) પર ક્લિક કરો</li>
       <li>રજિસ્ટર્ડ મોબાઈલ નંબર અને કેપ્ચા નાખો, OTP વેરિફાય કરો</li>
@@ -1027,7 +1107,7 @@
     <h2>🧮 વીમા પ્રીમિયમ કેલ્ક્યુલેટર</h2>
   </div>
   <p class="section-note">યોજના, ઉંમર અને વીમા રકમ નાખો — સત્તાવાર PLI/RPLI પ્રીમિયમ કોષ્ટકો પરથી ચોક્કસ પ્રીમિયમ અને અંદાજિત પરિપક્વતા રકમ ગણાય છે.</p>
-  <div style="background:#FFF3CD; border:1px solid #E8C468; border-radius:3px; padding:10px 14px; font-size:.82rem; color:#5a4a20; margin:10px 0 18px;">
+  <div class="note-box" style="border-radius:3px; padding:10px 14px; font-size:.82rem; margin:10px 0 18px;">
     ⚠️ બોનસ દર દર વર્ષે સરકાર દ્વારા જાહેર થાય છે અને બદલાઈ શકે છે (અહીં તાજેતરમાં જાહેર થયેલ દર વાપર્યો છે) — એટલે <strong>પરિપક્વતા રકમ અંદાજિત</strong> છે. <strong>પ્રીમિયમ</strong> સત્તાવાર કોષ્ટક મુજબ ચોક્કસ છે (GST વર્તમાનમાં 0%). કોઈપણ શંકા હોય તો <a href="https://pli.indiapost.gov.in" target="_blank" rel="noopener">pli.indiapost.gov.in</a> અથવા ઓફિસનો સંપર્ક કરો.
   </div>
   <hr class="perf">
@@ -1208,7 +1288,7 @@
       <h3>નેટ બેંકિંગ</h3>
       <p>પોસ્ટ ઓફિસ બચત ખાતાનું ઓનલાઈન સંચાલન, બેલેન્સ ચકાસણી અને ટ્રાન્સફર સુવિધા. POSB, RD, TD, PPF, SSA ખાતા ઓનલાઈન સંચાલિત કરી શકાય.</p>
       <p style="margin-top:8px;"><a href="https://ebanking.indiapost.gov.in/" target="_blank" rel="noopener" style="font-weight:600; color:var(--accent);">🔗 ઈન્ટરનેટ બેંકિંગ ખોલો — ebanking.indiapost.gov.in</a></p>
-      <p style="margin-top:6px; font-size:.78rem; color:#7A4646;">નોંધ: પ્રથમ વખત વાપરવા માટે ગઢસીસા સબ પોસ્ટ ઓફિસમાં એકવાર રજિસ્ટ્રેશન ફોર્મ ભરવું જરૂરી છે.</p>
+      <p style="margin-top:6px; font-size:.78rem; color:var(--text-muted2);">નોંધ: પ્રથમ વખત વાપરવા માટે ગઢસીસા સબ પોસ્ટ ઓફિસમાં એકવાર રજિસ્ટ્રેશન ફોર્મ ભરવું જરૂરી છે.</p>
     </div>
     <div class="facility">
       <h3>Dak Sewa મોબાઈલ એપ</h3>
@@ -1223,7 +1303,7 @@
 
   <div class="doc-box">
     <h3>📱 IPPB બેલેન્સ/મિની સ્ટેટમેન્ટ — SMS અને મિસ્ડ કૉલ સુવિધા</h3>
-    <p style="font-size:.88rem; color:#5a3a3a; margin-bottom:12px;">IPPB ખાતાધારકો ઈન્ટરનેટ વગર પણ મિસ્ડ કૉલ અથવા SMS થી બેલેન્સ અને મિની સ્ટેટમેન્ટ જાણી શકે છે.</p>
+    <p style="font-size:.88rem; color:var(--text-muted); margin-bottom:12px;">IPPB ખાતાધારકો ઈન્ટરનેટ વગર પણ મિસ્ડ કૉલ અથવા SMS થી બેલેન્સ અને મિની સ્ટેટમેન્ટ જાણી શકે છે.</p>
     <div class="doc-note"><strong>બેલેન્સ જાણવા:</strong> તમારા IPPB ખાતામાં રજિસ્ટર થયેલ મોબાઈલ નંબર પરથી <strong>9910223398</strong> પર મિસ્ડ કૉલ કરો — બેલેન્સ જણાવતો SMS આવશે. (નોંધ: મિસ કૉલ ફક્ત રજિસ્ટર્ડ નંબર પરથી જ કરવો.)</div>
     <div class="doc-links">
       <a href="tel:9910223398">📞 મિસ્ડ કૉલ કરો: 9910223398</a>
@@ -1910,6 +1990,30 @@ const YUGAL_SURAKSHA = {"rates":{"21":{"5":191.0,"6":159.0,"7":136.0,"8":118.0,"
   try{
     if(localStorage.getItem('gadhasisa-text-large') === '1'){ document.body.classList.add('text-large'); }
   }catch(e){}
+
+  // Dark / light theme toggle (persists across visits; syncs the address-bar color too)
+  function updateThemeToggleIcon(){
+    const btn = document.getElementById('themeToggle');
+    if(btn){ btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
+  }
+  function updateThemeColorMeta(){
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if(meta){ meta.setAttribute('content', document.documentElement.getAttribute('data-theme') === 'dark' ? '#1A1414' : '#C8102E'); }
+  }
+  function toggleTheme(){
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if(isDark){
+      document.documentElement.removeAttribute('data-theme');
+      try{ localStorage.setItem('gadhasisa-theme', 'light'); }catch(e){}
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      try{ localStorage.setItem('gadhasisa-theme', 'dark'); }catch(e){}
+    }
+    updateThemeToggleIcon();
+    updateThemeColorMeta();
+  }
+  updateThemeToggleIcon();
+  updateThemeColorMeta();
 </script>
 </body>
 </html>
