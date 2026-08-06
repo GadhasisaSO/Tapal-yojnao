@@ -23,6 +23,40 @@
 <meta name="twitter:title" content="ગઢસીસા સબ પોસ્ટ ઓફિસ — યોજનાઓ અને સેવાઓ">
 <meta name="twitter:description" content="બચત યોજનાઓ, વીમા યોજનાઓ, વ્યાજ કેલ્ક્યુલેટર અને તમામ પોસ્ટ ઓફિસ સેવાઓ">
 <meta name="twitter:image" content="https://gadhasisaso.github.io/Tapal-yojnao/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GovernmentOffice",
+  "name": "ગઢસીસા સબ પોસ્ટ ઓફિસ (Gadhasisa Sub Post Office)",
+  "alternateName": "GADHASISA S.O",
+  "url": "https://gadhasisaso.github.io/Tapal-yojnao/",
+  "image": "https://gadhasisaso.github.io/Tapal-yojnao/india-post-logo.png",
+  "telephone": "+91-94290-06720",
+  "email": "gadhasisaso@indiapost.gov.in",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Vathan Chowk, Gadhasisa",
+    "addressLocality": "Mandvi",
+    "addressRegion": "Kutch, Gujarat",
+    "postalCode": "370445",
+    "addressCountry": "IN"
+  },
+  "areaServed": "Gadhasisa and surrounding villages, Mandvi Taluka, Kutch",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "07:30",
+      "closes": "15:30"
+    }
+  ],
+  "parentOrganization": {
+    "@type": "GovernmentOrganization",
+    "name": "Department of Posts, Ministry of Communications, Government of India",
+    "url": "https://www.indiapost.gov.in/"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -37,19 +71,19 @@
     --mustard:#FFFFFF;
     --ink:#2A1414;
     --line:#EBC3C3;
-    /* category accent colors for a more colorful, sectioned look */
-    --blue:#1565C0;
-    --blue-bg:#EAF1FB;
-    --green:#1B7A3D;
-    --green-bg:#EAF6EE;
-    --orange:#A64C00;
-    --orange-bg:#FDF1E3;
-    --purple:#6A3FA0;
-    --purple-bg:#F2ECFA;
-    --teal:#006D77;
-    --teal-bg:#E3F4F5;
-    --gold:#8F5709;
-    --gold-bg:#FDF3E0;
+    /* category accent colors — deep "ink & stamp" jewel tones, one per service category */
+    --blue:#0B4FA0;
+    --blue-bg:#E8F0FC;
+    --green:#0F6B32;
+    --green-bg:#E6F5EA;
+    --orange:#B5490A;
+    --orange-bg:#FCEEE1;
+    --purple:#5B2A99;
+    --purple-bg:#F0E8FA;
+    --teal:#0A6E72;
+    --teal-bg:#E0F3F3;
+    --gold:#8A5A00;
+    --gold-bg:#FBF0D8;
   }
   .cat-savings{ --accent:var(--blue); --accent-bg:var(--blue-bg); }
   .cat-insurance{ --accent:var(--green); --accent-bg:var(--green-bg); }
@@ -371,7 +405,7 @@
 
   /* ============ WHATSAPP FLOATING BUTTON ============ */
   .wa-float{
-    position:fixed; bottom:20px; right:20px; z-index:999;
+    position:fixed; bottom:calc(20px + env(safe-area-inset-bottom)); right:calc(20px + env(safe-area-inset-right)); z-index:999;
     width:56px; height:56px; border-radius:50%; background:#25D366;
     display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,.25);
     text-decoration:none;
@@ -380,7 +414,7 @@
 
   /* ============ TEXT SIZE TOGGLE ============ */
   .text-toggle{
-    position:fixed; bottom:20px; left:20px; z-index:999;
+    position:fixed; bottom:calc(20px + env(safe-area-inset-bottom)); left:calc(20px + env(safe-area-inset-left)); z-index:999;
     background:#fff; border:2px solid var(--postal-red); border-radius:24px;
     display:flex; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.15);
   }
@@ -417,6 +451,10 @@
   @media print{
     .wa-float, .text-toggle, .quickbar, .masthead-inner nav{ display:none !important; }
     body{ font-size:12pt; }
+    /* Keep each document checklist intact on one page — no splitting a list of
+       required documents across a page break when someone prints it to bring
+       to the office counter. */
+    .doc-box, .stamp, .facility, .featured-box{ break-inside:avoid; page-break-inside:avoid; }
   }
   @media (max-width:600px){ .doc-list{ grid-template-columns:1fr; } }
   @media (max-width:760px){ .calc-box{ grid-template-columns:1fr; } .calc-row{ grid-template-columns:1fr;} .compare-grid{ grid-template-columns:1fr; } }
@@ -447,7 +485,11 @@
 
   @media (prefers-reduced-motion:no-preference){
     .stamp{ transition:transform .18s ease, box-shadow .18s ease; }
-    .stamp:hover{ transform:translateY(-4px); box-shadow:0 10px 18px rgba(0,0,0,.08); }
+    .stamp:hover{ transform:translateY(-4px); box-shadow:0 10px 20px -6px color-mix(in srgb, var(--accent, var(--postal-red)) 45%, transparent); }
+    .qbtn{ transition:transform .15s ease, box-shadow .15s ease; }
+    .qbtn:hover{ transform:translateY(-2px); box-shadow:0 6px 14px -4px rgba(200,16,46,.35); }
+    .calc-result.flash{ animation:resultPulse .5s ease; }
+    @keyframes resultPulse{ 0%{ box-shadow:0 0 0 0 rgba(255,255,255,.5) inset; } 100%{ box-shadow:0 0 0 14px rgba(255,255,255,0) inset; } }
   }
   a:focus-visible, button:focus-visible{ outline:3px solid var(--postal-red-dark); outline-offset:2px; }
 </style>
@@ -775,7 +817,7 @@
       <p class="calc-hint" id="schemeHint">પોસ્ટ ઓફિસ બચત ખાતામાં કોઈપણ સમયે રકમ જમા/ઉપાડ કરી શકાય છે. વ્યાજ વાર્ષિક ધોરણે ગણેલ છે.</p>
     </div>
 
-    <div class="calc-result">
+    <div class="calc-result" id="savingsResultBox">
       <div class="row"><span class="k">કુલ જમા રકમ</span><span class="v" id="rInvested">₹0</span></div>
       <div class="row"><span class="k">અંદાજિત વ્યાજ</span><span class="v" id="rInterest">₹0</span></div>
       <div class="row" id="rPeriodRow" style="display:none;"><span class="k" id="rPeriodLabel">-</span><span class="v" id="rPeriod">₹0</span></div>
@@ -822,20 +864,20 @@
     </div>
 
     <div class="compare-grid">
-      <div class="calc-result compare-col">
+      <div class="calc-result compare-col" id="rdResultBox">
         <h4>💰 RD (5 વર્ષ + 5 વર્ષ extension)</h4>
         <div class="row"><span class="k">5 વર્ષે કુલ જમા</span><span class="v" id="cmpRDInvested">₹0</span></div>
         <div class="row"><span class="k">5 વર્ષે પરિપક્વતા</span><span class="v" id="cmpRDMaturity">₹0</span></div>
         <div class="row"><span class="k">10 વર્ષે કુલ જમા</span><span class="v" id="cmpRDInvested10">₹0</span></div>
         <div class="row big"><span class="k">10 વર્ષે પરિપક્વતા</span><span class="v" id="cmpRDMaturity10">₹0</span></div>
       </div>
-      <div class="calc-result compare-col highlight">
+      <div class="calc-result compare-col highlight" id="pliResultBox">
         <h4>🛡️ PLI સંતોષ</h4>
         <div class="row"><span class="k">મુદત</span><span class="v" id="cmpPLITerm">—</span></div>
         <div class="row"><span class="k">વીમા કવચ</span><span class="v" id="cmpPLISA">₹0</span></div>
         <div class="row big"><span class="k">પરિપક્વતા (SA+બોનસ)</span><span class="v" id="cmpPLIMaturity">₹0</span></div>
       </div>
-      <div class="calc-result compare-col">
+      <div class="calc-result compare-col" id="rpliResultBox">
         <h4>🌾 RPLI ગ્રામ સંતોષ</h4>
         <div class="row"><span class="k">મુદત</span><span class="v" id="cmpRPLITerm">—</span></div>
         <div class="row"><span class="k">વીમા કવચ</span><span class="v" id="cmpRPLISA">₹0</span></div>
@@ -1040,7 +1082,7 @@
     </div>
 
     <div>
-      <div class="calc-result">
+      <div class="calc-result" id="premiumResultBox">
         <div class="row"><span class="k" id="premiumLabel">પ્રીમિયમ</span><span class="v" id="premiumOut">—</span></div>
         <div class="row"><span class="k" id="maturityLabel">અંદાજિત પરિપક્વતા રકમ</span><span class="v" id="maturityOut">—</span></div>
         <div class="calc-note on-dark" id="calcDetailNote"></div>
@@ -1319,6 +1361,19 @@
     return "₹" + Math.round(n).toLocaleString('en-IN');
   }
 
+  // Briefly pulses a result box so updated numbers are noticeable after typing.
+  // No-op under prefers-reduced-motion since the .flash animation itself is
+  // only defined inside a @media (prefers-reduced-motion:no-preference) block.
+  let _flashTimers = {};
+  function flashResult(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.classList.remove('flash');
+    clearTimeout(_flashTimers[id]);
+    requestAnimationFrame(() => el.classList.add('flash'));
+    _flashTimers[id] = setTimeout(() => el.classList.remove('flash'), 550);
+  }
+
   function onSchemeChange(){
     const key = document.getElementById('schemeSelect').value;
     const s = SCHEMES[key];
@@ -1433,6 +1488,7 @@
     } else {
       periodRow.style.display = 'none';
     }
+    flashResult('savingsResultBox');
   }
 
   // ================= PLI/RPLI RATE TABLES (official) =================
@@ -1519,6 +1575,7 @@ const YUGAL_SURAKSHA = {"rates":{"21":{"5":191.0,"6":159.0,"7":136.0,"8":118.0,"
 
     computeEndowmentFromPremium('cmpPLI', SANTOSH, 10000, BONUS_PER_1000.santosh, age, matAge, amount, term);
     computeEndowmentFromPremium('cmpRPLI', GRAM_SANTOSH, 1000, BONUS_PER_1000.gram_santosh, age, matAge, amount, term);
+    flashResult('rdResultBox'); flashResult('pliResultBox'); flashResult('rpliResultBox');
   }
 
   function computeEndowmentFromPremium(prefix, table, unit, bonusRate, age, matAge, monthlyAmount, term){
@@ -1656,6 +1713,7 @@ const YUGAL_SURAKSHA = {"rates":{"21":{"5":191.0,"6":159.0,"7":136.0,"8":118.0,"
       maturityLabel.textContent = "પરિપક્વતા";
       maturityOut.textContent = "—";
       detailNote.textContent = plan.hint;
+      flashResult('premiumResultBox');
       return;
     }
 
@@ -1763,6 +1821,7 @@ const YUGAL_SURAKSHA = {"rates":{"21":{"5":191.0,"6":159.0,"7":136.0,"8":118.0,"
     }
 
     detailNote.textContent = note;
+    flashResult('premiumResultBox');
   }
 
 
