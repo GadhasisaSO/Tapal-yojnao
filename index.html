@@ -489,12 +489,16 @@
   }
 
   @media (prefers-reduced-motion:no-preference){
-    .stamp{ transition:transform .18s ease, box-shadow .18s ease; }
+    /* Only transform/opacity are transitioned here — box-shadow changes are
+       applied as instant hover states (one cheap paint), never animated,
+       so these stay off the main-thread / GPU-composited. */
+    .stamp{ transition:transform .18s ease; }
     .stamp:hover{ transform:translateY(-4px); box-shadow:0 10px 20px -6px color-mix(in srgb, var(--accent, var(--postal-red)) 45%, transparent); }
-    .qbtn{ transition:transform .15s ease, box-shadow .15s ease; }
+    .qbtn{ transition:transform .15s ease; }
     .qbtn:hover{ transform:translateY(-2px); box-shadow:0 6px 14px -4px rgba(200,16,46,.35); }
-    .calc-result.flash{ animation:resultPulse .5s ease; }
-    @keyframes resultPulse{ 0%{ box-shadow:0 0 0 0 rgba(255,255,255,.5) inset; } 100%{ box-shadow:0 0 0 14px rgba(255,255,255,0) inset; } }
+    .calc-result{ transition:transform .12s ease; }
+    .calc-result.flash{ animation:resultPulse .4s ease; }
+    @keyframes resultPulse{ 0%{ transform:scale(1); } 35%{ transform:scale(1.015); } 100%{ transform:scale(1); } }
   }
   a:focus-visible, button:focus-visible{ outline:3px solid var(--postal-red-dark); outline-offset:2px; }
 </style>
