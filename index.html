@@ -210,6 +210,14 @@
     padding:4px 12px; border-radius:14px; font-weight:600; font-size:.85rem;
   }
   .masthead-inner nav a.nav-genz:hover{ background:rgba(255,255,255,.24); border-bottom:1px solid rgba(255,255,255,.4); }
+  .theme-toggle{
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.4); color:#fff;
+    width:42px; height:42px; border-radius:50%; font-size:1.15rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; flex:none;
+    transition:background .15s ease, transform .15s ease; padding:0;
+  }
+  .theme-toggle:hover{ background:rgba(255,255,255,.26); }
+  .theme-toggle:active{ transform:scale(.92); }
 
   /* ============ HERO ============ */
   .hero-band{
@@ -418,6 +426,11 @@
   .doc-list li{ font-size:.9rem; display:flex; gap:8px; align-items:flex-start; }
   .doc-list li::before{ content:"✔"; color:var(--accent, var(--postal-red)); font-weight:700; flex:none; }
   .doc-note{ font-size:.78rem; color:#7A4646; margin-top:14px; }
+  .warn-box{
+    background:#FFF3CD; border:1px solid #E8C468; border-radius:3px;
+    padding:10px 14px; font-size:.82rem; color:#5a4a20; margin:10px 0 18px;
+  }
+  .warn-box a{ color:#5a4a20; font-weight:600; }
   .doc-links{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
   .doc-links a{
     display:inline-flex; align-items:center; gap:6px; font-size:.85rem; font-weight:600;
@@ -614,9 +627,90 @@
     @keyframes resultPulse{ 0%{ transform:scale(1); } 35%{ transform:scale(1.015); } 100%{ transform:scale(1); } }
   }
   a:focus-visible, button:focus-visible{ outline:3px solid var(--postal-red-dark); outline-offset:2px; }
+
+  /* ============================================================
+     DARK THEME
+     Toggled via [data-theme="dark"] on <html>. Redefines the shared
+     tokens (--paper, --ink, --line, --navy, and each category's
+     --accent/--accent-bg pair) so every component that already reads
+     those variables adapts automatically. A handful of components use
+     literal hex values instead of variables (stamp cards, tables,
+     muted paragraph text) — those get explicit overrides below.
+     The dark calculator widgets (.calc-box/.compare-box) were already
+     dark-themed by design and need no changes here.
+     ============================================================ */
+  :root[data-theme="dark"]{
+    --paper:#15121A;
+    --paper-2:#241219;
+    --ink:#EDE6E8;
+    --line:#3A2A31;
+    --navy:#FF6B7A;
+    --blue:#5B9BFF;   --blue-bg:#142238;
+    --green:#4ADE80;  --green-bg:#12241A;
+    --orange:#FFA25C; --orange-bg:#2A1810;
+    --purple:#B48CFF; --purple-bg:#211530;
+    --teal:#5EEAD4;   --teal-bg:#0F2426;
+    --gold:#FFC94D;   --gold-bg:#241A08;
+  }
+  [data-theme="dark"] body{ background:var(--paper); color:var(--ink); }
+  [data-theme="dark"] .hero-band{
+    background:
+      radial-gradient(circle at 8% 15%, rgba(91,155,255,.12) 0, transparent 40%),
+      radial-gradient(circle at 92% 20%, rgba(74,222,128,.12) 0, transparent 42%),
+      radial-gradient(circle at 85% 90%, rgba(255,162,92,.10) 0, transparent 40%),
+      radial-gradient(circle at 10% 90%, rgba(180,140,255,.10) 0, transparent 40%),
+      linear-gradient(180deg, #1A1520 0%, #15121A 70%);
+  }
+  [data-theme="dark"] .hero p.sub{ color:#D8C6C6; }
+  [data-theme="dark"] .hero-eyebrow{ color:#FF6B7A; border-color:#FF6B7A; }
+  [data-theme="dark"] .postmark-ring,
+  [data-theme="dark"] .postmark .wave{ stroke:#FF6B7A; }
+  [data-theme="dark"] .postmark text{ fill:#FF6B7A; }
+  [data-theme="dark"] .btn.primary{ background:#FF6B7A; border-color:#FF6B7A; color:#1A1114; }
+  /* cat-office's --accent normally points at --postal-red-dark, which is
+     intentionally left untouched above (footer/hero-eyebrow etc rely on it
+     staying dark). Scoped override so office-section text/badges that read
+     var(--accent) get a readable color against the dark page too. */
+  [data-theme="dark"] .cat-office{ --accent:#FF6B7A; }
+  [data-theme="dark"] .stamp{
+    background:#201A22; outline-color:rgba(255,107,122,.28); box-shadow:0 2px 0 rgba(0,0,0,.3);
+  }
+  [data-theme="dark"] .stamp p{ color:#CBB8B8; }
+  [data-theme="dark"] .stamp .meta{ color:#B69B9B; }
+  [data-theme="dark"] .rate-strip{ background:#201A22; }
+  [data-theme="dark"] .rate-strip .cell .lbl{ color:#CBB8B8; }
+  [data-theme="dark"] .facility p{ color:#CBB8B8; }
+  [data-theme="dark"] .section-note{ color:#CBB8B8; }
+  [data-theme="dark"] .doc-note{ color:#C79E9E; }
+  [data-theme="dark"] .disclaimer{ color:#C79E9E; }
+  [data-theme="dark"] .faq-item{ background:#201A22; border-color:var(--line); }
+  [data-theme="dark"] .faq-item p{ color:#CBB8B8; }
+  [data-theme="dark"] table.rate-table{ background:#201A22; }
+  [data-theme="dark"] table.rate-table td{ background:#201A22; color:var(--ink); }
+  [data-theme="dark"] table.rate-table tr:hover td{ background:var(--accent-bg); }
+  [data-theme="dark"] .text-toggle{ background:#201A22; border-color:#FF6B7A; }
+  [data-theme="dark"] .text-toggle button{ background:#201A22; color:#FF6B7A; }
+  [data-theme="dark"] a:focus-visible, [data-theme="dark"] button:focus-visible{ outline-color:#FF6B7A; }
+  [data-theme="dark"] .quickbar{ background:#201A22; }
+  [data-theme="dark"] .qbtn{ background:#201A22; color:#FF6B7A; border-color:#FF6B7A; }
+  [data-theme="dark"] .qbtn:hover{ background:#FF6B7A; color:#1A1114; }
+  [data-theme="dark"] .quiz-options button{ background:#201A22; }
+  [data-theme="dark"] .quiz-result{ background:#201A22; }
+  [data-theme="dark"] .warn-box{ background:#332405; border-color:#5a4415; color:#FFD97A; }
+  [data-theme="dark"] .warn-box a{ color:#FFD97A; }
 </style>
 </head>
 <body>
+<script>
+  // Applied immediately (before paint) to avoid a flash of the wrong theme.
+  (function(){
+    try{
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      if(theme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+    }catch(e){}
+  })();
+</script>
 
 <a class="wa-float" href="https://wa.me/919429006720" target="_blank" rel="noopener" aria-label="WhatsApp પર સંપર્ક કરો">
   <svg viewBox="0 0 32 32" fill="#fff"><path d="M16 2C8.3 2 2 8.3 2 16c0 2.6.7 5.1 2 7.3L2 30l6.9-1.8c2.1 1.2 4.5 1.8 7.1 1.8 7.7 0 14-6.3 14-14S23.7 2 16 2zm0 25.5c-2.3 0-4.5-.6-6.4-1.8l-.5-.3-4.1 1.1 1.1-4-.3-.5C4.5 20 3.9 18 3.9 16c0-6.7 5.4-12.1 12.1-12.1S28.1 9.3 28.1 16 22.7 27.5 16 27.5zm6.6-9c-.4-.2-2.1-1-2.4-1.2-.3-.1-.5-.2-.8.2-.2.3-.9 1.2-1.1 1.4-.2.2-.4.3-.7.1-.4-.2-1.5-.6-2.9-1.8-1.1-1-1.8-2.1-2-2.5-.2-.4 0-.6.2-.7.2-.2.4-.4.6-.7.2-.2.3-.4.4-.6.1-.3.1-.5 0-.7-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.3 3.4 1.4 3.6c.2.2 2.5 3.9 6.2 5.4.9.4 1.5.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.1-.3-.2-.7-.4z"/></svg>
@@ -645,6 +739,7 @@
         <span class="name">ગઢસીસા સબ પોસ્ટ ઓફિસ · પિનકોડ 370445</span>
       </div>
     </div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="ડાર્ક થીમ ટૉગલ કરો" aria-pressed="false" title="ડાર્ક / લાઇટ થીમ">🌙</button>
     <nav>
       <a href="#office">અમારી ઓફિસ</a>
       <a href="#bachat">બચત યોજનાઓ</a>
@@ -858,7 +953,7 @@
 
   <div class="quiz-box">
     <h3>🧭 તમારા માટે કઈ યોજના યોગ્ય છે?</h3>
-    <p style="font-size:.88rem; color:#5a3a3a; margin-bottom:14px;">નીચે તમારી જરૂરિયાત પસંદ કરો:</p>
+    <p class="section-note" style="margin-bottom:14px;">નીચે તમારી જરૂરિયાત પસંદ કરો:</p>
     <div class="quiz-options" id="quizOptions">
       <button onclick="quizPick('income', this)">દર મહિને/ત્રિમાસિકે નિયમિત આવક જોઈએ છે</button>
       <button onclick="quizPick('daughter', this)">દીકરીના ભણતર/લગ્ન માટે બચત</button>
@@ -873,7 +968,7 @@
 
   <div class="doc-box" style="margin-top:24px;">
     <h3>📲 ePassbook — ઓનલાઈન બેલેન્સ અને મિની સ્ટેટમેન્ટ</h3>
-    <p style="font-size:.88rem; color:#5a3a3a; margin-bottom:10px;">Savings Account, PPF અને Sukanya Samriddhi ખાતાધારકો હવે પોસ્ટ ઓફિસ ગયા વગર, ઘરે બેઠાં જ મોબાઈલ નંબર અને OTP થી પોતાનું બેલેન્સ અને મિની સ્ટેટમેન્ટ ઓનલાઈન જોઈ શકે છે.</p>
+    <p class="section-note" style="margin-bottom:10px;">Savings Account, PPF અને Sukanya Samriddhi ખાતાધારકો હવે પોસ્ટ ઓફિસ ગયા વગર, ઘરે બેઠાં જ મોબાઈલ નંબર અને OTP થી પોતાનું બેલેન્સ અને મિની સ્ટેટમેન્ટ ઓનલાઈન જોઈ શકે છે.</p>
     <ul class="doc-list">
       <li>નીચે "ePassbook ખોલો" બટન દબાવો — Google search ખૂલશે, ત્યાં પહેલા પરિણામ (posbseva.indiapost.gov.in) પર ક્લિક કરો</li>
       <li>રજિસ્ટર્ડ મોબાઈલ નંબર અને કેપ્ચા નાખો, OTP વેરિફાય કરો</li>
@@ -1147,7 +1242,7 @@
     <h2>🧮 વીમા પ્રીમિયમ કેલ્ક્યુલેટર</h2>
   </div>
   <p class="section-note">યોજના, ઉંમર અને વીમા રકમ નાખો — સત્તાવાર PLI/RPLI પ્રીમિયમ કોષ્ટકો પરથી ચોક્કસ પ્રીમિયમ અને અંદાજિત પરિપક્વતા રકમ ગણાય છે.</p>
-  <div style="background:#FFF3CD; border:1px solid #E8C468; border-radius:3px; padding:10px 14px; font-size:.82rem; color:#5a4a20; margin:10px 0 18px;">
+  <div class="warn-box">
     ⚠️ બોનસ દર દર વર્ષે સરકાર દ્વારા જાહેર થાય છે અને બદલાઈ શકે છે (અહીં તાજેતરમાં જાહેર થયેલ દર વાપર્યો છે) — એટલે <strong>પરિપક્વતા રકમ અંદાજિત</strong> છે. <strong>પ્રીમિયમ</strong> સત્તાવાર કોષ્ટક મુજબ ચોક્કસ છે (GST વર્તમાનમાં 0%). કોઈપણ શંકા હોય તો <a href="https://pli.indiapost.gov.in" target="_blank" rel="noopener">pli.indiapost.gov.in</a> અથવા ઓફિસનો સંપર્ક કરો.
   </div>
   <hr class="perf">
@@ -1328,7 +1423,7 @@
       <h3>નેટ બેંકિંગ</h3>
       <p>પોસ્ટ ઓફિસ બચત ખાતાનું ઓનલાઈન સંચાલન, બેલેન્સ ચકાસણી અને ટ્રાન્સફર સુવિધા. POSB, RD, TD, PPF, SSA ખાતા ઓનલાઈન સંચાલિત કરી શકાય.</p>
       <p style="margin-top:8px;"><a href="https://ebanking.indiapost.gov.in/" target="_blank" rel="noopener" style="font-weight:600; color:var(--accent);">🔗 ઈન્ટરનેટ બેંકિંગ ખોલો — ebanking.indiapost.gov.in</a></p>
-      <p style="margin-top:6px; font-size:.78rem; color:#7A4646;">નોંધ: પ્રથમ વખત વાપરવા માટે ગઢસીસા સબ પોસ્ટ ઓફિસમાં એકવાર રજિસ્ટ્રેશન ફોર્મ ભરવું જરૂરી છે.</p>
+      <p style="margin-top:6px; font-size:.78rem;">નોંધ: પ્રથમ વખત વાપરવા માટે ગઢસીસા સબ પોસ્ટ ઓફિસમાં એકવાર રજિસ્ટ્રેશન ફોર્મ ભરવું જરૂરી છે.</p>
     </div>
     <div class="facility">
       <h3>Dak Sewa મોબાઈલ એપ</h3>
@@ -1343,7 +1438,7 @@
 
   <div class="doc-box">
     <h3>📱 IPPB બેલેન્સ/મિની સ્ટેટમેન્ટ — SMS અને મિસ્ડ કૉલ સુવિધા</h3>
-    <p style="font-size:.88rem; color:#5a3a3a; margin-bottom:12px;">IPPB ખાતાધારકો ઈન્ટરનેટ વગર પણ મિસ્ડ કૉલ અથવા SMS થી બેલેન્સ અને મિની સ્ટેટમેન્ટ જાણી શકે છે.</p>
+    <p class="section-note" style="margin-bottom:12px;">IPPB ખાતાધારકો ઈન્ટરનેટ વગર પણ મિસ્ડ કૉલ અથવા SMS થી બેલેન્સ અને મિની સ્ટેટમેન્ટ જાણી શકે છે.</p>
     <div class="doc-note"><strong>બેલેન્સ જાણવા:</strong> તમારા IPPB ખાતામાં રજિસ્ટર થયેલ મોબાઈલ નંબર પરથી <strong>9910223398</strong> પર મિસ્ડ કૉલ કરો — બેલેન્સ જણાવતો SMS આવશે. (નોંધ: મિસ કૉલ ફક્ત રજિસ્ટર્ડ નંબર પરથી જ કરવો.)</div>
     <div class="doc-links">
       <a href="tel:9910223398">📞 મિસ્ડ કૉલ કરો: 9910223398</a>
@@ -1959,6 +2054,28 @@ const YUGAL_SURAKSHA = {"rates":{"21":{"5":191.0,"6":159.0,"7":136.0,"8":118.0,"
   onSchemeChange();
   onInsTypeChange();
   runCompare();
+
+  // ============ DARK THEME TOGGLE ============
+  (function(){
+    const btn = document.getElementById('themeToggle');
+    if(!btn) return;
+    function syncButton(){
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.textContent = isDark ? '☀️' : '🌙';
+      btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    }
+    syncButton();
+    btn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if(isDark){
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme','dark');
+      }
+      try{ localStorage.setItem('theme', isDark ? 'light' : 'dark'); }catch(e){}
+      syncButton();
+    });
+  })();
 
   // Register service worker for offline support / installability
   if ('serviceWorker' in navigator) {
