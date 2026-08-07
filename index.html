@@ -92,6 +92,43 @@
   .cat-other{ --accent:var(--teal); --accent-bg:var(--teal-bg); }
   .cat-rakhi{ --accent:var(--gold); --accent-bg:var(--gold-bg); }
   .cat-office{ --accent:var(--postal-red-dark); --accent-bg:var(--paper-2); }
+
+  /* ============ VIBRANT GRADIENT CARD SYSTEM ============
+     Reusable across sections — each derives its two-tone diagonal
+     gradient from that section's own --accent, so the "vibrant" look
+     stays color-coded per category instead of one fixed color everywhere. */
+  .grad-card{
+    position:relative; overflow:hidden; border-radius:16px; padding:26px 24px;
+    background:linear-gradient(135deg,
+      color-mix(in srgb, var(--accent) 65%, #ff9d3d) 0%,
+      var(--accent) 55%,
+      color-mix(in srgb, var(--accent) 80%, black) 100%);
+    color:#fff;
+  }
+  .grad-card::before{
+    content:""; position:absolute; inset:0;
+    /* dark scrim guarantees white text stays readable no matter how light
+       the accent hue is (gold/orange especially) — not just decorative */
+    background:
+      linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.2)),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.09) 0 12px, transparent 12px 24px);
+    pointer-events:none;
+  }
+  .grad-card > *{ position:relative; }
+  .grad-card h2, .grad-card h3{ color:#fff; }
+  .grad-card p{ color:rgba(255,255,255,.92); }
+  .grad-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.35);
+    padding:10px 20px; border-radius:10px; font-weight:700; font-size:1.05rem;
+  }
+  .grad-badge{
+    display:inline-block; background:linear-gradient(135deg,
+      color-mix(in srgb, var(--accent) 65%, #ff9d3d), var(--accent));
+    color:#fff; font-weight:700; font-family:'Courier Prime',monospace;
+    padding:6px 14px; border-radius:20px; font-size:.95rem;
+  }
+
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
@@ -132,29 +169,40 @@
 
   /* ============ HEADER / MASTHEAD ============ */
   header.masthead{
-    background:var(--navy);
+    position:relative; overflow:hidden;
+    background:linear-gradient(135deg, color-mix(in srgb, var(--navy) 70%, #ff5a5a) 0%, var(--navy) 55%, color-mix(in srgb, var(--navy) 80%, black) 100%);
     color:#FFFFFF;
     border-bottom:6px double var(--mustard);
   }
+  header.masthead::before{
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(135deg, rgba(255,255,255,.07) 0 12px, transparent 12px 24px);
+    pointer-events:none;
+  }
   .masthead-inner{
+    position:relative;
     max-width:1100px; margin:0 auto; padding:14px 24px;
     display:flex; align-items:center; justify-content:space-between; gap:16px;
     flex-wrap:wrap;
   }
   .masthead-title{
-    display:flex; align-items:center; gap:12px;
+    display:flex; align-items:center; gap:14px;
   }
   .masthead-title .glyph{
     width:100px;height:68px;border-radius:8px;
     border:2px solid var(--mustard);
     display:flex;align-items:center;justify-content:center;
     flex:none; background:#FFFFFF; overflow:hidden;
+    box-shadow:0 4px 14px rgba(0,0,0,.3);
   }
   .masthead-title .glyph svg{ width:28px; height:28px; }
-  .masthead-title .name-block{ display:flex; flex-direction:column; line-height:1.3; }
-  .masthead-title span.name{ font-weight:600; font-size:1.05rem; letter-spacing:.03em;}
-  .masthead-title span.dept{ font-size:.7rem; color:#F6D3D3; letter-spacing:.04em; }
-  .masthead-inner nav{ font-size:.92rem; opacity:.9; display:flex; gap:18px; flex-wrap:wrap;}
+  .masthead-title .name-block{ display:flex; flex-direction:column; line-height:1.35; }
+  .masthead-title span.name{ font-weight:700; font-size:1.12rem; letter-spacing:.02em;}
+  .masthead-title span.dept{
+    font-size:.7rem; color:#FFE6C2; letter-spacing:.06em; text-transform:uppercase;
+    font-family:'Courier Prime',monospace;
+  }
+  .masthead-inner nav{ font-size:.92rem; opacity:.95; display:flex; gap:18px; flex-wrap:wrap;}
   .masthead-inner nav a{ text-decoration:none; border-bottom:1px dashed transparent;}
   .masthead-inner nav a:hover{ border-bottom-color:var(--mustard); }
   .masthead-inner nav a.nav-genz{
@@ -247,10 +295,14 @@
     border-top:4px solid var(--accent, var(--postal-red));
   }
   .stamp .rate{
-    font-family:'Courier Prime',monospace; font-weight:700; color:var(--accent, var(--postal-red));
-    font-size:1.5rem; display:block; margin-top:6px;
+    font-family:'Courier Prime',monospace; font-weight:700; color:#fff;
+    font-size:1.2rem; display:inline-block; margin-top:10px;
+    padding:6px 14px; border-radius:20px;
+    background:
+      linear-gradient(rgba(0,0,0,.18), rgba(0,0,0,.18)),
+      linear-gradient(135deg, color-mix(in srgb, var(--accent, var(--postal-red)) 65%, #ff9d3d) 0%, var(--accent, var(--postal-red)) 100%);
   }
-  .stamp .rate small{ font-size:.6em; font-weight:400; color:var(--ink); }
+  .stamp .rate small{ font-size:.62em; font-weight:400; color:#fff; }
   .stamp h3{ font-size:1.05rem; font-weight:600; color:var(--navy); min-height:2.6em;}
   .stamp p{ font-size:.9rem; color:#5a3a3a; margin:10px 0 0;}
   .stamp .meta{
@@ -294,8 +346,9 @@
     background:linear-gradient(90deg,#7c3aed,#ec4899,#22d3ee);
   }
   .calc-box::after{
-    content:""; position:absolute; width:220px; height:220px; border-radius:50%; filter:blur(90px);
-    background:#7c3aed; opacity:.25; top:-90px; right:-70px; z-index:-1; pointer-events:none;
+    content:""; position:absolute; width:340px; height:340px; border-radius:50%;
+    background:radial-gradient(circle, rgba(124,58,237,.30) 0%, rgba(124,58,237,0) 70%);
+    top:-140px; right:-120px; z-index:-1; pointer-events:none;
   }
   .calc-box .field{ margin-bottom:16px; }
   .calc-box label{ display:block; font-size:.85rem; color:#9aa0b4; font-weight:600; margin-bottom:6px;}
@@ -411,6 +464,22 @@
   table.compare tr:hover td{ background:#1c1424; }
   table.compare td.rate{ color:#22d3ee; font-family:'Courier Prime',monospace; font-weight:700; }
 
+  /* Light-themed variant for tables outside the dark calculator widget —
+     header gets the same accent-gradient + diagonal-stripe treatment as
+     .grad-card, but the body stays light/legible against the page. */
+  table.rate-table{ background:#fff; }
+  table.rate-table th{
+    background:
+      linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.2)),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.09) 0 12px, transparent 12px 24px),
+      linear-gradient(135deg, color-mix(in srgb, var(--accent) 65%, #ff9d3d) 0%, var(--accent) 60%, color-mix(in srgb, var(--accent) 80%, black) 100%);
+    color:#fff; position:static;
+  }
+  table.rate-table td{ color:var(--ink); background:#fff; }
+  table.rate-table td:first-child, table.rate-table th:first-child{ background:transparent; position:static; }
+  table.rate-table tr:hover td{ background:var(--accent-bg); }
+  table.rate-table td.rate{ color:var(--accent); }
+
   /* ============ FAQ ACCORDION ============ */
   .faq-item{
     border:1px solid var(--line); border-radius:3px; margin-bottom:10px; background:#fff; overflow:hidden;
@@ -500,11 +569,21 @@
 
   /* ============ CALLOUT ============ */
   .callout{
-    background:var(--navy); color:#FFF5F5; border-radius:2px; padding:30px 26px;
+    position:relative; overflow:hidden;
+    background:linear-gradient(135deg, color-mix(in srgb, var(--navy) 70%, #ff5a5a) 0%, var(--navy) 55%, color-mix(in srgb, var(--navy) 80%, black) 100%);
+    color:#FFF5F5; border-radius:12px; padding:30px 26px;
     display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
   }
+  .callout::before{
+    content:""; position:absolute; inset:0;
+    background:
+      linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.2)),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.08) 0 12px, transparent 12px 24px);
+    pointer-events:none;
+  }
+  .callout > *{ position:relative; }
   .callout h3{ color:#FFF5F5; font-size:1.25rem; font-weight:700;}
-  .callout p{ margin:6px 0 0; color:#F6D3D3; font-size:.92rem;}
+  .callout p{ margin:6px 0 0; color:#FFFFFF; font-size:.92rem;}
 
   /* ============ FOOTER ============ */
   footer{
@@ -639,6 +718,13 @@
     <h2>🏤 ગઢસીસા સબ પોસ્ટ ઓફિસ — વિગતો</h2>
   </div>
   <hr class="perf">
+
+  <div class="grad-card" style="margin-bottom:22px;">
+    <h3 style="font-size:1.5rem; margin:0 0 8px;">ગઢસીસા સબ પોસ્ટ ઓફિસ ★ S.O</h3>
+    <p style="margin:0 0 18px;">તાલુકો માંડવી, જિલ્લો કચ્છ</p>
+    <span class="grad-pill">પિનકોડ 370445</span>
+  </div>
+
   <div class="rate-strip" style="margin-bottom:22px;">
     <div class="cell"><span class="num" style="font-size:1.05rem;">370445</span><span class="lbl">પિનકોડ</span></div>
     <div class="cell"><span class="num" style="font-size:1.05rem;">સબ ઓફિસ</span><span class="lbl">ઓફિસનો પ્રકાર</span></div>
@@ -1201,7 +1287,7 @@
 
   <h3 style="font-size:1.05rem; color:var(--accent); margin:26px 0 12px;">🎀 International Tracked Packet — દેશ મુજબ ભાડું</h3>
   <div class="compare-wrap">
-    <table class="compare" style="min-width:0; width:100%;">
+    <table class="compare rate-table" style="min-width:0; width:100%;">
       <thead>
         <tr><th>દેશ</th><th>ભાડું (અંદાજિત)</th></tr>
       </thead>
@@ -1216,7 +1302,7 @@
   </div>
   <div class="doc-note" style="margin-top:14px;">નોંધ: ઉપરના ભાડા અંદાજિત છે અને બદલાઈ શકે છે — ચોક્કસ ભાડા માટે કૃપા કરી ગઢસીસા સબ પોસ્ટ ઓફિસનો સંપર્ક કરો.</div>
 
-  <div class="callout" style="margin-top:26px; background:var(--accent);">
+  <div class="callout" style="margin-top:26px; background:linear-gradient(135deg, color-mix(in srgb, var(--accent) 70%, #ff5a5a) 0%, var(--accent) 55%, color-mix(in srgb, var(--accent) 80%, black) 100%);">
     <div>
       <h3>🎀 અંતર પૂરું થાય, પ્રેમ પહોંચે</h3>
       <p>આ રક્ષાબંધન, તમારી રાખડી ગઢસીસા સબ પોસ્ટ ઓફિસ થકી મોકલો — ભારતમાં કે વિદેશમાં, ગમે ત્યાં.</p>
