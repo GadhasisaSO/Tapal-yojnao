@@ -2054,7 +2054,26 @@ const YUGAL_SURAKSHA = {"rates":{"21":{"5":191.0,"6":159.0,"7":136.0,"8":118.0,"
   // init
   onSchemeChange();
   onInsTypeChange();
-  runCompare();
+  // runCompare() computes the RD/PLI/RPLI comparison table, which sits deep in
+  // the page (#vima-calculator). Running it unconditionally on every load did
+  // real DOM work (and fired the result-flash animation) for visitors who may
+  // never scroll there. Deferred to first approach instead — same values,
+  // computed just-in-time rather than eagerly. Falls back to running it
+  // immediately if IntersectionObserver isn't available.
+  (function(){
+    const compareSection = document.getElementById('vima');
+    if(!compareSection || !('IntersectionObserver' in window)){
+      runCompare();
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      if(entries.some(e => e.isIntersecting)){
+        runCompare();
+        io.disconnect();
+      }
+    }, { rootMargin: '200px' });
+    io.observe(compareSection);
+  })();
 
   // ============ DARK THEME TOGGLE ============
   (function(){
