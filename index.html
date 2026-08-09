@@ -121,7 +121,9 @@
     display:inline-flex; align-items:center; gap:8px;
     background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.35);
     padding:10px 20px; border-radius:10px; font-weight:700; font-size:1.05rem;
+    color:inherit; text-decoration:none;
   }
+  a.grad-pill:hover, a.grad-pill:focus-visible{ background:rgba(0,0,0,.3); }
   .grad-badge{
     display:inline-block; background:linear-gradient(135deg,
       color-mix(in srgb, var(--accent) 65%, #ff9d3d), var(--accent));
@@ -1460,10 +1462,12 @@
   <div class="grad-card" style="margin-bottom:14px;">
     <h3 style="font-size:1.5rem; margin:0 0 8px;">🆔 આધાર સેવા કેન્દ્ર</h3>
     <p style="margin:0 0 18px;">ગઢસીસા સબ પોસ્ટ ઓફિસ પર ઉપલબ્ધ વિશેષ સેવા</p>
-    <div style="display:flex; flex-wrap:wrap; gap:10px;">
+    <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
       <span class="grad-pill">✓ નવું આધાર (5 વર્ષથી નાના બાળકો)</span>
       <span class="grad-pill">✓ મોબાઈલ નંબર અપડેટ</span>
     </div>
+    <p style="margin:16px 0 8px; font-weight:600;">આધાર સેવા માટે સંપર્ક કરો:</p>
+    <a class="grad-pill" href="tel:+919033383224">📞 9033383224</a>
   </div>
 
   <p class="section-note">અન્ય આધાર સેવાઓ (જેમ કે નામ/સરનામું સુધારો, બાયોમેટ્રિક અપડેટ વગેરે) અત્યારે આ કેન્દ્ર પર ઉપલબ્ધ નથી.</p>
