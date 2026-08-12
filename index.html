@@ -217,11 +217,11 @@
   .masthead-inner nav a{ text-decoration:none; border-bottom:1px dashed transparent;}
   .masthead-inner nav a:hover{ border-bottom-color:var(--mustard); }
   .masthead-inner nav a.nav-genz{
-    background:#FFC94D; border:1px solid #FFC94D; color:var(--navy);
+    background:#FFD873; border:1px solid #FFD873; color:var(--navy);
     padding:4px 12px; border-radius:14px; font-weight:800; font-size:.85rem;
-    box-shadow:0 2px 8px rgba(0,0,0,.25);
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
   }
-  .masthead-inner nav a.nav-genz:hover{ background:#FFD873; border-bottom:1px solid #FFD873; }
+  .masthead-inner nav a.nav-genz:hover{ background:#FFE29A; border-bottom:1px solid #FFE29A; }
   .theme-toggle{
     background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.4); color:#fff;
     width:42px; height:42px; border-radius:50%; font-size:1.15rem; cursor:pointer;
@@ -233,31 +233,34 @@
 
   /* ============ HERO ============ */
   .hero-band{
-    background:
-      radial-gradient(circle at 8% 15%, rgba(21,101,192,.10) 0, transparent 40%),
-      radial-gradient(circle at 92% 20%, rgba(27,122,61,.10) 0, transparent 42%),
-      radial-gradient(circle at 85% 90%, rgba(217,112,11,.09) 0, transparent 40%),
-      radial-gradient(circle at 10% 90%, rgba(106,63,160,.08) 0, transparent 40%),
-      linear-gradient(180deg, #FFF9F5 0%, #FFFFFF 70%);
+    position:relative; overflow:hidden;
+    background:linear-gradient(135deg, #FF9933 0%, var(--postal-red) 45%, var(--postal-red-dark) 75%, #4A0A12 100%);
+  }
+  .hero-band::before{
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 12px, transparent 12px 24px);
+    pointer-events:none;
   }
   .hero{
     position:relative;
-    max-width:1100px; margin:0 auto; padding:64px 24px 56px;
+    max-width:1100px; margin:0 auto; padding:56px 24px 0;
     display:grid; grid-template-columns: 1.3fr 0.9fr; gap:40px; align-items:center;
   }
   .hero-eyebrow{
     font-family:'Courier Prime',monospace; text-transform:uppercase; letter-spacing:.18em;
-    font-size:.72rem; color:var(--postal-red-dark); border:1px solid var(--postal-red-dark);
+    font-size:.72rem; color:#fff; border:1px solid rgba(255,255,255,.55);
+    background:rgba(0,0,0,.16);
     display:inline-block; padding:4px 10px; border-radius:2px; margin-bottom:18px;
   }
   .hero h1{
     font-size:clamp(2rem, 4vw, 3rem);
     line-height:1.25;
     font-weight:800;
+    color:#fff;
   }
-  .hero h1 em{ font-style:normal; color:var(--postal-red); }
+  .hero h1 em{ font-style:normal; color:#FFE082; }
   .hero p.sub{
-    max-width:46ch; margin-top:18px; font-size:1.05rem; color:#5a3535;
+    max-width:46ch; margin-top:18px; font-size:1.05rem; color:rgba(255,255,255,.92);
   }
   .hero-ctas{ margin-top:28px; display:flex; gap:14px; flex-wrap:wrap;}
   .btn{
@@ -267,6 +270,49 @@
   .btn:hover{ transform:translateY(-2px); }
   .btn.primary{ background:var(--postal-red); color:#FFFFFF; border-color:var(--postal-red);}
   .btn.ghost{ background:transparent; color:var(--navy); border-color:var(--navy);}
+  /* punchy pill CTAs, used in the hero band only */
+  .hero-ctas .btn{ border-radius:30px; padding:13px 26px; }
+  .hero-ctas .btn.primary{ background:#FFC94D; color:#4A1A00; border-color:#FFC94D; font-weight:700; }
+  .hero-ctas .btn.ghost{ background:rgba(255,255,255,.08); color:#fff; border-color:rgba(255,255,255,.75); }
+  .hero-ctas .btn.ghost:hover{ background:rgba(255,255,255,.18); }
+
+  /* ============ HERO STAT STRIP ============ */
+  .hero-stats{
+    position:relative; max-width:1100px; margin:40px auto 0; padding:0 24px 0;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    border-top:1px solid rgba(255,255,255,.22);
+  }
+  .hero-stats .stat{
+    padding:20px 12px; text-align:center; border-right:1px solid rgba(255,255,255,.22);
+  }
+  .hero-stats .stat:last-child{ border-right:none; }
+  .hero-stats .stat .big{
+    display:block; font-family:'Courier Prime',monospace; font-weight:700;
+    font-size:1.5rem; color:#fff;
+  }
+  .hero-stats .stat .lbl{
+    display:block; font-size:.78rem; color:rgba(255,255,255,.85); margin-top:4px;
+  }
+  @media(max-width:640px){
+    .hero-stats{ grid-template-columns:repeat(2,1fr); }
+    .hero-stats .stat:nth-child(2){ border-right:none; }
+    .hero-stats .stat:nth-child(1), .hero-stats .stat:nth-child(2){
+      border-bottom:1px solid rgba(255,255,255,.22);
+    }
+  }
+
+  /* ============ RIBBON TAGS (card corner labels) ============ */
+  .ribbon{
+    position:absolute; top:14px; right:-8px;
+    background:linear-gradient(135deg, color-mix(in srgb, var(--accent, var(--postal-red)) 65%, #ff9d3d), var(--accent, var(--postal-red)));
+    color:#fff; font-size:.7rem; font-weight:700; padding:5px 12px 5px 14px;
+    border-radius:3px 0 0 3px; box-shadow:0 3px 8px rgba(0,0,0,.25);
+  }
+  .ribbon::after{
+    content:""; position:absolute; right:0; top:100%;
+    border-width:4px 8px 0 0; border-style:solid;
+    border-color:color-mix(in srgb, var(--accent, var(--postal-red)) 80%, black) transparent transparent transparent;
+  }
 
   /* Postmark seal - signature element */
   .postmark{
@@ -302,6 +348,7 @@
     background:#FFF8F8;
     padding:20px 18px 18px;
     position:relative;
+    overflow:visible;
     border-radius:2px;
     box-shadow:0 2px 0 rgba(0,0,0,.04);
     /* perforated stamp edge */
@@ -805,17 +852,25 @@
       <defs>
         <path id="circlePath" d="M 110,110 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" />
       </defs>
-      <circle class="postmark-ring" cx="110" cy="110" r="95" stroke-width="2"/>
-      <circle class="postmark-ring" cx="110" cy="110" r="88" stroke-width="1.2"/>
-      <text font-size="14" font-weight="700" letter-spacing="1.5">
+      <circle class="postmark-ring" cx="110" cy="110" r="95" stroke-width="2" style="stroke:#fff;"/>
+      <circle class="postmark-ring" cx="110" cy="110" r="88" stroke-width="1.2" style="stroke:#fff;"/>
+      <text font-size="14" font-weight="700" letter-spacing="1.5" style="fill:#fff;">
         <textPath href="#circlePath" startOffset="2%">ગઢસીસા સબ પોસ્ટ ઓફિસ ★ GADHASISA S.O ★</textPath>
       </text>
-      <text x="110" y="102" text-anchor="middle" font-size="17" font-weight="700">370445</text>
-      <text x="110" y="127" text-anchor="middle" font-size="11" font-family="'Noto Sans Gujarati', sans-serif" font-weight="600">તા. માંડવી, જિ. કચ્છ</text>
-      <path class="wave" d="M 45 145 q 8 -10 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0" stroke-width="2"/>
+      <text x="110" y="102" text-anchor="middle" font-size="17" font-weight="700" style="fill:#fff;">370445</text>
+      <text x="110" y="127" text-anchor="middle" font-size="11" font-family="'Noto Sans Gujarati', sans-serif" font-weight="600" style="fill:#fff;">તા. માંડવી, જિ. કચ્છ</text>
+      <path class="wave" d="M 45 145 q 8 -10 16 0 t 16 0 t 16 0 t 16 0 t 16 0 t 16 0" stroke-width="2" style="stroke:#fff;"/>
     </svg>
   </div>
 </div>
+
+<div class="hero-stats">
+  <div class="stat"><span class="big">૧૦૦%</span><span class="lbl">સરકારી સુરક્ષિત રોકાણ</span></div>
+  <div class="stat"><span class="big">શ્રેષ્ઠ</span><span class="lbl">વ્યાજ દરો અને ટપાલ વીમો</span></div>
+  <div class="stat"><span class="big">ઝડપી</span><span class="lbl">આધાર સુધારા કેન્દ્ર</span></div>
+  <div class="stat"><span class="big">ઘરબેઠા</span><span class="lbl">IPPB બેન્કિંગ સુવિધા</span></div>
+</div>
+<div style="height:44px;"></div>
 </div>
 
 <!-- ============ OFFICE INFO ============ -->
@@ -1466,7 +1521,7 @@
 </section>
 
 <!-- ============ OTHER FACILITIES ============ -->
-<section id="anya" class="cat-other">
+<section id="anya" class="cat-digital">
   <div class="section-head">
     <span class="tag">આધાર સેવા</span>
     <h2>🆔 આધાર સેવા કેન્દ્ર</h2>
