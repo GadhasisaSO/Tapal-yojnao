@@ -1,6 +1,7 @@
-const CACHE_NAME = "gadhasisa-post-v2";
+const CACHE_NAME = "gadhasisa-post-v3";
 const FILES_TO_CACHE = [
   "./index.html",
+  "./genz.html",
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png"
@@ -42,13 +43,22 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // For other files (icons, manifest): cache-first is fine since they rarely change.
+  // For other files (icons, manifest, and cross-origin assets like Google
+  // Fonts): cache-first is fine since they rarely change.
+  // Cross-origin requests (fonts.gstatic.com etc.) come back as "opaque"
+  // responses with status 0 — caching was previously gated on status===200,
+  // which silently excluded every font file from ever being cached. Opaque
+  // responses can't be inspected, but they're safe to cache blindly here
+  // since this branch only runs for our own known safe GET requests.
   event.respondWith(
     caches.match(event.request).then((cached) => {
       return (
         cached ||
         fetch(event.request).then((response) => {
-          if (event.request.method === "GET" && response.status === 200) {
+          const isCacheable =
+            event.request.method === "GET" &&
+            (response.status === 200 || response.type === "opaque");
+          if (isCacheable) {
             const clone = response.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           }
