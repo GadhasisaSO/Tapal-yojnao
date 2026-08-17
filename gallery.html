@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ગેલેરી — ગઢસીસા સબ પોસ્ટ ઓફિસ</title>
+<meta name="description" content="ગઢસીસા સબ પોસ્ટ ઓફિસની તમામ યોજનાઓ અને સેવાઓના પોસ્ટર — બચત, PLI/RPLI વીમો, ટપાલ સેવાઓ, IPPB બેંકિંગ અને વધુ.">
+<style>
+  :root{
+    --red:#C8102E; --red-dark:#8f0b21; --saffron:#FF9933; --green:#138808;
+    --cream:#FBF6EC; --ink:#241814; --paper:#ffffff; --line:#e7ddcf;
+    --muted:#6f6357; --gold:#B8860B; --pop:#FFD873;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:"Noto Sans Gujarati","Segoe UI",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative; overflow:hidden;
+    background:radial-gradient(120% 140% at 15% -10%, #ff5c7a 0%, var(--red) 38%, var(--red-dark) 75%, #4a0e18 100%);
+    color:#fff; padding:18px 18px 30px;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; opacity:.15; pointer-events:none;
+    background-image:radial-gradient(#fff 1px, transparent 1px);
+    background-size:16px 16px;
+  }
+  .topbar{display:flex; align-items:center; justify-content:space-between; position:relative; z-index:2;}
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px; text-decoration:none; color:#fff;
+    font-size:.85rem; font-weight:600; background:rgba(255,255,255,.15);
+    padding:7px 12px; border-radius:999px; backdrop-filter:blur(4px);
+  }
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:6px; background:var(--pop); color:#3a2a00;
+    font-weight:800; font-size:.72rem; letter-spacing:.03em; padding:5px 11px; border-radius:999px;
+    box-shadow:0 3px 10px rgba(0,0,0,.25);
+  }
+  .hero h1{
+    position:relative; z-index:2; font-size:1.65rem; line-height:1.25; margin:16px 0 6px;
+    font-weight:800;
+  }
+  .hero p{position:relative; z-index:2; margin:0; font-size:.92rem; opacity:.92; max-width:46ch;}
+  .hero-stats{
+    position:relative; z-index:2; display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;
+  }
+  .hero-stat{
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25);
+    border-radius:14px; padding:8px 12px; font-size:.78rem;
+  }
+  .hero-stat b{display:block; font-size:1.05rem;}
+
+  /* ===== FILTER BAR ===== */
+  .filter-wrap{
+    position:sticky; top:0; z-index:20; background:var(--cream);
+    border-bottom:1px solid var(--line); padding:10px 0;
+  }
+  .filter-scroll{
+    display:flex; gap:8px; overflow-x:auto; padding:0 14px; scrollbar-width:none;
+  }
+  .filter-scroll::-webkit-scrollbar{display:none;}
+  .chip{
+    flex:0 0 auto; display:inline-flex; align-items:center; gap:6px;
+    background:var(--paper); border:1.5px solid var(--line); color:var(--ink);
+    font-size:.82rem; font-weight:600; padding:8px 14px; border-radius:999px;
+    cursor:pointer; white-space:nowrap; transition:.15s;
+  }
+  .chip .count{
+    background:var(--cream); color:var(--muted); font-size:.68rem; font-weight:700;
+    padding:1px 6px; border-radius:999px;
+  }
+  .chip.active{background:var(--red); border-color:var(--red); color:#fff;}
+  .chip.active .count{background:rgba(255,255,255,.25); color:#fff;}
+
+  /* ===== GRID ===== */
+  .section-title{
+    padding:20px 16px 8px; font-size:1.05rem; font-weight:800; color:var(--red-dark);
+    display:flex; align-items:center; gap:8px; scroll-margin-top:64px;
+  }
+  .section-title .n{
+    background:var(--gold); color:#fff; font-size:.7rem; font-weight:800;
+    padding:2px 8px; border-radius:999px;
+  }
+  .masonry{
+    columns:2; column-gap:10px; padding:6px 14px 4px;
+  }
+  @media(min-width:640px){ .masonry{columns:3;} }
+  @media(min-width:900px){ .masonry{columns:4;} }
+  .card{
+    break-inside:avoid; margin-bottom:10px; border-radius:var(--radius); overflow:hidden;
+    background:var(--paper); border:1px solid var(--line); cursor:pointer;
+    box-shadow:0 2px 6px rgba(36,24,20,.08); transition:transform .15s, box-shadow .15s;
+  }
+  .card:active{transform:scale(.97);}
+  .card img{display:block; width:100%; height:auto;}
+  .card .cap{
+    padding:8px 10px 10px; font-size:.74rem; font-weight:700; color:var(--ink); line-height:1.3;
+  }
+  .hidden{display:none !important;}
+  .empty-msg{
+    text-align:center; padding:40px 20px; color:var(--muted); font-size:.9rem;
+  }
+
+  footer{
+    text-align:center; padding:26px 16px 34px; color:var(--muted); font-size:.78rem;
+  }
+  footer a{color:var(--red-dark); font-weight:700; text-decoration:none;}
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(20,10,10,.94); z-index:100;
+    display:none; align-items:center; justify-content:center; flex-direction:column;
+    touch-action:pan-y;
+  }
+  .lightbox.open{display:flex;}
+  .lb-top{
+    position:absolute; top:0; left:0; right:0; display:flex; justify-content:space-between;
+    align-items:center; padding:14px 16px; z-index:3; color:#fff;
+  }
+  .lb-cat{font-size:.78rem; font-weight:700; background:rgba(255,255,255,.15); padding:5px 12px; border-radius:999px;}
+  .lb-close{
+    background:rgba(255,255,255,.15); border:none; color:#fff; width:38px; height:38px;
+    border-radius:50%; font-size:1.2rem; cursor:pointer; line-height:1;
+  }
+  .lb-stage{
+    position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+    padding:64px 10px 76px;
+  }
+  .lb-stage img{
+    max-width:100%; max-height:100%; border-radius:10px; box-shadow:0 10px 40px rgba(0,0,0,.5);
+    user-select:none; -webkit-user-drag:none;
+  }
+  .lb-nav{
+    position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.14);
+    border:none; color:#fff; width:42px; height:42px; border-radius:50%; font-size:1.3rem; cursor:pointer;
+    z-index:3;
+  }
+  .lb-prev{left:8px;} .lb-next{right:8px;}
+  .lb-bottom{
+    position:absolute; bottom:0; left:0; right:0; padding:12px 18px 20px; text-align:center;
+    color:#fff; z-index:3; background:linear-gradient(transparent, rgba(0,0,0,.55));
+  }
+  .lb-title{font-size:.95rem; font-weight:700;}
+  .lb-count{font-size:.72rem; opacity:.75; margin-top:2px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="topbar">
+    <a class="back-link" href="index.html">← મુખ્ય પેજ</a>
+    <span class="hero-badge">🆕 તદ્દન નવું</span>
+  </div>
+  <h1>ગઢસીસા પોસ્ટ ઓફિસ ગેલેરી 🖼️</h1>
+  <p>બધી યોજનાઓ અને સેવાઓ — એક નજરમાં, પોસ્ટર સ્વરૂપે. ટેપ કરો, મોટું જુઓ, શેર કરો.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><b>50</b>પોસ્ટર</div>
+    <div class="hero-stat"><b>9</b>કેટેગરી</div>
+    <div class="hero-stat"><b>1</b>ટેપમાં ઓપન</div>
+  </div>
+</div>
+
+<div class="filter-wrap">
+  <div class="filter-scroll" id="filterScroll">
+    <button class="chip active" data-cat="all">બધું <span class="count" id="cnt-all">50</span></button>
+    <button class="chip" data-cat="why">શા માટે પોસ્ટ ઓફિસ <span class="count" id="cnt-why">1</span></button>
+    <button class="chip" data-cat="bachat">બચત યોજનાઓ <span class="count" id="cnt-bachat">9</span></button>
+    <button class="chip" data-cat="pli">PLI વીમા <span class="count" id="cnt-pli">6</span></button>
+    <button class="chip" data-cat="rpli">RPLI વીમા <span class="count" id="cnt-rpli">6</span></button>
+    <button class="chip" data-cat="tapal">ટપાલ/પાર્સલ <span class="count" id="cnt-tapal">9</span></button>
+    <button class="chip" data-cat="ippb">IPPB બેંકિંગ <span class="count" id="cnt-ippb">9</span></button>
+    <button class="chip" data-cat="counter">કાઉન્ટર આઇટમ <span class="count" id="cnt-counter">4</span></button>
+    <button class="chip" data-cat="jansuraksha">જન સુરક્ષા <span class="count" id="cnt-jansuraksha">3</span></button>
+    <button class="chip" data-cat="anya">અન્ય <span class="count" id="cnt-anya">3</span></button>
+  </div>
+</div>
+
+<div id="gridHost"></div>
+<div class="empty-msg hidden" id="emptyMsg">આ કેટેગરીમાં હાલ કોઈ પોસ્ટર નથી.</div>
+
+<footer>
+  ગઢસીસા સબ પોસ્ટ ઓફિસ · વથાણ ચોક, ગઢસીસા, પિનકોડ 370445<br>
+  <a href="index.html">← મુખ્ય પેજ પર પાછા જાઓ</a>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <div class="lb-top">
+    <span class="lb-cat" id="lbCat">શ્રેણી</span>
+    <button class="lb-close" id="lbClose" aria-label="બંધ કરો">✕</button>
+  </div>
+  <div class="lb-stage" id="lbStage">
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="પાછળ">‹</button>
+    <img id="lbImg" src="" alt="">
+    <button class="lb-nav lb-next" id="lbNext" aria-label="આગળ">›</button>
+  </div>
+  <div class="lb-bottom">
+    <div class="lb-title" id="lbTitle"></div>
+    <div class="lb-count" id="lbCount"></div>
+  </div>
+</div>
+
+<script>
+// ===== Category metadata (order = display order) =====
+const CATS = [
+  {id:"why",         label:"શા માટે પોસ્ટ ઓફિસ"},
+  {id:"bachat",      label:"બચત યોજનાઓ"},
+  {id:"pli",         label:"PLI વીમા યોજનાઓ"},
+  {id:"rpli",        label:"RPLI વીમા યોજનાઓ"},
+  {id:"tapal",       label:"ટપાલ/પાર્સલ સેવાઓ"},
+  {id:"ippb",        label:"IPPB બેંકિંગ ઉત્પાદનો"},
+  {id:"counter",     label:"કાઉન્ટર આઇટમ"},
+  {id:"jansuraksha", label:"જન સુરક્ષા યોજનાઓ"},
+  {id:"anya",        label:"અન્ય"},
+];
+
+// ===== Images: {file, cat, title} =====
+const IMAGES = [
+  {file:"why-choose-post-office.jpg", cat:"why", title:"પોસ્ટ ઓફિસ જ કેમ પસંદ કરવી?"},
+
+  {file:"scheme-sb.jpg",  cat:"bachat", title:"પોસ્ટ ઓફિસ બચત ખાતું"},
+  {file:"scheme-rd.jpg",  cat:"bachat", title:"રિકરિંગ ડિપોઝિટ (RD)"},
+  {file:"scheme-td.jpg",  cat:"bachat", title:"ટાઈમ ડિપોઝિટ (TD)"},
+  {file:"scheme-mis.jpg", cat:"bachat", title:"માસિક આવક યોજના (MIS)"},
+  {file:"scheme-scss.jpg",cat:"bachat", title:"વરિષ્ઠ નાગરિક બચત યોજના (SCSS)"},
+  {file:"scheme-ppf.jpg", cat:"bachat", title:"જાહેર ભવિષ્ય નિધિ (PPF)"},
+  {file:"scheme-nsc.jpg", cat:"bachat", title:"રાષ્ટ્રીય બચત પ્રમાણપત્ર (NSC)"},
+  {file:"scheme-kvp.jpg", cat:"bachat", title:"કિસાન વિકાસ પત્ર (KVP)"},
+  {file:"scheme-ssy.jpg", cat:"bachat", title:"સુકન્યા સમૃદ્ધિ યોજના (SSY)"},
+
+  {file:"pli-suraksha.jpg",        cat:"pli", title:"સુરક્ષા — Whole Life Assurance"},
+  {file:"pli-santosh.jpg",         cat:"pli", title:"સંતોષ — Endowment Assurance"},
+  {file:"pli-suvidha.jpg",         cat:"pli", title:"સુવિધા — Convertible Whole Life"},
+  {file:"pli-sumangal.jpg",        cat:"pli", title:"સુમંગલ — Money-Back Plan"},
+  {file:"pli-yugal-suraksha.jpg",  cat:"pli", title:"યુગલ સુરક્ષા — Joint Life"},
+  {file:"pli-bal-jeevan-bima.jpg", cat:"pli", title:"બાલ જીવન વીમા"},
+
+  {file:"rpli-gram-suraksha.jpg",   cat:"rpli", title:"ગ્રામ સુરક્ષા"},
+  {file:"rpli-gram-santosh.jpg",    cat:"rpli", title:"ગ્રામ સંતોષ"},
+  {file:"rpli-gram-suvidha.jpg",    cat:"rpli", title:"ગ્રામ સુવિધા"},
+  {file:"rpli-gram-sumangal.jpg",   cat:"rpli", title:"ગ્રામ સુમંગલ"},
+  {file:"rpli-gram-priya.jpg",      cat:"rpli", title:"ગ્રામ પ્રિયા"},
+  {file:"rpli-bal-jeevan-bima.jpg", cat:"rpli", title:"ગ્રામ બાલ જીવન વીમા"},
+
+  {file:"mail-speedpost-letter-domestic.jpg",       cat:"tapal", title:"સ્પીડ પોસ્ટ — પત્ર (સ્થાનિક)"},
+  {file:"mail-speedpost-parcel-domestic.jpg",       cat:"tapal", title:"સ્પીડ પોસ્ટ પાર્સલ (સ્થાનિક)"},
+  {file:"mail-speedpost-parcel-international.jpg",  cat:"tapal", title:"સ્પીડ પોસ્ટ પાર્સલ (આંતરરાષ્ટ્રીય)"},
+  {file:"mail-speedpost-international.jpg",         cat:"tapal", title:"સ્પીડ પોસ્ટ (આંતરરાષ્ટ્રીય)"},
+  {file:"mail-registered-letter-international.jpg", cat:"tapal", title:"રજિસ્ટર્ડ પત્ર (આંતરરાષ્ટ્રીય)"},
+  {file:"mail-registered-parcel-domestic.jpg",      cat:"tapal", title:"રજિસ્ટર્ડ પાર્સલ (સ્થાનિક)"},
+  {file:"mail-registered-parcel-international.jpg", cat:"tapal", title:"રજિસ્ટર્ડ પાર્સલ (આંતરરાષ્ટ્રીય)"},
+  {file:"mail-money-order-domestic.jpg",            cat:"tapal", title:"મની ઓર્ડર"},
+  {file:"mail-itps-international.jpg",              cat:"tapal", title:"ITPS — આંતરરાષ્ટ્રીય ટ્રેક્ડ પેકેટ"},
+
+  {file:"ippb-regular-savings.jpg",  cat:"ippb", title:"રેગ્યુલર સેવિંગ્સ એકાઉન્ટ"},
+  {file:"ippb-basic-savings.jpg",    cat:"ippb", title:"બેઝિક સેવિંગ્સ એકાઉન્ટ"},
+  {file:"ippb-digismart-savings.jpg",cat:"ippb", title:"ડિજિસ્માર્ટ સેવિંગ્સ એકાઉન્ટ"},
+  {file:"ippb-current-account.jpg",  cat:"ippb", title:"કરંટ એકાઉન્ટ"},
+  {file:"ippb-dbt.jpg",              cat:"ippb", title:"DBT — ડાયરેક્ટ બેનિફિટ ટ્રાન્સફર"},
+  {file:"ippb-doorstep-banking.jpg", cat:"ippb", title:"ડોરસ્ટેપ બેંકિંગ"},
+  {file:"ippb-qr-card.jpg",          cat:"ippb", title:"QR કાર્ડ"},
+  {file:"ippb-life-insurance.jpg",   cat:"ippb", title:"લાઈફ ઈન્સ્યોરન્સ"},
+  {file:"ippb-general-insurance.jpg",cat:"ippb", title:"જનરલ ઈન્સ્યોરન્સ"},
+
+  {file:"item-postcard.jpg",       cat:"counter", title:"પોસ્ટકાર્ડ"},
+  {file:"item-envelope-letter.jpg",cat:"counter", title:"પરબીડિયું"},
+  {file:"item-postage-stamp.jpg",  cat:"counter", title:"ટપાલ ટિકિટ"},
+  {file:"item-revenue-stamp.jpg",  cat:"counter", title:"રેવન્યુ સ્ટેમ્પ"},
+
+  {file:"govt-pmjjby.jpg", cat:"jansuraksha", title:"પ્રધાનમંત્રી જીવન જ્યોતિ વીમા યોજના (PMJJBY)"},
+  {file:"govt-pmsby.jpg",  cat:"jansuraksha", title:"પ્રધાનમંત્રી સુરક્ષા વીમા યોજના (PMSBY)"},
+  {file:"govt-apy.jpg",    cat:"jansuraksha", title:"અટલ પેન્શન યોજના (APY)"},
+
+  {file:"aadhar-seva-kendra.jpg", cat:"anya", title:"આધાર સેવા કેન્દ્ર"},
+  {file:"gds-jobs.jpg",           cat:"anya", title:"GDS ભરતી"},
+  {file:"track-speed-post.jpg",   cat:"anya", title:"ટપાલ ટ્રેક કરો"},
+];
+
+const IMG_DIR = "gallery-images/";
+
+// ===== Render sections =====
+const host = document.getElementById("gridHost");
+CATS.forEach(cat => {
+  const items = IMAGES.filter(i => i.cat === cat.id);
+  if(items.length === 0) return;
+
+  const title = document.createElement("div");
+  title.className = "section-title";
+  title.dataset.cat = cat.id;
+  title.innerHTML = `${cat.label} <span class="n">${items.length}</span>`;
+  host.appendChild(title);
+
+  const grid = document.createElement("div");
+  grid.className = "masonry";
+  grid.dataset.cat = cat.id;
+
+  items.forEach((item) => {
+    const globalIndex = IMAGES.indexOf(item);
+    const card = document.createElement("div");
+    card.className = "card";
+    card.dataset.cat = cat.id;
+    card.dataset.index = globalIndex;
+    card.innerHTML = `<img src="${IMG_DIR}${item.file}" alt="${item.title}" loading="lazy"><div class="cap">${item.title}</div>`;
+    grid.appendChild(card);
+  });
+
+  host.appendChild(grid);
+});
+
+// ===== Filtering =====
+const chips = document.querySelectorAll(".chip");
+chips.forEach(chip => {
+  chip.addEventListener("click", () => {
+    chips.forEach(c => c.classList.remove("active"));
+    chip.classList.add("active");
+    const cat = chip.dataset.cat;
+
+    document.querySelectorAll(".section-title, .masonry").forEach(el => {
+      if(cat === "all" || el.dataset.cat === cat){
+        el.classList.remove("hidden");
+      } else {
+        el.classList.add("hidden");
+      }
+    });
+
+    const visibleCount = (cat === "all")
+      ? IMAGES.length
+      : IMAGES.filter(i => i.cat === cat).length;
+    document.getElementById("emptyMsg").classList.toggle("hidden", visibleCount > 0);
+
+    if(cat !== "all"){
+      const target = document.querySelector(`.section-title[data-cat="${cat}"]`);
+      if(target){
+        window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 58, behavior:"smooth"});
+      }
+    } else {
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+  });
+});
+
+// ===== Lightbox =====
+const lb = document.getElementById("lightbox");
+const lbImg = document.getElementById("lbImg");
+const lbCat = document.getElementById("lbCat");
+const lbTitle = document.getElementById("lbTitle");
+const lbCount = document.getElementById("lbCount");
+let currentIndex = 0;
+
+function openLightbox(index){
+  currentIndex = index;
+  renderLightbox();
+  lb.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeLightbox(){
+  lb.classList.remove("open");
+  document.body.style.overflow = "";
+}
+function renderLightbox(){
+  const item = IMAGES[currentIndex];
+  const catLabel = CATS.find(c => c.id === item.cat)?.label || "";
+  lbImg.src = IMG_DIR + item.file;
+  lbImg.alt = item.title;
+  lbCat.textContent = catLabel;
+  lbTitle.textContent = item.title;
+  lbCount.textContent = `${currentIndex + 1} / ${IMAGES.length}`;
+}
+function nextImg(){ currentIndex = (currentIndex + 1) % IMAGES.length; renderLightbox(); }
+function prevImg(){ currentIndex = (currentIndex - 1 + IMAGES.length) % IMAGES.length; renderLightbox(); }
+
+host.addEventListener("click", (e) => {
+  const card = e.target.closest(".card");
+  if(!card) return;
+  openLightbox(parseInt(card.dataset.index, 10));
+});
+
+document.getElementById("lbClose").addEventListener("click", closeLightbox);
+document.getElementById("lbNext").addEventListener("click", nextImg);
+document.getElementById("lbPrev").addEventListener("click", prevImg);
+lb.addEventListener("click", (e) => { if(e.target === lb || e.target.id === "lbStage") closeLightbox(); });
+
+document.addEventListener("keydown", (e) => {
+  if(!lb.classList.contains("open")) return;
+  if(e.key === "Escape") closeLightbox();
+  if(e.key === "ArrowRight") nextImg();
+  if(e.key === "ArrowLeft") prevImg();
+});
+
+// swipe support
+let touchStartX = 0;
+lb.addEventListener("touchstart", (e) => { touchStartX = e.changedTouches[0].screenX; });
+lb.addEventListener("touchend", (e) => {
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  if(Math.abs(dx) > 40){ dx > 0 ? prevImg() : nextImg(); }
+});
+</script>
+</body>
+</html>
