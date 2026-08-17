@@ -222,6 +222,17 @@
     box-shadow:0 2px 8px rgba(0,0,0,.2);
   }
   .masthead-inner nav a.nav-genz:hover{ background:#FFE29A; border-bottom:1px solid #FFE29A; }
+  .masthead-inner nav a.nav-gallery{
+    position:relative; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.5);
+    color:#fff; padding:4px 12px; border-radius:14px; font-weight:800; font-size:.85rem;
+  }
+  .masthead-inner nav a.nav-gallery:hover{ background:rgba(255,255,255,.28); border-bottom:1px solid rgba(255,255,255,.5); }
+  .nav-gallery .new-badge{
+    position:absolute; top:-9px; right:-10px; background:#FFD873; color:#3a2a00;
+    font-size:.58rem; font-weight:800; letter-spacing:.02em; padding:1px 6px; border-radius:999px;
+    box-shadow:0 2px 6px rgba(0,0,0,.3); animation:pulseBadge 1.8s ease-in-out infinite;
+  }
+  @keyframes pulseBadge{ 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.12);} }
   .theme-toggle{
     background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.4); color:#fff;
     width:42px; height:42px; border-radius:50%; font-size:1.15rem; cursor:pointer;
@@ -811,6 +822,7 @@
       <a href="#rakhi">રક્ષાબંધન સ્પેશિયલ</a>
       <a href="#faq">સવાલ-જવાબ</a>
       <a href="genz.html" class="nav-genz">✨ Gen Z Edition</a>
+      <a href="gallery.html" class="nav-gallery" target="_blank" rel="noopener">🖼️ ગેલેરી<span class="new-badge">NEW</span></a>
     </nav>
   </div>
 </header>
