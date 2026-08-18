@@ -145,7 +145,7 @@
   .lb-stage img{
     max-width:100%; max-height:100%; border-radius:10px; box-shadow:0 10px 40px rgba(0,0,0,.5);
     user-select:none; -webkit-user-drag:none; touch-action:none;
-    transform-origin:0 0; will-change:transform; cursor:zoom-in;
+    will-change:transform; cursor:zoom-in;
   }
   .lb-stage img.zoomed{cursor:grab;}
   .lb-stage img.panning{cursor:grabbing;}
@@ -429,7 +429,7 @@ const stage = document.getElementById("lbStage");
 let scale = 1, tx = 0, ty = 0;
 const MIN_SCALE = 1, MAX_SCALE = 4;
 const pointers = new Map();
-let startDist = 0, startScale = 1, startMid = {x:0, y:0};
+let startDist = 0, startScale = 1, prevMid = {x:0, y:0};
 let panning = false, panStart = {x:0, y:0}, startTxTy = {x:0, y:0};
 let lastTapTime = 0, lastTapPos = {x:0, y:0};
 
@@ -444,7 +444,6 @@ function applyTransform(){
 function clampPan(){
   const rect = lbImg.getBoundingClientRect();
   const stageRect = stage.getBoundingClientRect();
-  // allow free pan while zoomed; simple clamp so image can't drift fully off-screen
   const maxX = Math.max(0, (rect.width - stageRect.width) / 2 + 40);
   const maxY = Math.max(0, (rect.height - stageRect.height) / 2 + 40);
   tx = Math.min(maxX, Math.max(-maxX, tx));
@@ -452,6 +451,23 @@ function clampPan(){
 }
 function dist(p1, p2){ return Math.hypot(p1.x - p2.x, p1.y - p2.y); }
 function mid(p1, p2){ return {x:(p1.x + p2.x)/2, y:(p1.y + p2.y)/2}; }
+
+// Zoom while keeping the content under (clientX, clientY) visually fixed.
+// Works because transform-origin is the element's own center (default 50% 50%):
+// screen = elementCenter(layout) + tx + (contentOffsetFromCenter * scale)
+function zoomAtPoint(newScale, clientX, clientY){
+  newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, newScale));
+  const rect = lbImg.getBoundingClientRect(); // reflects current scale+tx
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const ratio = newScale / scale;
+  tx = tx + (clientX - centerX) * (1 - ratio);
+  ty = ty + (clientY - centerY) * (1 - ratio);
+  scale = newScale;
+  lbImg.classList.toggle("zoomed", scale > 1.02);
+  clampPan();
+  applyTransform();
+}
 
 stage.addEventListener("pointerdown", (e) => {
   stage.setPointerCapture(e.pointerId);
@@ -461,22 +477,16 @@ stage.addEventListener("pointerdown", (e) => {
     const pts = [...pointers.values()];
     startDist = dist(pts[0], pts[1]);
     startScale = scale;
-    startMid = mid(pts[0], pts[1]);
+    prevMid = mid(pts[0], pts[1]);
+    panning = false;
   } else if(pointers.size === 1){
-    // double-tap detection
     const now = Date.now();
-    const dx = Math.abs(e.clientX - lastTapPos.x), dy = Math.abs(e.clientY - lastTapPos.y);
-    if(now - lastTapTime < 320 && dx < 30 && dy < 30){
+    const ddx = Math.abs(e.clientX - lastTapPos.x), ddy = Math.abs(e.clientY - lastTapPos.y);
+    if(now - lastTapTime < 320 && ddx < 30 && ddy < 30){
       if(scale > 1.02){
         resetZoom();
       } else {
-        scale = 2.4;
-        const rect = lbImg.getBoundingClientRect();
-        tx = tx - (e.clientX - rect.left - rect.width/2) * (scale - 1) / scale * 0.6;
-        ty = ty - (e.clientY - rect.top - rect.height/2) * (scale - 1) / scale * 0.6;
-        clampPan();
-        lbImg.classList.add("zoomed");
-        applyTransform();
+        zoomAtPoint(2.4, e.clientX, e.clientY);
       }
       lastTapTime = 0;
       return;
@@ -501,12 +511,12 @@ stage.addEventListener("pointermove", (e) => {
     const pts = [...pointers.values()];
     const newDist = dist(pts[0], pts[1]);
     const newMid = mid(pts[0], pts[1]);
-    const ratio = newDist / startDist;
-    scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, startScale * ratio));
-    tx += (newMid.x - startMid.x) * 0.3;
-    ty += (newMid.y - startMid.y) * 0.3;
-    startMid = newMid;
-    lbImg.classList.toggle("zoomed", scale > 1.02);
+    const targetScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, startScale * (newDist / startDist)));
+    // keep the pinch midpoint visually stable, then carry finger translation
+    zoomAtPoint(targetScale, prevMid.x, prevMid.y);
+    tx += (newMid.x - prevMid.x);
+    ty += (newMid.y - prevMid.y);
+    prevMid = newMid;
     clampPan();
     applyTransform();
   } else if(pointers.size === 1 && panning){
@@ -529,17 +539,8 @@ stage.addEventListener("pointercancel", endPointer);
 // desktop wheel zoom
 stage.addEventListener("wheel", (e) => {
   e.preventDefault();
-  const newScale = scale - e.deltaY * 0.0025;
-  const clamped = Math.min(MAX_SCALE, Math.max(MIN_SCALE, newScale));
-  const rect = lbImg.getBoundingClientRect();
-  const offX = (e.clientX - rect.left - rect.width/2) * (clamped/scale - 1) / clamped;
-  const offY = (e.clientY - rect.top - rect.height/2) * (clamped/scale - 1) / clamped;
-  scale = clamped;
-  tx -= offX * scale;
-  ty -= offY * scale;
-  lbImg.classList.toggle("zoomed", scale > 1.02);
-  clampPan();
-  applyTransform();
+  const target = scale - e.deltaY * 0.0025;
+  zoomAtPoint(target, e.clientX, e.clientY);
 }, {passive:false});
 
 // swipe-to-navigate only when not zoomed (fallback for simple touch swipe)
