@@ -19,6 +19,8 @@
 <meta property="og:title" content="ગઢસીસા પોસ્ટ ઓફિસ ફોટો ગેલેરી">
 <meta property="og:description" content="50 પોસ્ટર · 9 કેટેગરી — બધી યોજનાઓ અને સેવાઓ એક જ જગ્યાએ, ફોટો સ્વરૂપે. ટેપ કરો, મોટું જુઓ.">
 <meta property="og:image" content="https://gadhasisaso.github.io/Tapal-yojnao/og-gallery-gu.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://gadhasisaso.github.io/Tapal-yojnao/gallery.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ગઢસીસા પોસ્ટ ઓફિસ ફોટો ગેલેરી">
@@ -89,6 +91,15 @@
   .hero-stat:nth-child(2)::before{ background:conic-gradient(#C8102E,#15803D,#1D4ED8,#7C3AED,#B45309,#0E7490,#C8102E); }
   .hero-stat:nth-child(3)::before{ background:var(--pop); }
   .hero-stat b{display:block; font-size:1.05rem;}
+
+  /* ===== SEARCH ===== */
+  .search-row{ padding:0 14px 10px; }
+  .search-box{
+    width:100%; padding:11px 16px; border-radius:999px; border:1.5px solid var(--line);
+    background:var(--paper); color:var(--ink); font-size:.88rem; font-family:inherit;
+    outline:none;
+  }
+  .search-box:focus{ border-color:var(--red); }
 
   /* ===== FILTER BAR ===== */
   .filter-wrap{
@@ -208,12 +219,18 @@
   }
   .lb-title{font-size:.95rem; font-weight:700;}
   .lb-count{font-size:.72rem; opacity:.75; margin-top:2px;}
-  .lb-zoom-hint{
+  .lb-hint{
     position:absolute; bottom:78px; left:50%; transform:translateX(-50%); z-index:4;
     background:rgba(0,0,0,.55); color:#fff; font-size:.7rem; padding:5px 12px; border-radius:999px;
     pointer-events:none; opacity:0; transition:opacity .3s;
   }
-  .lb-zoom-hint.show{opacity:1;}
+  .lb-hint.show{opacity:1;}
+  .lb-top-actions{ display:flex; gap:10px; align-items:center; }
+  .lb-action-btn{
+    background:rgba(0,0,0,.45); border:1.5px solid rgba(255,255,255,.4); color:#fff;
+    width:44px; height:44px; min-width:44px; border-radius:50%; font-size:1.1rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; padding:0;
+  }
 </style>
 </head>
 <body>
@@ -233,6 +250,9 @@
 </div>
 
 <div class="filter-wrap">
+  <div class="search-row">
+    <input type="search" id="gallerySearch" class="search-box" placeholder="🔍 શોધો… (દા.ત. PPF, RD, વીમો)" autocomplete="off">
+  </div>
   <div class="filter-scroll" id="filterScroll">
     <button class="chip active" data-cat="all">બધું <span class="count" id="cnt-all">50</span></button>
     <button class="chip" data-cat="why">શા માટે પોસ્ટ ઓફિસ <span class="count" id="cnt-why">1</span></button>
@@ -248,7 +268,9 @@
 </div>
 
 <div id="gridHost"></div>
+<div class="masonry hidden" id="searchResults"></div>
 <div class="empty-msg hidden" id="emptyMsg">આ કેટેગરીમાં હાલ કોઈ પોસ્ટર નથી.</div>
+<div class="empty-msg hidden" id="searchEmptyMsg">કંઈ મળ્યું નહીં — બીજો શબ્દ ટ્રાય કરો.</div>
 
 <footer>
   ગઢસીસા સબ પોસ્ટ ઓફિસ · વથાણ ચોક, ગઢસીસા, પિનકોડ 370445<br>
@@ -258,13 +280,17 @@
 <div class="lightbox" id="lightbox">
   <div class="lb-top">
     <span class="lb-cat" id="lbCat">શ્રેણી</span>
-    <button class="lb-close" id="lbClose" aria-label="બંધ કરો">✕</button>
+    <div class="lb-top-actions">
+      <button class="lb-action-btn" id="lbShare" aria-label="શેર કરો">📤</button>
+      <button class="lb-action-btn" id="lbDownload" aria-label="ડાઉનલોડ કરો">⬇️</button>
+      <button class="lb-close" id="lbClose" aria-label="બંધ કરો">✕</button>
+    </div>
   </div>
   <div class="lb-stage" id="lbStage">
     <button class="lb-nav lb-prev" id="lbPrev" aria-label="પાછળ">‹</button>
     <img id="lbImg" src="" alt="">
     <button class="lb-nav lb-next" id="lbNext" aria-label="આગળ">›</button>
-    <div class="lb-zoom-hint" id="lbZoomHint">🔍 મોટું જોવા બે વાર ટેપ કરો અથવા પિંચ કરો</div>
+    <div class="lb-hint" id="lbHint">🔍 મોટું જોવા બે વાર ટેપ કરો અથવા પિંચ કરો</div>
   </div>
   <div class="lb-bottom">
     <div class="lb-title" id="lbTitle"></div>
@@ -379,29 +405,98 @@ CATS.forEach(cat => {
   host.appendChild(grid);
 });
 
+// ===== Search =====
+const searchInput = document.getElementById("gallerySearch");
+const searchResults = document.getElementById("searchResults");
+const searchEmptyMsg = document.getElementById("searchEmptyMsg");
+const filterScroll = document.getElementById("filterScroll");
+let searchDebounce = null;
+
+function runSearch(q){
+  const norm = q.trim().toLowerCase();
+  if(norm.length === 0){
+    searchResults.classList.add("hidden");
+    searchResults.innerHTML = "";
+    searchEmptyMsg.classList.add("hidden");
+    filterScroll.classList.remove("hidden");
+    host.classList.remove("hidden");
+    const activeChip = document.querySelector(".chip.active") || document.querySelector('.chip[data-cat="all"]');
+    applyFilter(activeChip.dataset.cat);
+    return;
+  }
+  filterScroll.classList.add("hidden");
+  host.classList.add("hidden");
+  document.getElementById("emptyMsg").classList.add("hidden");
+
+  const matches = [];
+  IMAGES.forEach((item, idx) => {
+    const catLabel = (CATS.find(c => c.id === item.cat) || {}).label || "";
+    if(item.title.toLowerCase().includes(norm) || catLabel.toLowerCase().includes(norm)){
+      matches.push({item, idx});
+    }
+  });
+
+  searchResults.innerHTML = "";
+  matches.forEach(({item, idx}) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.dataset.index = idx;
+    card.innerHTML = `<img src="${IMG_DIR}${item.file}" alt="${item.title}" loading="lazy"><div class="cap">${item.title}</div>`;
+    searchResults.appendChild(card);
+  });
+  searchResults.classList.remove("hidden");
+  searchEmptyMsg.classList.toggle("hidden", matches.length > 0);
+
+  if(typeof gtag === "function"){
+    gtag('event', 'gallery_search', { query: norm, results: matches.length });
+  }
+}
+
+searchInput.addEventListener("input", () => {
+  clearTimeout(searchDebounce);
+  searchDebounce = setTimeout(() => runSearch(searchInput.value), 200);
+});
+
+searchResults.addEventListener("click", (e) => {
+  const card = e.target.closest(".card");
+  if(!card) return;
+  openLightbox(parseInt(card.dataset.index, 10));
+});
+
 // ===== Filtering =====
+function applyFilter(cat){
+  const chips = document.querySelectorAll(".chip");
+  chips.forEach(c => c.classList.toggle("active", c.dataset.cat === cat));
+
+  document.querySelectorAll(".section-title, .masonry").forEach(el => {
+    if(el.id === "searchResults") return;
+    if(cat === "all" || el.dataset.cat === cat){
+      el.classList.remove("hidden");
+    } else {
+      el.classList.add("hidden");
+    }
+  });
+
+  const visibleCount = (cat === "all")
+    ? IMAGES.length
+    : IMAGES.filter(i => i.cat === cat).length;
+  document.getElementById("emptyMsg").classList.toggle("hidden", visibleCount > 0);
+}
+
 const chips = document.querySelectorAll(".chip");
 chips.forEach(chip => {
   chip.addEventListener("click", () => {
-    chips.forEach(c => c.classList.remove("active"));
-    chip.classList.add("active");
+    searchInput.value = "";
+    searchResults.classList.add("hidden");
+    searchEmptyMsg.classList.add("hidden");
+    filterScroll.classList.remove("hidden");
+    host.classList.remove("hidden");
+
     const cat = chip.dataset.cat;
+    applyFilter(cat);
     if(typeof gtag === "function"){
       gtag('event', 'gallery_filter', { category: cat });
     }
-
-    document.querySelectorAll(".section-title, .masonry").forEach(el => {
-      if(cat === "all" || el.dataset.cat === cat){
-        el.classList.remove("hidden");
-      } else {
-        el.classList.add("hidden");
-      }
-    });
-
-    const visibleCount = (cat === "all")
-      ? IMAGES.length
-      : IMAGES.filter(i => i.cat === cat).length;
-    document.getElementById("emptyMsg").classList.toggle("hidden", visibleCount > 0);
 
     if(cat !== "all"){
       const target = document.querySelector(`.section-title[data-cat="${cat}"]`);
@@ -462,7 +557,7 @@ function renderLightbox(){
   lbTitle.textContent = item.title;
   lbCount.textContent = `${currentIndex + 1} / ${IMAGES.length}`;
   resetZoom();
-  const hint = document.getElementById("lbZoomHint");
+  const hint = document.getElementById("lbHint");
   hint.classList.add("show");
   clearTimeout(hint._t);
   hint._t = setTimeout(() => hint.classList.remove("show"), 2200);
@@ -477,6 +572,55 @@ host.addEventListener("click", (e) => {
 });
 
 document.getElementById("lbClose").addEventListener("click", closeLightbox);
+
+// ===== Share & Download =====
+document.getElementById("lbShare").addEventListener("click", async () => {
+  const item = IMAGES[currentIndex];
+  const imgUrl = new URL(IMG_DIR + item.file, window.location.href).href;
+  const shareText = `${item.title} — ગઢસીસા સબ પોસ્ટ ઓફિસ`;
+
+  try{
+    if(navigator.canShare){
+      const resp = await fetch(IMG_DIR + item.file);
+      const blob = await resp.blob();
+      const file = new File([blob], item.file, {type: blob.type || "image/jpeg"});
+      if(navigator.canShare({files:[file]})){
+        await navigator.share({files:[file], title: item.title, text: shareText});
+        if(typeof gtag === "function") gtag('event','gallery_share',{category:item.cat, photo:item.file, method:'web_share_file'});
+        return;
+      }
+    }
+    if(navigator.share){
+      await navigator.share({title:item.title, text: shareText, url: imgUrl});
+      if(typeof gtag === "function") gtag('event','gallery_share',{category:item.cat, photo:item.file, method:'web_share_url'});
+      return;
+    }
+  }catch(err){ /* cancelled or unsupported — fall back below */ }
+
+  const waUrl = "https://wa.me/?text=" + encodeURIComponent(shareText + " " + imgUrl);
+  window.open(waUrl, "_blank");
+  if(typeof gtag === "function") gtag('event','gallery_share',{category:item.cat, photo:item.file, method:'whatsapp_fallback'});
+});
+
+document.getElementById("lbDownload").addEventListener("click", async () => {
+  const item = IMAGES[currentIndex];
+  try{
+    const resp = await fetch(IMG_DIR + item.file);
+    const blob = await resp.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = item.file;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }catch(err){
+    window.open(IMG_DIR + item.file, "_blank");
+  }
+  if(typeof gtag === "function") gtag('event','gallery_download',{category:item.cat, photo:item.file});
+});
+
 document.getElementById("lbNext").addEventListener("click", () => { if(scale <= 1.02) nextImg(); });
 document.getElementById("lbPrev").addEventListener("click", () => { if(scale <= 1.02) prevImg(); });
 lb.addEventListener("click", (e) => { if(e.target === lb || e.target.id === "lbStage") closeLightbox(); });
