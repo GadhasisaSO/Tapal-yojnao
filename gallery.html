@@ -91,6 +91,16 @@
   .hero-stat:nth-child(2)::before{ background:conic-gradient(#C8102E,#15803D,#1D4ED8,#7C3AED,#B45309,#0E7490,#C8102E); }
   .hero-stat:nth-child(3)::before{ background:var(--pop); }
   .hero-stat b{display:block; font-size:1.05rem;}
+  .last-updated{
+    position:relative; z-index:2; margin-top:14px; font-size:.78rem; color:#d8caca;
+    opacity:.85;
+  }
+  .download-all-btn{
+    position:relative; z-index:2; display:inline-flex; align-items:center; gap:8px;
+    margin-top:16px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3);
+    color:#fff; text-decoration:none; font-weight:700; font-size:.85rem;
+    padding:10px 18px; border-radius:999px; backdrop-filter:blur(4px);
+  }
 
   /* ===== SEARCH ===== */
   .search-row{ padding:0 14px 10px; }
@@ -247,6 +257,8 @@
     <div class="hero-stat"><b>9</b>કેટેગરી</div>
     <div class="hero-stat"><b>1</b>ટેપમાં ઓપન</div>
   </div>
+  <div class="last-updated">🕐 છેલ્લે અપડેટ: ઓગસ્ટ 2026</div>
+  <a class="download-all-btn" href="download-all-posters.html">⬇️ બધા 50 પોસ્ટર એકસાથે ડાઉનલોડ કરો (ZIP)</a>
 </div>
 
 <div class="filter-wrap">
@@ -254,16 +266,16 @@
     <input type="search" id="gallerySearch" class="search-box" placeholder="🔍 શોધો… (દા.ત. PPF, RD, વીમો)" autocomplete="off">
   </div>
   <div class="filter-scroll" id="filterScroll">
-    <button class="chip active" data-cat="all">બધું <span class="count" id="cnt-all">50</span></button>
-    <button class="chip" data-cat="why">શા માટે પોસ્ટ ઓફિસ <span class="count" id="cnt-why">1</span></button>
-    <button class="chip" data-cat="bachat">બચત યોજનાઓ <span class="count" id="cnt-bachat">9</span></button>
-    <button class="chip" data-cat="pli">PLI વીમા <span class="count" id="cnt-pli">6</span></button>
-    <button class="chip" data-cat="rpli">RPLI વીમા <span class="count" id="cnt-rpli">6</span></button>
-    <button class="chip" data-cat="tapal">ટપાલ/પાર્સલ <span class="count" id="cnt-tapal">9</span></button>
-    <button class="chip" data-cat="ippb">IPPB બેંકિંગ <span class="count" id="cnt-ippb">9</span></button>
-    <button class="chip" data-cat="counter">કાઉન્ટર આઇટમ <span class="count" id="cnt-counter">4</span></button>
-    <button class="chip" data-cat="jansuraksha">જન સુરક્ષા <span class="count" id="cnt-jansuraksha">3</span></button>
-    <button class="chip" data-cat="anya">અન્ય <span class="count" id="cnt-anya">3</span></button>
+    <button class="chip active" data-cat="all">🗂️ બધું <span class="count" id="cnt-all">50</span></button>
+    <button class="chip" data-cat="why">🏤 શા માટે પોસ્ટ ઓફિસ <span class="count" id="cnt-why">1</span></button>
+    <button class="chip" data-cat="bachat">💰 બચત યોજનાઓ <span class="count" id="cnt-bachat">9</span></button>
+    <button class="chip" data-cat="pli">🛡️ PLI વીમા <span class="count" id="cnt-pli">6</span></button>
+    <button class="chip" data-cat="rpli">🌾 RPLI વીમા <span class="count" id="cnt-rpli">6</span></button>
+    <button class="chip" data-cat="tapal">📮 ટપાલ/પાર્સલ <span class="count" id="cnt-tapal">9</span></button>
+    <button class="chip" data-cat="ippb">🏦 IPPB બેંકિંગ <span class="count" id="cnt-ippb">9</span></button>
+    <button class="chip" data-cat="counter">🏷️ કાઉન્ટર આઇટમ <span class="count" id="cnt-counter">4</span></button>
+    <button class="chip" data-cat="jansuraksha">🛟 જન સુરક્ષા <span class="count" id="cnt-jansuraksha">3</span></button>
+    <button class="chip" data-cat="anya">✨ અન્ય <span class="count" id="cnt-anya">3</span></button>
   </div>
 </div>
 
@@ -301,15 +313,15 @@
 <script>
 // ===== Category metadata (order = display order) =====
 const CATS = [
-  {id:"why",         label:"શા માટે પોસ્ટ ઓફિસ"},
-  {id:"bachat",      label:"બચત યોજનાઓ"},
-  {id:"pli",         label:"PLI વીમા યોજનાઓ"},
-  {id:"rpli",        label:"RPLI વીમા યોજનાઓ"},
-  {id:"tapal",       label:"ટપાલ/પાર્સલ સેવાઓ"},
-  {id:"ippb",        label:"IPPB બેંકિંગ ઉત્પાદનો"},
-  {id:"counter",     label:"કાઉન્ટર આઇટમ"},
-  {id:"jansuraksha", label:"જન સુરક્ષા યોજનાઓ"},
-  {id:"anya",        label:"અન્ય"},
+  {id:"why",         label:"🏤 શા માટે પોસ્ટ ઓફિસ"},
+  {id:"bachat",      label:"💰 બચત યોજનાઓ"},
+  {id:"pli",         label:"🛡️ PLI વીમા યોજનાઓ"},
+  {id:"rpli",        label:"🌾 RPLI વીમા યોજનાઓ"},
+  {id:"tapal",       label:"📮 ટપાલ/પાર્સલ સેવાઓ"},
+  {id:"ippb",        label:"🏦 IPPB બેંકિંગ ઉત્પાદનો"},
+  {id:"counter",     label:"🏷️ કાઉન્ટર આઇટમ"},
+  {id:"jansuraksha", label:"🛟 જન સુરક્ષા યોજનાઓ"},
+  {id:"anya",        label:"✨ અન્ય"},
 ];
 
 // ===== Images: {file, cat, title} =====
@@ -375,6 +387,7 @@ const IMAGES = [
 ];
 
 const IMG_DIR = "gallery-images/";
+const PLACEHOLDER_IMG = "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22300%22%20height%3D%22300%22%20viewBox%3D%220%200%20300%20300%22%3E%0A%3Crect%20width%3D%22300%22%20height%3D%22300%22%20fill%3D%22%23F3E9DC%22/%3E%0A%3Crect%20x%3D%2290%22%20y%3D%2295%22%20width%3D%22120%22%20height%3D%2290%22%20rx%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%23C8102E%22%20stroke-width%3D%224%22/%3E%0A%3Ccircle%20cx%3D%22115%22%20cy%3D%22120%22%20r%3D%229%22%20fill%3D%22none%22%20stroke%3D%22%23C8102E%22%20stroke-width%3D%224%22/%3E%0A%3Cpath%20d%3D%22M95%20175%20L135%20140%20L160%20162%20L185%20132%20L205%20155%22%20fill%3D%22none%22%20stroke%3D%22%23C8102E%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%0A%3Ctext%20x%3D%22150%22%20y%3D%22215%22%20font-family%3D%22sans-serif%22%20font-size%3D%2215%22%20fill%3D%22%238a6a5a%22%20text-anchor%3D%22middle%22%3E%E0%AA%AB%E0%AB%8B%E0%AA%9F%E0%AB%8B%20%E0%AA%89%E0%AA%AA%E0%AA%B2%E0%AA%AC%E0%AB%8D%E0%AA%A7%20%E0%AA%A8%E0%AA%A5%E0%AB%80%3C/text%3E%0A%3C/svg%3E";
 
 // ===== Render sections =====
 const host = document.getElementById("gridHost");
@@ -398,7 +411,7 @@ CATS.forEach(cat => {
     card.className = "card";
     card.dataset.cat = cat.id;
     card.dataset.index = globalIndex;
-    card.innerHTML = `<img src="${IMG_DIR}${item.file}" alt="${item.title}" loading="lazy"><div class="cap">${item.title}</div>`;
+    card.innerHTML = `<img src="${IMG_DIR}${item.file}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src=PLACEHOLDER_IMG;"><div class="cap">${item.title}</div>`;
     grid.appendChild(card);
   });
 
@@ -441,7 +454,7 @@ function runSearch(q){
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.index = idx;
-    card.innerHTML = `<img src="${IMG_DIR}${item.file}" alt="${item.title}" loading="lazy"><div class="cap">${item.title}</div>`;
+    card.innerHTML = `<img src="${IMG_DIR}${item.file}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src=PLACEHOLDER_IMG;"><div class="cap">${item.title}</div>`;
     searchResults.appendChild(card);
   });
   searchResults.classList.remove("hidden");
@@ -551,6 +564,7 @@ window.addEventListener("popstate", () => {
 function renderLightbox(){
   const item = IMAGES[currentIndex];
   const catLabel = CATS.find(c => c.id === item.cat)?.label || "";
+  lbImg.onerror = function(){ this.onerror=null; this.src = PLACEHOLDER_IMG; };
   lbImg.src = IMG_DIR + item.file;
   lbImg.alt = item.title;
   lbCat.textContent = catLabel;
