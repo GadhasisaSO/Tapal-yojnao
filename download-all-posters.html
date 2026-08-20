@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>બધા પોસ્ટર ડાઉનલોડ કરો — ગઢસીસા સબ પોસ્ટ ઓફિસ</title>
+<style>
+  :root{
+    --red:#C8102E; --red-dark:#8f0b21; --cream:#FBF6EC; --ink:#241814;
+    --paper:#ffffff; --line:#e7ddcf; --muted:#6f6357;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:"Noto Sans Gujarati","Segoe UI",system-ui,sans-serif;
+    padding:0 0 60px;
+  }
+  .hero{
+    background:linear-gradient(150deg, var(--red) 0%, var(--red-dark) 100%);
+    color:#fff; padding:20px 20px 30px; text-align:center;
+  }
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px; text-decoration:none; color:#fff;
+    font-size:.85rem; font-weight:600; background:rgba(255,255,255,.15);
+    padding:7px 14px; border-radius:999px; float:left;
+  }
+  .hero:after{content:""; display:table; clear:both;}
+  .hero h1{ font-size:1.4rem; margin:20px 0 8px; }
+  .hero p{ font-size:.9rem; opacity:.9; margin:0; }
+
+  .box{
+    max-width:520px; margin:28px auto 0; padding:0 18px;
+  }
+  .card{
+    background:var(--paper); border:1px solid var(--line); border-radius:18px;
+    padding:26px 22px; text-align:center;
+  }
+  .card .icon{ font-size:2.6rem; margin-bottom:10px; }
+  .card .size-note{ font-size:.82rem; color:var(--muted); margin-bottom:20px; }
+
+  .dl-btn{
+    display:inline-block; width:100%; background:var(--red); color:#fff; border:none;
+    font-size:1rem; font-weight:700; padding:15px 20px; border-radius:14px; cursor:pointer;
+  }
+  .dl-btn:disabled{ background:#c9b9b0; }
+
+  .progress-wrap{ margin-top:20px; display:none; }
+  .progress-wrap.show{ display:block; }
+  .progress-track{
+    background:var(--line); border-radius:999px; height:14px; overflow:hidden; margin-bottom:10px;
+  }
+  .progress-fill{
+    background:var(--red); height:100%; width:0%; transition:width .2s;
+  }
+  .progress-label{ font-size:.85rem; color:var(--muted); }
+
+  .status{ margin-top:16px; font-size:.9rem; }
+  .status.ok{ color:#15803D; font-weight:700; }
+  .status.err{ color:#B91C1C; font-weight:700; }
+
+  .filelist{
+    margin-top:24px; font-size:.75rem; color:var(--muted); text-align:left;
+    max-height:140px; overflow-y:auto; border-top:1px solid var(--line); padding-top:14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <a class="back-link" href="gallery.html">← ગેલેરી પર પાછા</a>
+  <h1>⬇️ બધા 50 પોસ્ટર ડાઉનલોડ કરો</h1>
+  <p>એક જ ZIP ફાઈલમાં, તમારા ફોનમાં સેવ થશે</p>
+</div>
+
+<div class="box">
+  <div class="card">
+    <div class="icon">🗂️</div>
+    <div class="size-note">50 પોસ્ટર · લગભગ 6 MB · થોડી સેકંડ લાગશે</div>
+    <button class="dl-btn" id="dlBtn">⬇️ ડાઉનલોડ શરૂ કરો</button>
+
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0 / 50 પોસ્ટર તૈયાર થઈ રહ્યા છે…</div>
+    </div>
+
+    <div class="status" id="statusMsg"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+const FILES = [
+  "why-choose-post-office.jpg",
+  "scheme-sb.jpg","scheme-rd.jpg","scheme-td.jpg","scheme-mis.jpg","scheme-scss.jpg","scheme-ppf.jpg","scheme-nsc.jpg","scheme-kvp.jpg","scheme-ssy.jpg",
+  "pli-suraksha.jpg","pli-santosh.jpg","pli-suvidha.jpg","pli-sumangal.jpg","pli-yugal-suraksha.jpg","pli-bal-jeevan-bima.jpg",
+  "rpli-gram-suraksha.jpg","rpli-gram-santosh.jpg","rpli-gram-suvidha.jpg","rpli-gram-sumangal.jpg","rpli-gram-priya.jpg","rpli-bal-jeevan-bima.jpg",
+  "mail-speedpost-letter-domestic.jpg","mail-speedpost-parcel-domestic.jpg","mail-speedpost-parcel-international.jpg","mail-speedpost-international.jpg","mail-registered-letter-international.jpg","mail-registered-parcel-domestic.jpg","mail-registered-parcel-international.jpg","mail-money-order-domestic.jpg","mail-itps-international.jpg",
+  "ippb-regular-savings.jpg","ippb-premium-savings.jpg","ippb-basic-savings.jpg","ippb-digismart-savings.jpg","ippb-dbt.jpg","ippb-qr-card.jpg","ippb-life-insurance.jpg","ippb-general-insurance.jpg","ippb-accident-insurance.jpg",
+  "item-postcard.jpg","item-envelope-letter.jpg","item-postage-stamp.jpg","item-revenue-stamp.jpg",
+  "govt-pmjjby.jpg","govt-pmsby.jpg","govt-apy.jpg",
+  "aadhar-seva-kendra.jpg","gds-jobs.jpg","track-speed-post.jpg"
+];
+const IMG_DIR = "gallery-images/";
+
+const dlBtn = document.getElementById("dlBtn");
+const progressWrap = document.getElementById("progressWrap");
+const progressFill = document.getElementById("progressFill");
+const progressLabel = document.getElementById("progressLabel");
+const statusMsg = document.getElementById("statusMsg");
+
+dlBtn.addEventListener("click", async () => {
+  dlBtn.disabled = true;
+  dlBtn.textContent = "તૈયાર થઈ રહ્યું છે…";
+  progressWrap.classList.add("show");
+  statusMsg.textContent = "";
+  statusMsg.className = "status";
+
+  const zip = new JSZip();
+  let done = 0;
+  let failed = [];
+
+  for (const file of FILES) {
+    try {
+      const resp = await fetch(IMG_DIR + file);
+      if (!resp.ok) throw new Error("fetch failed");
+      const blob = await resp.blob();
+      zip.file(file, blob);
+    } catch (err) {
+      failed.push(file);
+    }
+    done++;
+    const pct = Math.round((done / FILES.length) * 100);
+    progressFill.style.width = pct + "%";
+    progressLabel.textContent = `${done} / ${FILES.length} પોસ્ટર તૈયાર થઈ રહ્યા છે…`;
+  }
+
+  progressLabel.textContent = "ZIP બનાવી રહ્યા છીએ…";
+  try {
+    const content = await zip.generateAsync({ type: "blob", compression: "DEFLATE", compressionOptions: { level: 6 } });
+    const url = URL.createObjectURL(content);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "gadhasisa-post-office-posters.zip";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+
+    if (failed.length === 0) {
+      statusMsg.textContent = "✅ ડાઉનલોડ પૂરું થયું! તમારા ફોનના Downloads ફોલ્ડરમાં ZIP ફાઈલ મળશે.";
+      statusMsg.className = "status ok";
+    } else {
+      statusMsg.textContent = `⚠️ ડાઉનલોડ પૂરું થયું, પણ ${failed.length} પોસ્ટર લોડ ન થઈ શક્યા.`;
+      statusMsg.className = "status err";
+    }
+    if (typeof gtag === "function") {
+      gtag('event', 'gallery_download_all', { total: FILES.length, failed: failed.length });
+    }
+  } catch (err) {
+    statusMsg.textContent = "❌ ZIP બનાવવામાં તકલીફ પડી. ફરી પ્રયત્ન કરો.";
+    statusMsg.className = "status err";
+  }
+
+  dlBtn.disabled = false;
+  dlBtn.textContent = "⬇️ ફરી ડાઉનલોડ કરો";
+});
+</script>
+</body>
+</html>
